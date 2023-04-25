@@ -1,0 +1,47 @@
+.forgotpwd{
+    font-family: 'Poppins', sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 180%;
+    text-align: center;
+    color: #6C757D;
+}
+.min-height{
+    min-height: 100vh;
+    height: 100vh;
+    // padding: 10px;
+    // overflow-y: auto;
+     }
+ @media screen and (max-width: 768px) {
+    
+    .logoname{
+        display:none;
+    }
+    .mx-auto-robotimg{
+        display:none;
+    }
+    .page-responsiveness{
+        padding: 0 !important;
+    }
+    .input-length{
+        width:95%;
+        height: 38px;
+    }
+    .forgotpwd{
+        padding-left: 40px;
+        display: block;
+        white-space: nowrap;
+        margin-top: 40px;
+    }
+
+    .align-left{
+        text-align: left;
+    }
+
+    .text-blue-400{
+        display: block;
+        padding-right: 40px;
+    }
+
+ }

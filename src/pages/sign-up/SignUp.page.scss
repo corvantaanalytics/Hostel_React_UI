@@ -1,0 +1,115 @@
+
+.min-height{
+    min-height: 100vh;
+    height: 100vh;
+    // padding: 10px;
+  //   overflow-y: auto;
+     }
+
+    //  .top-space{
+    //     padding-bottom: 50px;
+    //  }
+  .title{
+  
+      font-family: 'Poppins', sans-serif !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 48px;
+      color: #FFFFFF;
+  }
+  .subtitle{
+      font-family: 'Poppins', sans-serif !important;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #6C757D;
+  }
+  .input{
+      background: #0C0E0F;
+      border: 1px solid #16191F;
+      border-radius: 8px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: #6C757D;
+  
+  }
+  .form-label{
+      font-family: 'Poppins', sans-serif !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 18px;
+  }
+  .text-red-600{
+      font-family: 'Poppins', sans-serif !important;
+      color: #F2555A !important;
+      text-align: end;
+  }
+  .submitButton{
+      background: #F08EDB;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+      color: #FFFFFF;
+  }
+  .cancelButton{
+      background: #08090A;
+      border: 1px solid #16191F;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+      color: #FFFFFF;
+  }
+  @media screen and (max-width: 768px) {
+      .logoname {
+           display: none;
+       }
+       .mx-auto-robotimg {
+           display: none;
+       }
+      .page-responsiveness{
+           padding: 0 !important;
+        }
+       .title{
+        white-space: nowrap;  
+       }
+      .input{
+           font-style: normal;
+           font-weight: 300;
+           font-size: 13px;
+           color: #f3f6f8;
+       }
+       .Input-Length{
+            width:95%;
+            height: 38px;
+       }
+       .form-label{
+          white-space: nowrap;
+          padding-right: 40px; 
+       }
+       .align-left{
+        text-align: left;
+       }
+       .text-red-600{
+           font-family: 'Poppins', sans-serif !important;
+           white-space: nowrap;
+           text-align:justify;
+           font-size: 12px;
+       }  
+  
+   }
+
+   .logoimage{
+    height: 62rem;
+   }
