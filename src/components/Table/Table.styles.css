@@ -1,0 +1,24 @@
+.table-parent {
+  border-width: 1px;
+  background-color: #0c0d0f;
+  border-color: #16191f;
+}
+
+/* th div,
+td div {
+  border-bottom-width: 1px;
+  border-color: #16191f;
+} */
+
+table {
+  border: 1px solid #16191f;
+  border-radius: 25px !important;
+}
+tr {
+  border-bottom-width: 1px;
+  border-color: #16191f;
+}
+
+th div {
+  color: #6c757d;
+}

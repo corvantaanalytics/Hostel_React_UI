@@ -1,0 +1,59 @@
+.numberfield{
+    background: rgba(2, 62, 138, 0.12);
+    border: 1px solid #023E8A;
+    border-radius: 8px;
+    width: 65.33px;
+    height: 54px;
+}
+.ant-input-number-input{
+    margin-top: 7px;
+    margin-left: 10px;
+    font-family: 'Poppins', sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px !important;
+    line-height: 30px;
+    color: #FFFFFF !important;
+}
+.MFA-button{
+    width:540px;
+}
+@media screen and (max-width: 768px) {
+    
+    .logoname{
+        display:none;
+    }
+
+    .robotimg-mx-auto{
+        display:none;
+    }
+    .page-responsiveness{
+        padding: 0 !important;
+    }
+    .box-Num{
+        white-space: nowrap;
+    }
+
+    .numberfield{
+        white-space: nowrap;
+        width:45px;
+        height:35px;
+        margin-right: 0;
+    }
+
+    .ant-input-number-input{
+        margin-top: 0px;
+        margin-left: 5px;
+    }
+
+    .MFA-button{
+        // margin-top: 0px;
+        width: 300px;
+        // position: absolute;
+        padding-top:80px;
+        // margin-left: -40px;
+    }
+
+}
+
+ 
