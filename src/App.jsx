@@ -10,7 +10,7 @@ import setUpInterceptor from "lib/axios-interceptors";
 import { currentTokenDispatch } from "store/Slices/authSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PricingPage from "pages/Dashboard/ConnectedWebsites/Pricing";
+import PricingPage from "pages/Dashboard/Income/Pricing";
 import { ProtectedRoute } from "layout/components/ProtectedRoute.component";
 
 const SignUp = React.lazy(() => import("./pages/sign-up/SignUp.page"));

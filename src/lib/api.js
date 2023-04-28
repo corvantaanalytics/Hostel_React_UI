@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "./../store/index";
 // import { REACT_API_BASE_URL } from '@env';
 
-const REACT_API_BASE_URL = "https://pansophy-api.m2mbeta.com/api/v1/";
+const REACT_API_BASE_URL = "apilink/api/v1/";
 const X_API_KEY = "qwertyuioasdfghjklzxcvbnm";
 /**
  * API service methods to make life easier

@@ -1,0 +1,315 @@
+.custom-table__table.custom-table__table-hide-headers {
+  margin-top: 32px;
+  .ant-table-thead {
+    display: none;
+  }
+}
+
+.custom-table.custom-table-dark {
+  // Input in Header
+  .custom-table__input {
+    background: #1d1d42;
+    border-color: #1e1e2d;
+    // Input
+    input {
+      background: #1e1e2d;
+      color: #92928f;
+      &::placeholder {
+        color: #92928f;
+      }
+    }
+  }
+
+  
+  // Table
+
+  .custom-table__table {
+    margin-top: 18px;
+  }
+
+  // For Both Header & Body
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    background: #171723;
+    border-bottom: 1px dashed #fff;
+    font-family: Poppins;
+  }
+
+  // Table Header
+  .ant-table-thead > tr > th {
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-size: 12px;
+  }
+
+  // Table Body
+  .ant-table-tbody > tr > td {
+    color: #fff;
+    font-size: 14px;
+  }
+  // Table Body Hover Effects
+  .ant-table-tbody > tr.ant-table-row:hover > td,
+  .ant-table-tbody > tr > td.ant-table-cell-row-hover {
+    background: #1e1e2d;
+  }
+}
+.ant-table-row.ant-table-row-level-0.isActive > td {
+  background: #383854;
+}
+
+.ant-pagination-options {
+  .ant-select-selector {
+    background-color: #f900b9 !important;
+    border-color: #f900b9 !important;
+    color: #FFFFFF !important;
+  }
+  .ant-select-arrow {
+    color: #fff !important;
+  }
+  .ant-select-dropdown {
+    background: #000000 !important;
+
+    .ant-select-item-option-active,
+    .ant-select-item-option:hover {
+      background: #000000 !important;
+      border-color: #000000 !important;
+    }
+    .ant-select-item-option-content {
+      color: #92928f !important;
+    }
+  }
+}
+
+.custom-table {
+  width: 100%;
+  // Input in Header
+  &__input {
+    background: #08090A;
+    padding: 14px;
+    border-radius: 8px ;
+    border-color: #171723;
+    width: 1000px;
+    // max-width: 500px;
+    // Prefix Icon
+    .ant-input-prefix {
+      margin-right: 12px;
+    }
+    // Input
+    input {
+      background: #08090A;
+      color: #92928f;
+
+      &::placeholder {
+        color: #6C757D;
+        font-family: poppins;
+      }
+    }
+  }
+  &_filter{
+  border-radius: 8px ;
+  background: #08090A;
+  width: 250px;
+  height: 53px;
+  color: rgba(108, 117, 125, 1);
+  border-color: #FFFFFF;
+  display: flex;
+}
+  // Button
+  &__btn {
+    min-height: 50px;
+    border-radius: 8px;
+    background: #f900b9;
+  }
+
+  // Table
+  &__table {
+    margin-top: 42px;
+
+    // For Both Header & Body
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      background: #000000;
+      border-bottom: 1px outset #6C757D;
+      border-bottom-width: thin;
+      font-family: Poppins;
+    }
+
+    // Table Header
+    .ant-table-thead > tr > th {
+      text-transform: uppercase;
+      color: #FFFFFF;
+      font-size: 12px;
+    }
+
+    // Table Body
+    .ant-table-tbody > tr > td {
+      color: #fff;
+      font-size: 14px;
+    }
+    // Table Body Hover Effects
+    .ant-table-tbody > tr.ant-table-row:hover > td,
+    .ant-table-tbody > tr > td.ant-table-cell-row-hover {
+      background: #383854;
+    }
+
+    // Action Buttons (Dropdown)
+    &-dropdown {
+      &-btn {
+        color: #fff;
+        // text-transform: uppercase;
+        // background: #FFFFFF;
+        // border-color: #323248;
+        display: flex;
+        font-family: Poppins;
+        color: #f900b9;
+        align-items: center;
+        gap: 10px;
+        // border-radius: 4px;
+        &:hover,
+        &:active,
+        &:focus {
+          background: #323248;
+          border-color: #323248;
+        }
+      }
+      &-overlay {
+        display: flex;
+        min-width: 140px;
+        flex-direction: column;
+        background: #000000;
+        padding: 15px 0px;
+        button {
+          border: none;
+          color: #616166;
+          text-align: left;
+
+          &:hover,
+          &:focus {
+            background: rgb(39, 39, 58);
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    // Pagination Styles
+    .ant-pagination {
+      // All LI Styles
+      li.ant-pagination-item {
+        border-radius: 8px;
+        border: none;
+        background-color: transparent;
+        a {
+          background: #08090A;
+          border-radius: 8px;
+          color: #FFFFFF;
+          width: 32px;
+          height: 32px;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      // Active Item Styles
+      li.ant-pagination-item-active {
+        a {
+          background: #f900b9;
+          border-radius: 8px;
+          color: #fff;
+        }
+      }
+
+      // Container
+      .ant-pagination-item-container {
+        display: flex;
+        height: 32px;
+        width: 32px;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        // Ellipses Styles
+        .ant-pagination-item-ellipsis {
+          color: #616166;
+        }
+      }
+    }
+    // Next / Prev Btns
+    .ant-pagination-next,
+    .ant-pagination-prev {
+      button {
+        color: #f900b9;
+        background: #482122;
+        padding: 0px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-color: #212e48;
+        border-radius: 8px;
+      }
+    }
+    // Disabled Btns
+    .ant-pagination-disabled {
+      button {
+        color: #92928f;
+        background: #f900b9;
+        border-color: #f900b9;
+      }
+    }
+  }
+}
+
+.ant-table-thead th.ant-table-column-has-sorters:hover {
+  background: #f900b9 !important;
+}
+
+.ant-table-placeholder:hover td {background: #f900b9 !important;}
+
+.borderBox {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 24px;
+  width: 1088px;
+  height: 104px;
+  background: #16191F;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+}
+
+.boxFirstRowtext {
+  // width: 712px;
+  // height: 56px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color:#6C757D;
+}
+
+.renewButton{
+color: #FFFFFF;
+background: #16191F 0% 0% no-repeat padding-box;
+font-size: 14px;
+border-radius: 8px;
+display: inline-block;
+margin-bottom: 5px;
+border: 2px solid #FFFFFF;
+border-radius: 5px;
+width: 180px;
+height: 53px;
+}
+
+.boxSecondRowtext{
+// width: 712px;
+// height: 19px;
+font-family: 'Poppins';
+font-weight: 400;
+font-size: 18px;
+line-height: 30px;
+color: #FFFFFF;
+}

@@ -76,7 +76,7 @@ function SignIn() {
     //             .join("&");
     //         dispatch(initAuthenticationPending());
     //         const response = await fetch(
-    //             `https://pansophy-api.m2mbeta.com/api/v1/login/access-token`,
+    //             `apilink//login/access-token`,
     //             {
     //                 method: "POST",
     //                 body: formBody,
