@@ -152,6 +152,11 @@ export default function NewSidebar() {
               title="Expenses"
             />
             <NavLink
+              Icon={MoneySend}
+              link="/dashboard/hostellers"
+              title="Hostellers"
+            />
+            <NavLink
               Icon={Setting5}
               link="/dashboard/settings"
               title="Settings"

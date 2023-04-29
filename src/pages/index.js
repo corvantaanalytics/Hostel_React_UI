@@ -24,15 +24,19 @@ export const dashboardPages = [
     },
     {
         path: "/rooms",
-        Component: lazy(() => import("./Dashboard/Datasets/Datasets.page")),
+        Component: lazy(() => import("./Dashboard/Rooms/Rooms.page")),
     },
     {
         path: "/income",
-        Component: lazy(() => import("./Dashboard/ConnectedWebsites/ConnectedWebsites.page")),
+        Component: lazy(() => import("./Dashboard/Income/Income.page")),
     },
     {
         path: "/expenses",
-        Component: lazy(() => import("./Dashboard/ManageSubscription/ManageSubscription.page")),
+        Component: lazy(() => import("./Dashboard/Expenses/Expenses.page")),
+    },
+    {
+        path: "/hostellers",
+        Component: lazy(() => import("./Dashboard/Hostellers/Hostellers")),
     },
     {
         path: "/settings",
