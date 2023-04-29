@@ -1,61 +1,50 @@
 import { Modal } from "components";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-// import { addClientUser } from "store";
-import { useCountries } from "use-react-countries";
+import { addHosteller } from "store/Actions/hostellers";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
-  fullName: Yup.string().required("Full name is required"),
-  email: Yup.string().email("Email is invalid").required("Email is required"),
-  password: Yup.string()
-    .required("Password is required")
-    .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      "Please use 8 or more characters with a mix of letters, numbers & symbols"
-    ),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .required("Confirm Password is required"),
-  status: Yup.bool().required("Status is required"),
-  companyName: Yup.string().required("Company Name is required"),
-  address1: Yup.string().required("Address 1 is required"),
-  city: Yup.string().required("City is required"),
-  state_region: Yup.string().required("State/Region is required"),
-  zipCode: Yup.string().required("ZIP Code is required"),
-  country: Yup.string().required("Country is required"),
-  brandId: Yup.string().required("Brand is required"),
+  firstName: Yup.string().required("Full name is required"),
+  mobilenumber: Yup.string().required("Mobile Number is required"),
+  email: Yup.string()
+  .required('Email Address is required.')
+  .email('Email format not recognized.'),
+  dateofbirth: Yup.string().required("Date is required"),
+  addressforcommunication: Yup.string().required("Address is required"),
+  permanentaddress: Yup.string().required("Address is required"),
+  parentname: Yup.string().required("Parent Name is required"),
+  parentcontactnumber: Yup.string().required("Number is required"),
+  workplaceinformation: Yup.string().required("Address is required"),
+  workplacephonenumber: Yup.string().required("Number is required"),
+  roomdetails: Yup.string().required("Room Details is required"),
+  rentdetails: Yup.string().required("Rent Details is required"),
+  advancemoney: Yup.string().required("Amount is required"),
+  dateofjoining: Yup.string().required("Date is required"),
 });
 
 export const AddHosteller = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
   const dispatch = useDispatch();
-  const { id } = useParams();
 
   const initialValues = {
-    fullName: "",
-    // email: "",
-    password: "",
-    confirmPassword: "",
-    status: true,
-    // ipAddresses: "",
-    companyName: "",
-    brandId: "",
-    address1: "",
-    address2: "",
-    city: "",
-    state_region: "",
-    zipCode: "",
-    country: "",
-    parentID: id ? id : "",
+    id: "",
+    firstName: "",
+    mobilenumber: "",
+    email: "",
+    dateofbirth: "",
+    addressforcommunication: "",
+    permanentaddress: "",
+    parentname: "",
+    parentcontactnumber: "",
+    workplaceinformation: "",
+    workplacephonenumber: "",
+    roomdetails: "",
+    rentdetails: "",
+    advancemoney: "",
+    dateofjoining: "",
   };
-  const location = [
-    { label: "Pallavaram", value: "Pallavaram" },
-    { label: "Egmore", value: "Egmore" },
-    { label: "Tambaram", value: "Tambaram" },
-    { label: "Adayar", value: "Adayar" },
-  ]
+
   const addFields = [
     {
       type: "id",
@@ -65,43 +54,114 @@ export const AddHosteller = ({ show, setShow }) => {
     },
     {
       type: "input",
-      name: "description",
-      placeholder: "Enter description..",
-      title: t("Description"),
-    },
-    {
-      type: "switch",
-      name: "status",
-      title: t("status"),
+      name: "firstName",
+      placeholder: "Enter Name",
+      title: t("Name"),
     },
     {
       type: "input",
-      name: "Category",
-      placeholder: "Category",
-      title: "Category",
+      name: "mobilenumber",
+      placeholder: "Enter Mobile Number",
+      title: t("Mobile Number"),
     },
     {
-      type: "select",
-      name: "hostelLocation",
-      title: t("Hostel Location"),
-      placeholder:'Select Location',
-      options: location
+      type: "input",
+      name: "email",
+      placeholder: "Enter Email",
+      title: t("Email"),
     },
+    {
+      type: "input",
+      name: "dateofbirth",
+      placeholder: "DD-MM-YYYY",
+      title: t("Date Of Birth"),
+      //  disableDate: (current) => current && current.valueOf() < Date.now(),
+    },
+    {
+      type: "input",
+      name: "addressforcommunication",
+      placeholder: "Enter Address",
+      title: t("Address For Communication"),
+    },
+    {
+      type: "input",
+      name: "permanentaddress",
+      placeholder: "Enter Address",
+      title: t("Permanent Address"),
+    },
+    {
+      type: "input",
+      name: "parentname",
+      placeholder: "Enter Parent Name",
+      title: t("Parent Name"),
+    },
+    {
+      type: "input",
+      name: "parentcontactnumber",
+      placeholder: "Enter Parent NUmber",
+      title: t("Parent Contact Number"),
+    },
+    {
+      type: "input",
+      name: "workplaceinformation",
+      placeholder: "Enter Address",
+      title: t("WorkPlace Address"),
+    },
+    {
+      type: "input",
+      name: "workplacephonenumber",
+      placeholder: "Enter Number",
+      title: t("WorkPlace Phonenumber"),
+    },
+    {
+      type: "input",
+      name: "roomdetails",
+      placeholder: "Enter Room Details",
+      title: t("Room Details"),
+    },
+    {
+      type: "input",
+      name: "rentdetails",
+      placeholder: "Enter Rent Details",
+      title: t("Rent Details"),
+    },
+    {
+      type: "input",
+      name: "advancemoney",
+      placeholder: "Enter Amount",
+      title: t("Advance Money"),
+    },
+    {
+      type: "input",
+      name: "dateofjoining",
+      placeholder: "DD-MM-YYYY",
+      title: t("Date Of Joining"),
+      // disableDate: (current) => current && current.valueOf() < Date.now(),
+    },
+
   ];
   return (
     <Modal
       heading="Add Hosteller"
       submitText="Add Hosteller"
       show={show}
-    //   loading={loading || brandsLoading}
       setShow={setShow}
       fields={addFields}
       initialValues={initialValues}
-      validationSchema={validationSchema}
-    //   handleSubmit={async (values) => {
-    //     await dispatch(addClientUser(values));
-    //     setShow(false);
-    //   }}
+       validationSchema={validationSchema}
+      handleSubmit={async (values) => {
+        const newValues = {
+          ...values,
+          id:Number(values?.id),
+          mobilenumber:Number(values?.mobilenumber),
+          parentcontactnumber:Number(values?.parentcontactnumber),
+          workplacephonenumber:Number(values?.workplacephonenumber),
+          advancemoney:Number(values?.advancemoney),
+          // dateofbirth: values.dateofbirth.toISOString(),
+          // dateofjoining: values.dateofjoining.toISOString(),
+        };
+        await dispatch(addHosteller(newValues,setShow));
+      }}
     />
   );
 };
