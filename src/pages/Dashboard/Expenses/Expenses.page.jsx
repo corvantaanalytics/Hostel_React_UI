@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { API } from "lib/api";
 // import ModelDropdown from "components/ModelDropdown/ModelDropdown.component";
 import { Button, Select } from "antd";
-import { getAllHostellers } from "store/Actions/settings";
+import { getAllHostellers } from "store/Actions/hostellers";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { AddExpenses } from "./Addexpenses";
@@ -226,7 +226,7 @@ const ExpensesPage = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(getAllHostellers());
+            // await dispatch(getAllHostellers());
             // await dispatch(getApiKey());
         })();
     }, []);

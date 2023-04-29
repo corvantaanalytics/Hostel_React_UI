@@ -1,6 +1,6 @@
 import { Modal } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateEmail } from 'store/Actions/settings';
+import { updateEmail } from 'store/Actions/hostellers';
 import * as Yup from 'yup';
 
 const initialValues = {
@@ -12,7 +12,7 @@ const validationSchema =Yup.object().shape({
 });
 
 export const UpdateEmailModal = ({ show, setShow, id }) => {
-    const { user } = useSelector((state) => state?.settings)
+
     const dispatch = useDispatch();
 
     const fields = [
@@ -34,9 +34,6 @@ export const UpdateEmailModal = ({ show, setShow, id }) => {
             validationSchema={validationSchema}
             submitText="Save Changes"
             handleSubmit={async (values) => {
-                dispatch(                   
-                    updateEmail(values?.email,setShow)
-                )
             }}
             show={show}
             setShow={setShow}

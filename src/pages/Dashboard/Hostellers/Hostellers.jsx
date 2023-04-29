@@ -3,19 +3,14 @@ import { DashboardLayout } from "layout";
 import Section from "components/Section/Section.component";
 import { Table } from "components/Table/Table.component";
 import { Button } from "antd";
-import { getAllHostellers } from "store/Actions/settings";
+import { getAllHostellers } from "store/Actions/hostellers";
 import { useDispatch } from "react-redux";
 import { AddHosteller } from "./AddHosteller";
 import { useTranslation } from "react-i18next";
-import { checkModule } from "lib/checkModule";
-
 
 const Hostellers = () => {
     const [showHostelModal, setShowHostelModal] = useState(false);
     const dispatch = useDispatch();
-    const { permissions } = checkModule({
-        module: "Brands",
-    });
     const { t } = useTranslation("/TitleModal/ns");
     const tableData = [];
     for (let i = 0; i < 20; i++) {
