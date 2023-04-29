@@ -7,6 +7,7 @@ import {
   getUserDetailsDispatch,
   setSettingsLoading,
 } from "store/Slices/settingsSlice";
+import axios from "axios";
 
 
 export const getUserDetails = () => {
@@ -172,7 +173,7 @@ export const getApiKey = () => {
   };
 };
 
-export const updateApiKey = (key,setShow) => {
+export const updateApiKey = (key, setShow) => {
   return async (dispatch, getState) => {
     const currentToken = sessionStorage.getItem("token");
     const apiId = sessionStorage.getItem("apiId");
@@ -186,16 +187,40 @@ export const updateApiKey = (key,setShow) => {
         headers: new Headers({
           "Content-type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "Accept":"application/json",
+          "Accept": "application/json",
           Authorization: `Bearer ${currentToken}`,
           "x-api-key": "qwertyuioasdfghjklzxcvbnm",
         }),
       }
     );
-    if(response?.status === 200){
+    if (response?.status === 200) {
       dispatch(getApiKey());
       setShow(false);
       toast.success("AI Key Updated")
     }
+  };
+};
+
+export const getAllHostellers = () => {
+
+  return async (dispatch) => {
+    // const currentToken = sessionStorage.getItem("token");
+    const response = await axios.get(
+      `http://localhost:9000/api/v1/hostellers`,
+      // { token, new_password },
+      // {
+      //     headers: new Headers({
+      //         'Access-Control-Allow-Origin': '*'
+      //     }),
+      // }
+    );
+
+    const res = response.json();
+    // console.log("res", res)
+    // if (res?.key) {
+    //   sessionStorage.setItem("openAi", res?.key)
+    //   sessionStorage.setItem("apiId", res?.id)
+    // }
+    // dispatch(getOpenAIKeyDispatch(res.key));
   };
 };
