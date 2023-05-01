@@ -7,7 +7,6 @@ import { getAllHostellers } from "store/Actions/hostellers";
 import { useDispatch, useSelector } from "react-redux";
 import { AddHosteller } from "./AddHosteller";
 import { useTranslation } from "react-i18next";
-import { data } from "autoprefixer";
 import moment from "moment";
 
 const Hostellers = () => {
@@ -17,7 +16,6 @@ const Hostellers = () => {
     const dispatch = useDispatch();
     const { t } = useTranslation("/TitleModal/ns");
    
-console.log("hostellers",hostellers)
     useEffect(() => {
         if (hostellers) {
           let dataArr = [];
