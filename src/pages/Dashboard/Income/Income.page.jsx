@@ -3,7 +3,7 @@ import { DashboardLayout } from "layout";
 import Section from "components/Section/Section.component";
 import { Table } from "components/Table/Table.component";
 import { Button } from "antd";
-import { getAllHostellers } from "store/Actions/settings";
+import { getAllHostellers } from "store/Actions/hostellers";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { AddIncome } from "./AddIncome";
@@ -126,7 +126,7 @@ const IncomePage = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(getAllHostellers());
+            // await dispatch(getAllHostellers());
             // await dispatch(getApiKey());
         })();
     }, []);

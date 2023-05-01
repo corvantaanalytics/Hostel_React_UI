@@ -1,48 +1,8 @@
-import { Alert } from "react-bootstrap";
-import { Provider, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// import { toast } from 'react-toastify';
-// import { getUserProfile } from 'store/Actions/AuthActions';
-// import { messageNotifications } from 'store';
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import { Row, Col } from "antd";
 import "./SignIn.page.scss";
-import SignUp from "../sign-up/SignUp.page";
-import {
-    currentTokenDispatch,
-    initAuthenticationPending,
-    initAuthenticationSuccess,
-    setAuthToken,
-} from "store/Slices/authSlice";
-import { SaveTokenInLocalStorage } from "store/Actions/AuthActions";
-import { toast } from "react-toastify";
-import { VerifyYourEmail } from "pages/Dashboard/AllPopupmodel/VerifyYourEmail";
-// import {
-//   ChangeMfaStatus,
-//   initAuthenticationFail,
-//   initAuthenticationPending,
-//   initAuthenticationSuccess,
-// } from 'store/Slices/authSlice';
-// import { accountSuspended, closeLockScreen } from 'store/Slices/settingSlice';
-// import Recaptcha from 'pages/Google-Recaptcha/Recaptcha';
-// import { useCookies } from 'react-cookie';
-// import { useTranslation } from 'react-i18next';
-// import { getIPData, getDeviceName } from 'lib';
-
-// const initialValues = {
-//     username: "",
-//     password: "",
-// };
-
-// const SignUpSchema = Yup.object().shape({
-//     username: Yup.string()
-//         .required("Email Address is required.")
-//         .email("Email format not recognized."),
-//     password: Yup.string()
-//         .required("password is required.")
-//         .min(5, "Password must be atleast 8 characters"),
-// });
 
 const fields = [
     {
@@ -58,53 +18,6 @@ const fields = [
 function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // sessionStorage.removeItem("token");
-    // const initialToken = sessionStorage.getItem('token');
-    // const login = (email, password) => {
-    //     sessionStorage.setItem("password", password);
-
-    //     return async () => {
-    //         initialValues.username = email;
-    //         initialValues.password = password;
-    //         const formBody = Object.keys(initialValues)
-    //             .map(
-    //                 (key) =>
-    //                     encodeURIComponent(key) +
-    //                     "=" +
-    //                     encodeURIComponent(initialValues[key])
-    //             )
-    //             .join("&");
-    //         dispatch(initAuthenticationPending());
-    //         const response = await fetch(
-    //             `apilink//login/access-token`,
-    //             {
-    //                 method: "POST",
-    //                 body: formBody,
-    //                 headers: new Headers({
-    //                     "Content-type": "application/x-www-form-urlencoded",
-    //                     "Access-Control-Allow-Origin": "*",
-    //                 }),
-    //             }
-    //         );
-    //         const res = await response.json();
-    //         if (response?.status === 200) {
-    //             sessionStorage.setItem("token", res?.access_token);
-    //             dispatch(initAuthenticationSuccess({ token: res.access_token }));
-    //             dispatch(setAuthToken(res.access_token));
-    //             navigate(`/dashboard`);
-    //         }
-    //         else if (!res) {
-    //             toast.error("An Error Occurred. Try Again Later")
-    //         }
-    //         else if (response?.status != 200) {
-    //             toast.error(res?.detail)
-    //         }
-    //         sessionStorage.setItem("token", res?.access_token);
-    //         dispatch(initAuthenticationSuccess(res.data));
-    //         SaveTokenInLocalStorage(dispatch, res.data);
-    //     }
-    // }
-
     const navigateToDashborad = () => {
         navigate( "/dashboard");
     }
@@ -131,14 +44,7 @@ function SignIn() {
                             </p>
                         </div>
                         <Formik
-                            // initialValues={initialValues}
-                        //     validationSchema={SignUpSchema}
-                        // onSubmit={async (values, { resetForm }) => {
-                        //     try {
-                        //         await dispatch(login(values.username, values.password));
-                        //     } catch (err) { }
-                        // }}
-                        // onSubmit={navigate(navigateToDashborad)}
+
                         >
                             {({ errors, touched }) => (
                                 <Form className="w-full">

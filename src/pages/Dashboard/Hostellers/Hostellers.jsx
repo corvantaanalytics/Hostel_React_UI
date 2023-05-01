@@ -3,34 +3,38 @@ import { DashboardLayout } from "layout";
 import Section from "components/Section/Section.component";
 import { Table } from "components/Table/Table.component";
 import { Button } from "antd";
-import { getAllHostellers } from "store/Actions/settings";
-import { useDispatch } from "react-redux";
+import { getAllHostellers } from "store/Actions/hostellers";
+import { useDispatch, useSelector } from "react-redux";
 import { AddHosteller } from "./AddHosteller";
 import { useTranslation } from "react-i18next";
-import { checkModule } from "lib/checkModule";
-
+import { data } from "autoprefixer";
+import moment from "moment";
 
 const Hostellers = () => {
+    const {hostellers} = useSelector((state)=>state?.hostellers)
     const [showHostelModal, setShowHostelModal] = useState(false);
+    const [data, setData] = useState([]);
     const dispatch = useDispatch();
-    const { permissions } = checkModule({
-        module: "Brands",
-    });
     const { t } = useTranslation("/TitleModal/ns");
-    const tableData = [];
-    for (let i = 0; i < 20; i++) {
-        tableData.push({
-            key: i,
-            id: `1391e37e-bcfc`,
-            category: `Single Sharing`,
-            status: `1`,
-            location: 'Pallavaram',
-            roomType: 'Ac/Non-Ac',
-            lastEdited: `07-03-23`,
-            dateCreated: `07-03-23`,
-        });
-    }
-
+   
+console.log("hostellers",hostellers)
+    useEffect(() => {
+        if (hostellers) {
+          let dataArr = [];
+          hostellers.forEach((key, index) => {
+            dataArr.push({
+              id: key?.id,
+              firstName: key?.firstName,
+              addressforcommunication: key?.addressforcommunication,
+              parentname: key?.parentname,
+              roomdetails: key?.roomdetails,
+              rentdetails: key?.rentdetails,
+              lastEdidateofjoiningted: key?.dateofjoining,
+            });
+          });
+          setData(dataArr);
+        }
+      }, [hostellers]);
     const columns = [
         {
             title: ("ID"),
@@ -38,98 +42,49 @@ const Hostellers = () => {
             key: "id",
         },
         {
-            title: ("Category"),
-            dataIndex: "category",
-            key: "category",
-            render: (category, record) => {
+            title: ("Name"),
+            dataIndex: "firstName",
+            key: "firstName",
+            render: (firstName, record) => {
                 return (
                     <div className="flex items-center gap-[12px]">
-                        <p className="text-white">{category ? category : "N/A"}</p>
+                        <p className="text-white">{firstName ? firstName : "N/A"}</p>
                     </div>
                 )
             },
         },
-
         {
-            title: "Status",
-            dataIndex: "orderstatus",
-            key: "orderstatus",
-            render: (orderstatus) => {
-                let color = "";
-                let text = "";
-                switch (orderstatus) {
-                    case 0:
-                        color = "bg-[#392F28] text-[#FFA800]";
-                        text = "DRAFT";
-                        break;
-                    case 1:
-                        color = "bg-[#392F28] text-[#FFA800]";
-                        text = "PENDING";
-                        break;
-                    case 2:
-                        color = "bg-[#1C3238] text-[#0BB783]";
-                        text = "PAID";
-                        break;
-                    case 3:
-                        color = "bg-[#1C3238] text-[#0BB783]";
-                        text = "PROCESSING";
-                        break;
-                    case 4:
-                        color = "bg-[#1C3238] text-[#0BB783]";
-                        text = "COMPLETED";
-                        break;
-                    case 5:
-                        color = "bg-[#1C3238] text-[#0BB783]";
-                        text = "ACCEPTED";
-                        break;
-                    case 6:
-                        color = "bg-[#3A2434] text-[#F64E60]";
-                        text = "CANCELLED";
-                        break;
-                    default:
-                        color = "";
-                        text = "UNKNOWN";
-                }
-
-                return (
-                    <div
-                        className={`${color} px-[8px] py-[4px] w-[fit-content] rounded-[4px]`}
-                    >
-                        {text}
-                    </div>
-                );
-            },
+            title: ("Address"),
+            dataIndex: "addressforcommunication",
+            key: "addressforcommunication",
         },
         {
-            title: ("Location"),
-            dataIndex: "location",
-            key: "location",
+            title: ("Parent Name"),
+            dataIndex: "parentname",
+            key: "parentname",
         },
         {
-            title: ("Roomtype"),
-            dataIndex: "roomType",
-            key: "roomType",
+            title: ("Room Details"),
+            dataIndex: "roomdetails",
+            key: "roomdetails",
         },
         {
-            title: ("Date Created"),
-            dataIndex: "dateCreated",
-            key: "dateCreated",
-            // sorter: (a, b) => (moment(a?.dateCreated) < moment(b?.dateCreated) ? -1 : 1),
-            // render: (text, record) => record?.createdOn !== "N/A" ? moment(record?.createdOn).format('MMMM Do, YYYY') : "N/A",
+            title: ("Rent Details"),
+            dataIndex: "rentdetails",
+            key: "rentdetails",
         },
         {
-            title: ("Last Edited"),
-            dataIndex: "lastEdited",
-            key: "lastEdited",
-            // sorter: (a, b) => (moment(a?.createdOn) < moment(b?.createdOn) ? -1 : 1),
-            // render: (text, record) => record?.createdOn !== "N/A" ? moment(record?.createdOn).format('MMMM Do, YYYY') : "N/A",
+            title: ("Date Of Joining"),
+            dataIndex: "dateofjoining",
+            key: "dateofjoining",
+            sorter: (a, b) => (moment(a?.dateofjoining) < moment(b?.dateofjoining) ? -1 : 1),
+            render: (text, record) => record?.dateofjoining !== "N/A" ? moment(record?.dateofjoining).format('MMMM Do, YYYY') : "N/A",
         },
     ];
 
     useEffect(() => {
         (async () => {
             await dispatch(getAllHostellers());
-            // await dispatch(getApiKey());
         })();
     }, []);
     return (
@@ -148,7 +103,7 @@ const Hostellers = () => {
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
                         columns={columns}
-                        data={tableData}
+                        data={data}
                         fieldToFilter="name"
                         btnData={{
                             text: (t("Add Hosteller")),

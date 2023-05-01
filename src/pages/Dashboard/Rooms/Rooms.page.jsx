@@ -5,7 +5,7 @@ import { Table } from "components/Table/Table.component";
 import { toast } from "react-toastify";
 import { API } from "lib/api";
 import { Button } from "antd";
-import { getAllHostellers } from "store/Actions/settings";
+import { getAllHostellers } from "store/Actions/hostellers";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { AddRooms } from "./AddRooms";
@@ -99,7 +99,7 @@ const RoomsPage = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(getAllHostellers());
+            // await dispatch(getAllHostellers());
             // await dispatch(getApiKey());
         })();
     }, []);
