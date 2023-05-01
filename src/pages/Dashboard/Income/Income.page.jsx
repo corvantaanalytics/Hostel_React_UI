@@ -137,9 +137,7 @@ const IncomePage = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
-                <Section.PageHeading>
-                   <div className="ml-5 py-8 Headingtext">Income</div>
-                </Section.PageHeading>
+                 <h2 className="content-header p-4 pb-2 text-white ">Income</h2>
 
                 {/* Sub heading */}
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">

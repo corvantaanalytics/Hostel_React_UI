@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { AddRooms } from "./AddRooms";
 import { getAllRooms } from "store/Actions/rooms";
+import Text from "components/Text/Text.component";
 
 
 const RoomsPage = () => {
@@ -65,15 +66,12 @@ const RoomsPage = () => {
     return (
         <DashboardLayout>
             <div className="bg-[#08090A]  p-5 text-white">
+
+            <h2 className="content-header p-4 pb-2 text-white ">Rooms</h2>
                 <AddRooms
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
-                <Section.PageHeading>
-                    <div className="ml-5 py-8 Headingtext">Rooms</div>
-
-                </Section.PageHeading>
-
                 {/* Sub heading */}
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table

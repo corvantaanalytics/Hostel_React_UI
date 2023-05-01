@@ -5,15 +5,11 @@ import Section from "components/Section/Section.component";
 
 
 const Home = () => {
-  
+
   return (
     <DashboardLayout>
       <div className="bg-[#08090A] gap-5 p-10 text-white h-full">
-        <Section.PageHeading>
-          <Text.PageHeading text="Dashboard" />
-        </Section.PageHeading>
-
-      
+        <h2 className="content-header p-4 pb-2 text-white ">Dashboard</h2>
       </div>
     </DashboardLayout>
   );
