@@ -120,7 +120,7 @@ const ExpensesPage = () => {
             key: i,
             id: `1391e37e-bcfc`,
             category: `Single Sharing`,
-            description:'N/A',
+            description: 'N/A',
             status: `1`,
             location: 'Pallavaram',
             roomType: 'Ac/Non-Ac',
@@ -237,19 +237,8 @@ const ExpensesPage = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
-                <Section.PageHeading>
-                   <div className="ml-5 py-8 Headingtext">Expenses</div>
-                    {/* <div className="grid grid-flow-col justify-items-end">
-                        <div className="">
-                            <Button
-                                className="ml-2"
-                                type={"primary"}
-                                label={"+ Add Income"}
-                                onClick={() => setShowAddModelModal(true)}
-                            />
-                        </div>
-                    </div> */}
-                </Section.PageHeading>
+                <h2 className="content-header p-4 pb-2 text-white ">Expenses</h2>
+
 
                 {/* Sub heading */}
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
