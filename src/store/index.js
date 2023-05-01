@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import hostellersReducer from './Slices/hostellersSlice'
+import roomsReducer from './Slices/roomsSlice'
 
 const store = configureStore({
   reducer: {
      hostellers: hostellersReducer,
+     rooms: roomsReducer
   },
 });
 export const messageNotifications = {
