@@ -1,14 +1,11 @@
 import { Input, Button, Table as AntTable, Dropdown, DatePicker } from "antd";
-// import { Dropdown as DropdownIcon } from "icons";
 import { Dropdown as DropdownIcon } from "icons";
 import { Search } from "icons";
-// import { axios, getOrdersConfig } from "lib";
-// import { axios } from "../../../lib";
+import { axios, getOrdersConfig } from "lib";
 import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
-// import SearchComponent from "./SearchComponent";
-import "./Table.styles.scss";
+import { useSelector } from "react-redux";
 import SearchComponent from "./SearchComponent";
+import "./Table.styles.scss";
 
 // Methods to Select Rows
 // const rowSelectionMethods = {
@@ -79,6 +76,7 @@ export const Table = ({
   };
 
   const searchOrderHandler = async (e) => {
+   console.log("first data")
     e.preventDefault();
     setIsLoading(true);
     const defaultData = {
@@ -96,11 +94,11 @@ export const Table = ({
     };
 
     // const { url } = getOrdersConfig();
-    // // const res = await axios.post(url, defaultData);
+    // const res = await axios.post(url, defaultData);
     // setIsLoading(false);
-    //   if (res.status === 200) {
-    //     setData(res?.data?.data);
-    //   }
+    // if (res.status === 200) {
+    //   setData(res?.data?.data);
+    // }
   };
 
   const keyWordHandler = (e) => {
@@ -124,6 +122,7 @@ export const Table = ({
   }, [pagination])
 
   useEffect(() => {
+    console.log("ue")
     if (fieldToFilter !== null && fieldToFilter !== undefined) {
       const filteredData = data?.filter((item) => {
         if (
@@ -141,14 +140,28 @@ export const Table = ({
     }
   }, [data, fieldToFilter, search]);
 
+  var permissions = {
+    permissions:true,
+    Create:true,
+    View:true,
+    Remove:true,
+    Update:true,
+    Search:true
+
+  }
+  // var permissions?.View = true
+  // var permissions = true
+  // var permissions = true
+  // var permissions = true
+
   // Only Set Data if there are view permissions
   useEffect(() => {
     let dataViewer = [];
+
     if (
-      // permissions !== undefined &&
-      // permissions !== null &&
-      // permissions?.View
-      permissions === true
+      permissions !== undefined &&
+      permissions !== null &&
+      permissions?.View
     ) {
       dataViewer = filtered?.length ? filtered : data;
     }
@@ -157,8 +170,7 @@ export const Table = ({
 
   // Only Add Actions if there are Update & Delete permissions
   useEffect(() => {
-    // if (permissions !== undefined && permissions !== null && !hideActions) {
-    if (permissions === true) {
+    if (permissions !== undefined && permissions !== null && !hideActions) {
       const actionColumn =
         (permissions?.View && viewAction) ||
           permissions?.Remove ||
@@ -194,7 +206,7 @@ export const Table = ({
                     type="primary"
                     className="custom-table__table-dropdown-btn"
                   >
-                    <div>{"Actions"}</div>
+                    <div>{"View Actions"}</div>
                     <div>
                       <DropdownIcon />
                     </div>
@@ -203,48 +215,12 @@ export const Table = ({
               </div>
             ),
           }
-          : {
-            title: "Actions",
-            key: "actions",
-            align: "center",
-            render: (text, record) => (
-              <div
-                className="flex items-center justify-end"
-                onClick={(event) => event.stopPropagation()}
-              >
-                <Dropdown
-                  overlayClassName="custom-table__table-dropdown-overlay"
-                  className="custom-table__table-dropdown"
-                  destroyPopupOnHide
-                  placement="bottomRight"
-                  overlay={
-                    <>
-                      {viewAction && permissions?.View && viewAction(record)}
-                      {editAction &&
-                        permissions?.Update &&
-                        editAction(record)}
-                      {deleteAction &&
-                        permissions?.Remove &&
-                        deleteAction(record)}
-                    </>
-                  }
-                  trigger={["click"]}
-                >
-                  <button
-                    type="primary"
-                    className="custom-table__table-dropdown-btn flex items-center"
-                  >
-                    <div>{"View Actions"}</div>
-                  </button>
-                </Dropdown>
-              </div>
-            ),
-          };
+          : {};
       setTableColumns([...columns, actionColumn]);
     } else {
       setTableColumns(columns);
     }
-  }, []);
+  }, [permissions]);
 
   const { RangePicker } = DatePicker;
 
@@ -259,13 +235,13 @@ export const Table = ({
             <div className="w-full mr-3">
               {
                 <>
-                  {permissions === true ? (
+                  {permissions?.View ? (
                     <>
                       {customFilterSort ? (
                         customFilterSort
                       ) : (
                         <>
-                          {hideSearch === false ? (
+                          {hideSearch ? (
                             <></>
                           ) : (
                             <>
@@ -274,12 +250,12 @@ export const Table = ({
                                   placeholder={
                                     props?.searchText
                                       ? props?.searchText
-                                      : "Search by name or ID..."
+                                      : "Search Here"
                                   }
                                   prefix={<Search />}
                                   className="custom-table__input"
                                   onChange={(e) => onSearchHandler(e.target.value, paginationData)}
-                                  value={searchValue ? searchValue : ""}
+                                // value={searchValue ? searchValue : ""}
                                 // onChange={keyWordHandler}
                                 />
                               )}
@@ -343,7 +319,7 @@ export const Table = ({
                 <></>
               )}
               {dateRangeSelector ? dateRangeSelector : <></>}
-              {btnData?.text && btnData?.onClick ? (
+              {btnData?.text && btnData?.onClick && permissions?.Create ? (
                 <Button
                   type="primary"
                   className={`custom-table__btn px-[32px] ${btnData?.customClass}`}
@@ -395,9 +371,8 @@ export const Table = ({
               size={size}
               pagination={{
                 defaultPageSize: 5,
-                //   user?.recordsToDisplay > 0 ? user?.recordsToDisplay : 5,
                 showSizeChanger: true,
-                position: ["bottomcenter"],
+                position: ["bottomLeft"],
                 pageSizeOptions: ["5", "10", "20", "50", "100", "200"],
                 total: paginationData?.totalCount,
                 current: paginationData?.currentPage,

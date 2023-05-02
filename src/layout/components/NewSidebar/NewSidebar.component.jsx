@@ -11,6 +11,7 @@ import {
   MoneyRecive,
   MoneySend,
   Home,
+  Location
 } from "iconsax-react";
 import { useLocation } from "react-router-dom";
 import { API } from "lib/api";
@@ -155,6 +156,11 @@ export default function NewSidebar() {
               Icon={MoneySend}
               link="/dashboard/hostellers"
               title="Hostellers"
+            />
+            <NavLink
+              Icon={Location}
+              link="/dashboard/location"
+              title="Location"
             />
             <NavLink
               Icon={Setting5}
