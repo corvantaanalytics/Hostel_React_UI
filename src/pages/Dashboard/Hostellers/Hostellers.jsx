@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "layout";
 import Section from "components/Section/Section.component";
 import { Table } from "components/Table/Table.component";
-import { Button } from "antd";
+import { Button, Dropdown } from "antd";
 import { getAllHostellers } from "store/Actions/hostellers";
 import { useDispatch, useSelector } from "react-redux";
 import { AddHosteller } from "./AddHosteller";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const Hostellers = () => {
     const {hostellers} = useSelector((state)=>state?.hostellers)
     const [showHostelModal, setShowHostelModal] = useState(false);
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { t } = useTranslation("/TitleModal/ns");
    
@@ -108,7 +110,7 @@ const Hostellers = () => {
                         editAction={(record) => (
                             <Button onClick={() => {
                                 // navigate(
-                                //     `/admin/dashboard/billing/orders/${myOrders ? "your-orders" : "all-orders"}/list/edit/${record?.key}`
+                                //     `/dashboard/income`
                                 // );
                             }}
                             >
