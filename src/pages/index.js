@@ -43,6 +43,10 @@ export const dashboardPages = [
         Component: lazy(() => import("./Dashboard/Location/Location")),
     },
     {
+        path: "/serviceApartments",
+        Component: lazy(() => import("./Dashboard/ServiceApartments/ServiceApartments")),
+    },
+    {
         path: "/settings",
         Component: lazy(() => import("./Dashboard/Settings/Settings.page")),
     },

@@ -113,7 +113,7 @@ export default function NewSidebar() {
       </button>
       <div
         className={`${isCollapsed ? "hidden md:w-16 w-16" : "w-full md:w-1/5 z-50"
-          } h-screen bg-[#0C0D0F] fixed text-white transition-all`}
+          } h-screen bg-[#0C0D0F] overflow-auto fixed text-white transition-all`}
       >
         <div className="flex justify-between p-4 mb-2">
           {!isCollapsed && (
@@ -161,6 +161,11 @@ export default function NewSidebar() {
               Icon={Location}
               link="/dashboard/location"
               title="Location"
+            />
+             <NavLink
+              Icon={Location}
+              link="/dashboard/serviceApartments"
+              title="Service Apartments"
             />
             <NavLink
               Icon={Setting5}

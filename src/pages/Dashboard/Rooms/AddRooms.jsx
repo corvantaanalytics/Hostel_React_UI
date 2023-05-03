@@ -1,4 +1,6 @@
+import { data } from "autoprefixer";
 import { Modal } from "components";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -10,7 +12,6 @@ import * as Yup from "yup";
 const validationSchema = Yup.object().shape({
   locationId: Yup.string().required("LocationId is required"),
   serviceApartmentId: Yup.string().required("ServiceApartmentId is required"),
-  address: Yup.string().required("Address is required"),
   roomTypes: Yup.string().required("RoomType is required"),
   rent: Yup.string().required("Rent is required"),
 });
@@ -18,29 +19,42 @@ const validationSchema = Yup.object().shape({
 export const AddRooms = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
   const dispatch = useDispatch();
+  const { locations } = useSelector((state) => state?.locations)
+  const { serviceApartments } = useSelector((state) => state?.serviceApartments)
+  const [location, setLocation] = useState([])
+  const [ServiceApartments, setServiceApartments] = useState([])
 
   const initialValues = {
     id: "",
     locationId: "",
     serviceApartmentId: "",
-    address:"",
+    address: "",
     roomTypes: "",
     rent: "",
   };
 
-  // const branch = [
-  //   { label: "SingleSharing", value: "SingleSharing" },
-  //   { label: "Twin Sharing", value: "Twin Sharing" },
-  //   { label: "Three Sharing", value: "Three Sharing" },
-  //   { label: "AC Room", value: "AC Room" },
-  // ]
 
-  // const location = [
-  //   { label: "Pallavaram", value: "Pallavaram" },
-  //   { label: "Egmore", value: "Egmore" },
-  //   { label: "Tambaram", value: "Tambaram" },
-  //   { label: "Adayar", value: "Adayar" },
-  // ]
+  useEffect(() => {
+    let dataArr = [];
+    locations.forEach((key, index) => {
+      dataArr.push({
+        value: key?.id,
+        label: key?.location,
+      });
+    });
+    setLocation(dataArr)
+  }, [locations]);
+
+  useEffect(() => {
+    let data = [];
+    serviceApartments.forEach((key, index) => {
+      data.push({
+        value: key?.id,
+        label: key?.address,
+      });
+    });
+    setServiceApartments(data)
+  }, [serviceApartments]);
 
   const addFields = [
     {
@@ -50,24 +64,20 @@ export const AddRooms = ({ show, setShow }) => {
       title: t("ID"),
     },
     {
-      type: "type",
+      type: "select",
       name: "locationId",
-      placeholder: " Enter LocationId ",
+      // placeholder: " Enter LocationId ",
       title: t("LocationId"),
+      options: location
     },
     {
-      type: "type",
+      type: "select",
       name: "serviceApartmentId",
-      placeholder: " Enter ServiceApartmentId ",
+      // placeholder: " Enter ServiceApartmentId ",
       title: t("ServiceApartmentId"),
+      options: ServiceApartments
     },
     {
-      type: "type",
-      name: "address",
-      placeholder: " Enter Address ",
-      title: t("Address"),
-    },
-     {
       type: "type",
       name: "roomTypes",
       placeholder: " Enter RoomType ",
@@ -92,12 +102,12 @@ export const AddRooms = ({ show, setShow }) => {
       handleSubmit={async (values) => {
         const newValues = {
           ...values,
-          id:Number(values?.id),
-          locationId:Number(values?.locationId),
-          serviceApartmentId:Number(values?.serviceApartmentId),
-          rent:Number(values?.rent),
+          id: Number(values?.id),
+          locationId: Number(values?.locationId),
+          serviceApartmentId: Number(values?.serviceApartmentId),
+          rent: Number(values?.rent),
         };
-        await dispatch(addRooms(newValues,setShow));
+        await dispatch(addRooms(newValues, setShow));
       }}
     />
   );

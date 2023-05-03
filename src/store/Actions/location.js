@@ -17,7 +17,7 @@ export const getAllLocations = () => {
         `http://localhost:9000/api/v1/location`,newValues
       );
       if(response?.status === 200){
-        toast("Hosteller Added Successfully")
+        toast("Location Added Successfully")
         dispatch(getAllLocations())
         setShow(false)
       }

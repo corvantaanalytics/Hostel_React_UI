@@ -1,4 +1,5 @@
 import { Modal } from "components";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { addHosteller } from "store/Actions/hostellers";
@@ -17,6 +18,8 @@ const validationSchema = Yup.object().shape({
   parentcontactnumber: Yup.string().required("Number is required"),
   workplaceinformation: Yup.string().required("Address is required"),
   workplacephonenumber: Yup.string().required("Number is required"),
+  locationId: Yup.string().required("LocationId is required"),
+  serviceApartmentId: Yup.string().required("ServiceApartmentId is required"),
   roomdetails: Yup.string().required("Room Details is required"),
   rentdetails: Yup.string().required("Rent Details is required"),
   advancemoney: Yup.string().required("Amount is required"),
@@ -26,7 +29,11 @@ const validationSchema = Yup.object().shape({
 export const AddHosteller = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
   const dispatch = useDispatch();
-
+  const { locations } = useSelector((state) => state?.locations)
+  const { serviceApartments } = useSelector((state) => state?.serviceApartments)
+  const [location, setLocation] = useState([])
+  const [ServiceApartments, setServiceApartments] = useState([])
+  
   const initialValues = {
     id: "",
     firstName: "",
@@ -39,11 +46,36 @@ export const AddHosteller = ({ show, setShow }) => {
     parentcontactnumber: "",
     workplaceinformation: "",
     workplacephonenumber: "",
+    locationId: "",
+    serviceApartmentId: "",
     roomdetails: "",
     rentdetails: "",
     advancemoney: "",
     dateofjoining: "",
   };
+
+  
+  useEffect(() => {
+    let dataArr = [];
+    locations.forEach((key, index) => {
+      dataArr.push({
+        value: key?.id,
+        label: key?.location,
+      });
+    });
+    setLocation(dataArr)
+  }, [locations]);
+
+  useEffect(() => {
+    let data = [];
+    serviceApartments.forEach((key, index) => {
+      data.push({
+        value: key?.id,
+        label: key?.address,
+      });
+    });
+    setServiceApartments(data)
+  }, [serviceApartments]);
 
   const addFields = [
     {
@@ -114,6 +146,18 @@ export const AddHosteller = ({ show, setShow }) => {
       title: t("WorkPlace Phonenumber"),
     },
     {
+      type: "select",
+      name: "location",
+      title: t("Location"),
+      options:location
+    },
+    {
+      type: "select",
+      name: "serviceApartment",
+      title: t("Service Apartment"),
+      options:ServiceApartments
+    },
+    {
       type: "input",
       name: "roomdetails",
       placeholder: "Enter Room Details",
@@ -155,6 +199,8 @@ export const AddHosteller = ({ show, setShow }) => {
           id:Number(values?.id),
           mobilenumber:Number(values?.mobilenumber),
           parentcontactnumber:Number(values?.parentcontactnumber),
+          locationId: Number(values?.locationId),
+          serviceApartmentId: Number(values?.serviceApartmentId),
           workplacephonenumber:Number(values?.workplacephonenumber),
           advancemoney:Number(values?.advancemoney),
           // dateofbirth: values.dateofbirth.toISOString(),

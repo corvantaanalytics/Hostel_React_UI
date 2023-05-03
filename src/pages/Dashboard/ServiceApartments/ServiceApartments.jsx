@@ -1,41 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "layout";
+import Text from "components/Text/Text.component";
+import Input from "components/Input/Input.component";
+// import Button from "components/Button/Button.component";
 import Section from "components/Section/Section.component";
+import Icon from "components/Icon/Icon.component";
+import Banner from "components/Banner/Banner.component";
 import { Table } from "components/Table/Table.component";
-import { Button } from "antd";
+import Tag from "components/Tag/Tag.component";
+import Dropdown from "components/Dropdown/Dropdown.component";
+// import MyModal from "components/MyModal/MyModal.component";
+import { toast } from "react-toastify";
+import { API } from "lib/api";
+// import ModelDropdown from "components/ModelDropdown/ModelDropdown.component";
+import { Button, Select } from "antd";
+import { getAllHostellers } from "store/Actions/hostellers";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { AddRooms } from "./AddRooms";
-import { getAllRooms } from "store/Actions/rooms";
-import Text from "components/Text/Text.component";
+import { AddExpenses } from "../Expenses/Addexpenses";
 import { getAllLocations } from "store/Actions/location";
+import { data } from "autoprefixer";
 import { getAllServiceApartments } from "store/Actions/serviceApartments";
+import { AddServiceApartment } from "./AddServiceApartment";
 
-
-const RoomsPage = () => {
+const ServiceApartmentsPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
-    const dispatch = useDispatch();
     const [data, setData] = useState([]);
-    const { rooms } = useSelector((state) => state?.rooms)
+    const dispatch = useDispatch();
+    const { serviceApartments } = useSelector((state) => state?.serviceApartments)
     const { t } = useTranslation("/TitleModal/ns");
-    const { locations } = useSelector((state) => state?.locations)
-
-    useEffect(() => {
-        if (rooms) {
-            let dataArr = [];
-            rooms.forEach((key, index) => {
-                dataArr.push({
-                    id: key?.id,
-                    roomTypes: key?.roomTypes,
-                    rent: key?.rent,
-                });
-            });
-            setData(dataArr);
-        }
-    }, [rooms]);
-
-
 
     const columns = [
         {
@@ -44,32 +38,43 @@ const RoomsPage = () => {
             key: "id",
         },
         {
-            title: ("Roomtype"),
-            dataIndex: "roomTypes",
-            key: "roomTypes",
+            title: ("Room Type"),
+            dataIndex: "name",
+            key: "name",
         },
         {
-            title: ("Rent"),
-            dataIndex: "rent",
-            key: "rent",
-        },
-
-
+            title: ("Address"),
+            dataIndex: "address",
+            key: "address",
+        }
     ];
 
     useEffect(() => {
+        if (serviceApartments) {
+          let dataArr = [];
+          serviceApartments.forEach((key, index) => {
+            dataArr.push({
+              id: key?.id,
+              name: key?.name,
+              address: key?.address,
+            });
+          });
+          setData(dataArr);
+        }
+      }, [serviceApartments]);
+      
+    useEffect(() => {
         (async () => {
-            await dispatch(getAllRooms());
-            await dispatch(getAllLocations());
             await dispatch(getAllServiceApartments());
         })();
     }, []);
+    
     return (
         <DashboardLayout>
             <div className="bg-[#08090A]  p-5 text-white">
+                <h2 className="content-header p-4 pb-2 text-white ">ServiceApartments</h2>
 
-                <h2 className="content-header p-4 pb-2 text-white ">Rooms</h2>
-                <AddRooms
+                <AddServiceApartment
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
@@ -80,7 +85,7 @@ const RoomsPage = () => {
                         data={data}
                         fieldToFilter="name"
                         btnData={{
-                            text: (t("Add Room")),
+                            text: (t("Add Service Apartment")),
                             onClick: () => setShowHostelModal(true),
                         }}
 
@@ -101,4 +106,4 @@ const RoomsPage = () => {
         </DashboardLayout>
     );
 };
-export default RoomsPage;
+export default ServiceApartmentsPage;

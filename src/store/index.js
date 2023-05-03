@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import hostellersReducer from './Slices/hostellersSlice'
 import roomsReducer from './Slices/roomsSlice'
 import locationsReducer from './Slices/locationSlice'
+import serviceApartmentsReducer from'./Slices/serviceApartmentsSlice'
 
 const store = configureStore({
   reducer: {
      hostellers: hostellersReducer,
      rooms: roomsReducer,
-     locations :locationsReducer
+     locations :locationsReducer,
+     serviceApartments:serviceApartmentsReducer
   },
 });
 export const messageNotifications = {

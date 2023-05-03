@@ -220,7 +220,7 @@ export const Table = ({
     } else {
       setTableColumns(columns);
     }
-  }, [permissions]);
+  }, []);
 
   const { RangePicker } = DatePicker;
 
