@@ -162,6 +162,11 @@ export default function NewSidebar() {
               link="/dashboard/location"
               title="Location"
             />
+             <NavLink
+              Icon={Location}
+              link="/dashboard/serviceApartments"
+              title="Service Apartments"
+            />
             <NavLink
               Icon={Setting5}
               link="/dashboard/settings"
