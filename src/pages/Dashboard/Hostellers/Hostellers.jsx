@@ -9,6 +9,8 @@ import { AddHosteller } from "./AddHosteller";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { getAllLocations } from "store/Actions/location";
+import { getAllServiceApartments } from "store/Actions/serviceApartments";
 
 const Hostellers = () => {
     const {hostellers} = useSelector((state)=>state?.hostellers)
@@ -85,6 +87,8 @@ const Hostellers = () => {
     useEffect(() => {
         (async () => {
             await dispatch(getAllHostellers());
+            await dispatch(getAllLocations());
+            await dispatch(getAllServiceApartments());
         })();
     }, []);
     return (
@@ -115,6 +119,16 @@ const Hostellers = () => {
                             }}
                             >
                                 View
+                            </Button>
+                        )}
+                        deleteAction={(record) => (
+                            <Button onClick={() => {
+                                // navigate(
+                                //     `/dashboard/income`
+                                // );
+                            }}
+                            >
+                                Delete
                             </Button>
                         )}
                     />

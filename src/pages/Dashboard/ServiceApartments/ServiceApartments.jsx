@@ -85,7 +85,7 @@ const ServiceApartmentsPage = () => {
                         data={data}
                         fieldToFilter="name"
                         btnData={{
-                            text: (t("Add Location")),
+                            text: (t("Add Service Apartment")),
                             onClick: () => setShowHostelModal(true),
                         }}
 

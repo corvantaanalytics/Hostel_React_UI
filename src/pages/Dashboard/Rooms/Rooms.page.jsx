@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import { AddRooms } from "./AddRooms";
 import { getAllRooms } from "store/Actions/rooms";
 import Text from "components/Text/Text.component";
+import { getAllLocations } from "store/Actions/location";
+import { getAllServiceApartments } from "store/Actions/serviceApartments";
 
 
 const RoomsPage = () => {
@@ -17,6 +19,7 @@ const RoomsPage = () => {
     const [data, setData] = useState([]);
     const { rooms } = useSelector((state) => state?.rooms)
     const { t } = useTranslation("/TitleModal/ns");
+    const { locations } = useSelector((state) => state?.locations)
 
     useEffect(() => {
         if (rooms) {
@@ -24,7 +27,6 @@ const RoomsPage = () => {
             rooms.forEach((key, index) => {
                 dataArr.push({
                     id: key?.id,
-                    address: key?.address,
                     roomTypes: key?.roomTypes,
                     rent: key?.rent,
                 });
@@ -33,16 +35,13 @@ const RoomsPage = () => {
         }
     }, [rooms]);
 
+
+
     const columns = [
         {
             title: ("ID"),
             dataIndex: "id",
             key: "id",
-        },
-        {
-            title: ("Address"),
-            dataIndex: "address",
-            key: "address",
         },
         {
             title: ("Roomtype"),
@@ -61,13 +60,15 @@ const RoomsPage = () => {
     useEffect(() => {
         (async () => {
             await dispatch(getAllRooms());
+            await dispatch(getAllLocations());
+            await dispatch(getAllServiceApartments());
         })();
     }, []);
     return (
         <DashboardLayout>
             <div className="bg-[#08090A]  p-5 text-white">
 
-            <h2 className="content-header p-4 pb-2 text-white ">Rooms</h2>
+                <h2 className="content-header p-4 pb-2 text-white ">Rooms</h2>
                 <AddRooms
                     show={showHostelModal}
                     setShow={setShowHostelModal}
