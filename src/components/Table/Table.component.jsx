@@ -76,7 +76,6 @@ export const Table = ({
   };
 
   const searchOrderHandler = async (e) => {
-   console.log("first data")
     e.preventDefault();
     setIsLoading(true);
     const defaultData = {
@@ -122,7 +121,6 @@ export const Table = ({
   }, [pagination])
 
   useEffect(() => {
-    console.log("ue")
     if (fieldToFilter !== null && fieldToFilter !== undefined) {
       const filteredData = data?.filter((item) => {
         if (
@@ -306,7 +304,7 @@ export const Table = ({
                   return (
                     <Button
                       type="primary"
-                      className={`px-[32px] border-none rounded-[8px] h-[52px] bg-[#212E48] hover:bg-[#212E48] active:bg-[#212E48] focus:bg-[#212E48] text-[#3699FF] hover:text-[#3699FF] active:text-[#3699FF] focus:text-[#3699FF] ${btn?.customClass}`}
+                      className={`px-[32px] border-none rounded-[8px] h-[52px]  bg-[#8EAADB] hover:bg-[#212E48] active:bg-[#8EAADB] focus:bg-[#212E48] text-[#3699FF] hover:text-[#3699FF] active:text-[#3699FF] focus:text-[#3699FF] ${btn?.customClass}`}
                       onClick={btn?.onClick}
                     >
                       {btn?.text}

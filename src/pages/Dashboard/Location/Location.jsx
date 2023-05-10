@@ -7,24 +7,19 @@ import Section from "components/Section/Section.component";
 import Icon from "components/Icon/Icon.component";
 import Banner from "components/Banner/Banner.component";
 import { Table } from "components/Table/Table.component";
-import Tag from "components/Tag/Tag.component";
-import Dropdown from "components/Dropdown/Dropdown.component";
-// import MyModal from "components/MyModal/MyModal.component";
-import { toast } from "react-toastify";
-import { API } from "lib/api";
-// import ModelDropdown from "components/ModelDropdown/ModelDropdown.component";
-import { Button, Select } from "antd";
-import { getAllHostellers } from "store/Actions/hostellers";
+import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { AddExpenses } from "../Expenses/Addexpenses";
 import { AddLocation } from "./AddLocation";
-import { getAllLocations } from "store/Actions/location";
-import { data } from "autoprefixer";
+import { getAllLocations, viewLocation } from "store/Actions/location";
+import { ViewLocation } from "./ViewLocation";
+import { EditLocation } from "./EditLocation";
 
 const LocationPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
+    const [viewLocations, setViewLocations] = useState(false);
+    const [editLocations, setEditLocations] = useState(false);
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { locations } = useSelector((state) => state?.locations)
@@ -83,7 +78,14 @@ const LocationPage = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
-                {/* Sub heading */}
+                <ViewLocation
+                    show={viewLocations}
+                    setShow={setViewLocations}
+                />
+                <EditLocation
+                    show={editLocations}
+                    setShow={setEditLocations}
+                />
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
                         columns={columns}
@@ -95,14 +97,22 @@ const LocationPage = () => {
                         }}
 
                         permissions={true}
-                        editAction={(record) => (
+                        viewAction={(record) => (
                             <Button onClick={() => {
-                                // navigate(
-                                //     `/admin/dashboard/billing/orders/${myOrders ? "your-orders" : "all-orders"}/list/edit/${record?.key}`
-                                // );
+                                dispatch(viewLocation(record?.id))
+                                setViewLocations(true)
                             }}
                             >
                                 View
+                            </Button>
+                        )}
+                        editAction={(record) => (
+                            <Button onClick={() => {
+                                dispatch(viewLocation(record?.id))
+                                setEditLocations(true)
+                            }}
+                            >
+                                Edit
                             </Button>
                         )}
                     />

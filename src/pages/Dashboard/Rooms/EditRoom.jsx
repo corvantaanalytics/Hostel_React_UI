@@ -2,36 +2,29 @@ import { Modal } from "components";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { addRooms } from "store/Actions/rooms";
-import * as Yup from "yup";
+import { editRoom } from "store/Actions/rooms";
 
-const validationSchema = Yup.object().shape({
-  locationId: Yup.string().required("LocationId is required"),
-  serviceApartmentId: Yup.string().required("ServiceApartmentId is required"),
-  roomTypes: Yup.string().required("RoomType is required"),
-  rent: Yup.string().required("Rent is required"),
-});
-
-export const AddRooms = ({ show, setShow }) => {
+export const EditRoom = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
   const dispatch = useDispatch();
   const { locations } = useSelector((state) => state?.locations)
   const { serviceApartments } = useSelector((state) => state?.serviceApartments)
-  const [location, setLocation] = useState([])
+  const { room } = useSelector((state) => state?.rooms)
+  const [locationMenu, setLocationMenu] = useState([])
   const [ServiceApartments, setServiceApartments] = useState([])
-
+  
   const initialValues = {
-    id: "",
-    locationId: "",
-    location:"",
-    serviceApartmentId: "",
-    serviceApartment:"",
-    address: "",
-    roomTypes: "",
-    rent: "",
+    id: room?.id,
+    locationId: room?.locationId,
+    location: room?.location,
+    serviceApartmentId: room?.serviceApartmentId,
+    serviceApartment: room?.serviceApartment,
+    address: room?.address,
+    roomTypes: room?.roomTypes,
+    rent: room?.rent,
   };
 
-
+  
   useEffect(() => {
     let dataArr = [];
     locations.forEach((key, index) => {
@@ -40,7 +33,7 @@ export const AddRooms = ({ show, setShow }) => {
         label: key?.location,
       });
     });
-    setLocation(dataArr)
+    setLocationMenu(dataArr)
   }, [locations]);
 
   useEffect(() => {
@@ -58,43 +51,44 @@ export const AddRooms = ({ show, setShow }) => {
     {
       type: "id",
       name: "id",
-      placeholder: "id",
+      placeholder: room?.id,
       title: t("ID"),
     },
     {
       type: "select",
       name: "locationId",
+      placeholder: room?.location,
       title: t("Location"),
-      options: location
+      options:locationMenu
     },
     {
       type: "select",
       name: "serviceApartmentId",
+      placeholder: room?.serviceApartment,
       title: t("ServiceApartment"),
-      options: ServiceApartments
+      options:ServiceApartments
     },
     {
       type: "type",
       name: "roomTypes",
-      placeholder: " Enter RoomType ",
+      placeholder:room?.roomTypes,
       title: t("RoomType"),
     },
     {
       type: "type",
       name: "rent",
-      placeholder: " Enter Rent ",
+      placeholder: room?.rent,
       title: t("Rent"),
     },
   ];
   return (
     <Modal
-      heading="Add Room"
-      submitText="Add Room"
+      heading="Edit Room"
+      submitText="Edit Room"
       show={show}
       setShow={setShow}
       fields={addFields}
       initialValues={initialValues}
-      validationSchema={validationSchema}
       handleSubmit={async (values) => {
         const newValues = {
           ...values,
@@ -103,7 +97,7 @@ export const AddRooms = ({ show, setShow }) => {
           serviceApartmentId: Number(values?.serviceApartmentId),
           rent: Number(values?.rent),
         };
-        await dispatch(addRooms(newValues, setShow));
+        await dispatch(editRoom(newValues,setShow));
       }}
     />
   );

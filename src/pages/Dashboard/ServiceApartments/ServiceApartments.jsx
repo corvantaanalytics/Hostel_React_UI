@@ -1,31 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "layout";
-import Text from "components/Text/Text.component";
-import Input from "components/Input/Input.component";
-// import Button from "components/Button/Button.component";
-import Section from "components/Section/Section.component";
-import Icon from "components/Icon/Icon.component";
-import Banner from "components/Banner/Banner.component";
 import { Table } from "components/Table/Table.component";
-import Tag from "components/Tag/Tag.component";
-import Dropdown from "components/Dropdown/Dropdown.component";
-// import MyModal from "components/MyModal/MyModal.component";
-import { toast } from "react-toastify";
-import { API } from "lib/api";
-// import ModelDropdown from "components/ModelDropdown/ModelDropdown.component";
-import { Button, Select } from "antd";
-import { getAllHostellers } from "store/Actions/hostellers";
+import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { AddExpenses } from "../Expenses/Addexpenses";
 import { getAllLocations } from "store/Actions/location";
-import { data } from "autoprefixer";
-import { getAllServiceApartments } from "store/Actions/serviceApartments";
+import { getAllServiceApartments, viewServiceApartment } from "store/Actions/serviceApartments";
 import { AddServiceApartment } from "./AddServiceApartment";
+import { ViewServiceApartment } from "./ViewServiceApartment";
+import { EditServiceApartment } from "./EditServiceApartment";
 
 const ServiceApartmentsPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
+    const [editServiceApartmentModal, SetEditServiceApartmentModal] = useState(false);
+    const [viewServiceApartmentModal, SetViewServiceApartmentModal] = useState(false)  
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { serviceApartments } = useSelector((state) => state?.serviceApartments)
@@ -43,11 +32,17 @@ const ServiceApartmentsPage = () => {
             key: "name",
         },
         {
+            title: ("Location"),
+            dataIndex: "location",
+            key: "location"
+        },
+        {
             title: ("Address"),
             dataIndex: "address",
             key: "address",
         }
     ];
+
 
     useEffect(() => {
         if (serviceApartments) {
@@ -55,6 +50,7 @@ const ServiceApartmentsPage = () => {
           serviceApartments.forEach((key, index) => {
             dataArr.push({
               id: key?.id,
+              location: key?.location,
               name: key?.name,
               address: key?.address,
             });
@@ -66,6 +62,7 @@ const ServiceApartmentsPage = () => {
     useEffect(() => {
         (async () => {
             await dispatch(getAllServiceApartments());
+            await dispatch(getAllLocations());
         })();
     }, []);
     
@@ -78,7 +75,16 @@ const ServiceApartmentsPage = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
-                {/* Sub heading */}
+                
+                <ViewServiceApartment
+                    show={viewServiceApartmentModal}
+                    setShow={SetViewServiceApartmentModal}
+                />
+                
+                <EditServiceApartment
+                    show={editServiceApartmentModal}
+                    setShow={SetEditServiceApartmentModal}
+                />
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
                         columns={columns}
@@ -90,14 +96,22 @@ const ServiceApartmentsPage = () => {
                         }}
 
                         permissions={true}
-                        editAction={(record) => (
+                        viewAction={(record) => (
                             <Button onClick={() => {
-                                // navigate(
-                                //     `/admin/dashboard/billing/orders/${myOrders ? "your-orders" : "all-orders"}/list/edit/${record?.key}`
-                                // );
+                               dispatch(viewServiceApartment(record?.id))
+                                SetViewServiceApartmentModal(true)
                             }}
                             >
                                 View
+                            </Button>
+                        )}
+                        editAction={(record) => (
+                            <Button onClick={() => {
+                               dispatch(viewServiceApartment(record?.id))
+                               SetEditServiceApartmentModal(true)
+                            }}
+                            >
+                                Edit
                             </Button>
                         )}
                     />

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "layout";
-import Section from "components/Section/Section.component";
 import { Table } from "components/Table/Table.component";
-import { Button, Dropdown } from "antd";
-import { getAllHostellers } from "store/Actions/hostellers";
+import { Button} from "antd";
+import { getAllHostellers, viewHosteller } from "store/Actions/hostellers";
 import { useDispatch, useSelector } from "react-redux";
 import { AddHosteller } from "./AddHosteller";
 import { useTranslation } from "react-i18next";
@@ -11,12 +10,15 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { getAllLocations } from "store/Actions/location";
 import { getAllServiceApartments } from "store/Actions/serviceApartments";
+import { ViewHosteller } from "./ViewHosteller";
+import { EditHosteller } from "./EditHosteller";
 
 const Hostellers = () => {
     const {hostellers} = useSelector((state)=>state?.hostellers)
     const [showHostelModal, setShowHostelModal] = useState(false);
+    const [showHosteller, setshowHosteller] = useState(false);
+    const [editHosteller, setEditHosteller] = useState(false);
     const [data, setData] = useState([]);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { t } = useTranslation("/TitleModal/ns");
    
@@ -98,9 +100,15 @@ const Hostellers = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
+                <ViewHosteller
+                    show={showHosteller}
+                    setShow={setshowHosteller}
+                />
+                 <EditHosteller
+                    show={editHosteller}
+                    setShow={setEditHosteller}
+                />
                 <h2 className="content-header p-4 pb-2 text-white ">Hostellers</h2>
-
-                {/* Sub heading */}
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
                         columns={columns}
@@ -111,21 +119,29 @@ const Hostellers = () => {
                             onClick: () => setShowHostelModal(true),
                         }}
                         permissions={true}
-                        editAction={(record) => (
+                        viewAction={(record) => (
                             <Button onClick={() => {
-                                // navigate(
-                                //     `/dashboard/income`
-                                // );
+                                dispatch(viewHosteller(record?.id))
+                                setshowHosteller(true)
                             }}
                             >
                                 View
                             </Button>
                         )}
+                        editAction={(record) => (
+                            <Button onClick={() => {
+                                dispatch(viewHosteller(record?.id))
+                                setEditHosteller(true)
+                            }}
+                            >
+                                Edit
+                            </Button>
+                        )}
+                        dateRageFilter={true}
+                        statusFilter={true}
                         deleteAction={(record) => (
                             <Button onClick={() => {
-                                // navigate(
-                                //     `/dashboard/income`
-                                // );
+
                             }}
                             >
                                 Delete

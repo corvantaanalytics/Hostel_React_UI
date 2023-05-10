@@ -2,58 +2,37 @@ import { Modal } from "components";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { addHosteller } from "store/Actions/hostellers";
-import * as Yup from "yup";
+import { editHosteller } from "store/Actions/hostellers";
 
-const validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("Full name is required"),
-  mobilenumber: Yup.string().required("Mobile Number is required"),
-  email: Yup.string()
-  .required('Email Address is required.')
-  .email('Email format not recognized.'),
-  dateofbirth: Yup.string().required("Date is required"),
-  addressforcommunication: Yup.string().required("Address is required"),
-  permanentaddress: Yup.string().required("Address is required"),
-  parentname: Yup.string().required("Parent Name is required"),
-  parentcontactnumber: Yup.string().required("Number is required"),
-  workplaceinformation: Yup.string().required("Address is required"),
-  workplacephonenumber: Yup.string().required("Number is required"),
-  locationId: Yup.string().required("Location is required"),
-  serviceApartmentId: Yup.string().required("ServiceApartment is required"),
-  roomdetails: Yup.string().required("Room Details is required"),
-  rentdetails: Yup.string().required("Rent Details is required"),
-  advancemoney: Yup.string().required("Amount is required"),
-  dateofjoining: Yup.string().required("Date is required"),
-});
-
-export const AddHosteller = ({ show, setShow }) => {
+export const EditHosteller = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
   const dispatch = useDispatch();
   const { locations } = useSelector((state) => state?.locations)
   const { serviceApartments } = useSelector((state) => state?.serviceApartments)
+  const { hosteller } = useSelector((state) => state?.hostellers)
   const [location, setLocation] = useState([])
   const [ServiceApartments, setServiceApartments] = useState([])
   
   const initialValues = {
-    id: "",
-    firstName: "",
-    mobilenumber: "",
-    email: "",
-    dateofbirth: "",
-    addressforcommunication: "",
-    permanentaddress: "",
-    parentname: "",
-    parentcontactnumber: "",
-    workplaceinformation: "",
-    workplacephonenumber: "",
-    locationId: "",
-    location:"",
-    serviceApartmentId: "",
-    serviceApartment:"",
-    roomdetails: "",
-    rentdetails: "",
-    advancemoney: "",
-    dateofjoining: "",
+    id: hosteller?.id,
+    firstName: hosteller?.firstName,
+    mobilenumber: hosteller?.mobilenumber,
+    email: hosteller?.email,
+    dateofbirth: hosteller?.dateofbirth,
+    addressforcommunication: hosteller?.addressforcommunication,
+    permanentaddress: hosteller?.permanentaddress,
+    parentname: hosteller?.parentname,
+    parentcontactnumber: hosteller?.parentcontactnumber,
+    workplaceinformation: hosteller?.workplaceinformation,
+    workplacephonenumber: hosteller?.workplacephonenumber,
+    locationId: hosteller?.locationId,
+    location: hosteller?.location,
+    serviceApartmentId: hosteller?.serviceApartmentId,
+    serviceApartment: hosteller?.serviceApartment,
+    roomdetails: hosteller?.roomdetails,
+    rentdetails: hosteller?.rentdetails,
+    advancemoney: hosteller?.advancemoney,
+    dateofjoining: hosteller?.dateofjoining,
   };
 
   
@@ -83,118 +62,117 @@ export const AddHosteller = ({ show, setShow }) => {
     {
       type: "id",
       name: "id",
-      placeholder: "id",
+      placeholder:  hosteller?.id,
       title: t("ID"),
     },
     {
       type: "input",
       name: "firstName",
-      placeholder: "Enter Name",
+      placeholder: hosteller?.firstName,
       title: t("Name"),
     },
     {
       type: "input",
       name: "mobilenumber",
-      placeholder: "Enter Mobile Number",
+      placeholder:  hosteller?.mobilenumber,
       title: t("Mobile Number"),
     },
     {
       type: "input",
       name: "email",
-      placeholder: "Enter Email",
+      placeholder:  hosteller?.email,
       title: t("Email"),
     },
     {
       type: "input",
       name: "dateofbirth",
-      placeholder: "DD-MM-YYYY",
+      placeholder:  hosteller?.dateofbirth,
       title: t("Date Of Birth"),
-      //  disableDate: (current) => current && current.valueOf() < Date.now(),
     },
     {
       type: "input",
       name: "addressforcommunication",
-      placeholder: "Enter Address",
+      placeholder:  hosteller?.addressforcommunication,
       title: t("Address For Communication"),
     },
     {
       type: "input",
       name: "permanentaddress",
-      placeholder: "Enter Address",
+      placeholder: hosteller?.permanentaddress,
       title: t("Permanent Address"),
     },
     {
       type: "input",
       name: "parentname",
-      placeholder: "Enter Parent Name",
+      placeholder:  hosteller?.parentname,
       title: t("Parent Name"),
     },
     {
       type: "input",
       name: "parentcontactnumber",
-      placeholder: "Enter Parent NUmber",
+      placeholder:  hosteller?.parentcontactnumber,
       title: t("Parent Contact Number"),
     },
     {
       type: "input",
       name: "workplaceinformation",
-      placeholder: "Enter Address",
+      placeholder: hosteller?.workplaceinformation,
       title: t("WorkPlace Address"),
     },
     {
       type: "input",
       name: "workplacephonenumber",
-      placeholder: "Enter Number",
+      placeholder:  hosteller?.workplacephonenumber,
       title: t("WorkPlace Phonenumber"),
     },
     {
       type: "select",
       name: "locationId",
+      placeholder:  hosteller?.location,
       title: t("Location"),
-      options:location
+      options: location
     },
     {
       type: "select",
       name: "serviceApartmentId",
+      placeholder:  hosteller?.serviceApartment,
       title: t("Service Apartment"),
-      options:ServiceApartments
+      options: ServiceApartments
     },
     {
       type: "input",
       name: "roomdetails",
-      placeholder: "Enter Room Details",
+      placeholder:  hosteller?.roomdetails,
       title: t("Room Details"),
     },
     {
       type: "input",
       name: "rentdetails",
-      placeholder: "Enter Rent Details",
+      placeholder:  hosteller?.rentdetails,
       title: t("Rent Details"),
     },
     {
       type: "input",
       name: "advancemoney",
-      placeholder: "Enter Amount",
+      placeholder:  hosteller?.advancemoney,
       title: t("Advance Money"),
     },
     {
       type: "input",
       name: "dateofjoining",
-      placeholder: "DD-MM-YYYY",
+      placeholder:  hosteller?.dateofjoining,
       title: t("Date Of Joining"),
-      // disableDate: (current) => current && current.valueOf() < Date.now(),
     },
 
   ];
   return (
     <Modal
-      heading="Add Hosteller"
-      submitText="Add Hosteller"
+      heading="Edit Hosteller"
+      submitText="Edit Hosteller"
       show={show}
       setShow={setShow}
       fields={addFields}
       initialValues={initialValues}
-      validationSchema={validationSchema}
       handleSubmit={async (values) => {
         const newValues = {
           ...values,
@@ -205,10 +183,8 @@ export const AddHosteller = ({ show, setShow }) => {
           serviceApartmentId: Number(values?.serviceApartmentId),
           workplacephonenumber:Number(values?.workplacephonenumber),
           advancemoney:Number(values?.advancemoney),
-          // dateofbirth: values.dateofbirth.toISOString(),
-          // dateofjoining: values.dateofjoining.toISOString(),
         };
-        await dispatch(addHosteller(newValues,setShow));
+        await dispatch(editHosteller(newValues,setShow));
       }}
     />
   );

@@ -214,6 +214,20 @@ export function Modal({
                                                   name,
                                                   e.target.value
                                                 );
+                                                if(name === "locationId"){
+                                                  const selectedIndex = e.target.selectedIndex
+                                                  setFieldValue(
+                                                    "location",
+                                                    e.target[selectedIndex].innerText
+                                                  );
+                                                }  
+                                                if(name === "serviceApartmentId"){
+                                                  const selectedIndex = e.target.selectedIndex
+                                                  setFieldValue(
+                                                    "serviceApartment",
+                                                    e.target[selectedIndex].innerText
+                                                  );
+                                                }                                             
                                                 props?.action &&
                                                   props?.action(e.target.value);
                                               }}
