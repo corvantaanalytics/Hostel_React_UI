@@ -151,12 +151,14 @@ export const AddHosteller = ({ show, setShow }) => {
       type: "select",
       name: "locationId",
       title: t("Location"),
+      placeholder: "Select",
       options:location
     },
     {
       type: "select",
       name: "serviceApartmentId",
       title: t("Service Apartment"),
+      placeholder: "Select",
       options:ServiceApartments
     },
     {

@@ -146,18 +146,8 @@ export function Modal({
                                     <div className="modal__form-el-password-strength">
                                       <div
                                         className={`modal__form-el-password-strength-box transition-all ${strength === "Too weak"
-                                            ? "bg-red-600"
-                                            : strength === "Weak"
-                                              ? "bg-yellow-600"
-                                              : strength === "Medium"
-                                                ? "bg-blue-600"
-                                                : strength === "Strong"
-                                                  ? "bg-green-600"
-                                                  : "bg-[#323248]"
-                                          }`}
-                                      />
-                                      <div
-                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Weak"
+                                          ? "bg-red-600"
+                                          : strength === "Weak"
                                             ? "bg-yellow-600"
                                             : strength === "Medium"
                                               ? "bg-blue-600"
@@ -167,7 +157,9 @@ export function Modal({
                                           }`}
                                       />
                                       <div
-                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Medium"
+                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Weak"
+                                          ? "bg-yellow-600"
+                                          : strength === "Medium"
                                             ? "bg-blue-600"
                                             : strength === "Strong"
                                               ? "bg-green-600"
@@ -175,9 +167,17 @@ export function Modal({
                                           }`}
                                       />
                                       <div
-                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Strong"
+                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Medium"
+                                          ? "bg-blue-600"
+                                          : strength === "Strong"
                                             ? "bg-green-600"
                                             : "bg-[#323248]"
+                                          }`}
+                                      />
+                                      <div
+                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Strong"
+                                          ? "bg-green-600"
+                                          : "bg-[#323248]"
                                           }`}
                                       />
                                     </div>
@@ -214,20 +214,20 @@ export function Modal({
                                                   name,
                                                   e.target.value
                                                 );
-                                                if(name === "locationId"){
+                                                if (name === "locationId") {
                                                   const selectedIndex = e.target.selectedIndex
                                                   setFieldValue(
                                                     "location",
                                                     e.target[selectedIndex].innerText
                                                   );
-                                                }  
-                                                if(name === "serviceApartmentId"){
+                                                }
+                                                if (name === "serviceApartmentId") {
                                                   const selectedIndex = e.target.selectedIndex
                                                   setFieldValue(
                                                     "serviceApartment",
                                                     e.target[selectedIndex].innerText
                                                   );
-                                                }                                             
+                                                }
                                                 props?.action &&
                                                   props?.action(e.target.value);
                                               }}
@@ -243,9 +243,9 @@ export function Modal({
                                                       : ""
                                                   }
                                                 >
-                                                  {option?.label}
-                                                </option>
-                                              ))}
+                                                  {option?.value || option?.label === "Select"
+                                                    ? option?.label : ""}
+                                                </option>))}
                                             </select>
                                             {meta.touched && meta.error && (
                                               <div className="error mt-[8px]">
