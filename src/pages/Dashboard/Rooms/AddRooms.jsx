@@ -64,6 +64,7 @@ export const AddRooms = ({ show, setShow }) => {
     {
       type: "select",
       name: "locationId",
+      placeholder: "Select",
       title: t("Location"),
       options: location
     },
@@ -71,6 +72,7 @@ export const AddRooms = ({ show, setShow }) => {
       type: "select",
       name: "serviceApartmentId",
       title: t("ServiceApartment"),
+      placeholder: "Select",
       options: ServiceApartments
     },
     {
