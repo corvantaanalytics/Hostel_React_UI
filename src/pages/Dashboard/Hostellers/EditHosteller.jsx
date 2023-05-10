@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { editHosteller } from "store/Actions/hostellers";
+import * as Yup from "yup";
 
 export const EditHosteller = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
@@ -12,6 +13,11 @@ export const EditHosteller = ({ show, setShow }) => {
   const { hosteller } = useSelector((state) => state?.hostellers)
   const [location, setLocation] = useState([])
   const [ServiceApartments, setServiceApartments] = useState([])
+
+  const validationSchema = Yup.object().shape({
+    locationId:Yup.string().required("Location is required"),
+    serviceApartmentId:Yup.string().required("Location is required"),
+  });
   
   const initialValues = {
     id: hosteller?.id,
@@ -172,6 +178,7 @@ export const EditHosteller = ({ show, setShow }) => {
       show={show}
       setShow={setShow}
       fields={addFields}
+      validationSchema={validationSchema}
       initialValues={initialValues}
       handleSubmit={async (values) => {
         const newValues = {

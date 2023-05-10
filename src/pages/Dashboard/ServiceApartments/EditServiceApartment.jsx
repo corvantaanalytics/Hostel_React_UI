@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { editServiceApartment } from "store/Actions/serviceApartments";
+import * as Yup from "yup";
 
 export const EditServiceApartment= ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
@@ -11,6 +12,9 @@ export const EditServiceApartment= ({ show, setShow }) => {
   const { serviceApartment } = useSelector((state) => state?.serviceApartments)
   const [locationMenu, setLocationMenu] = useState([])
   
+  const validationSchema = Yup.object().shape({
+    locationId:Yup.string().required("Location is required"),
+  });
   
   const initialValues = {
     id: serviceApartment?.id,
@@ -66,6 +70,7 @@ export const EditServiceApartment= ({ show, setShow }) => {
       show={show}
       setShow={setShow}
       fields={addFields}
+      validationSchema={validationSchema}
       initialValues={initialValues}
       handleSubmit={async (values) => {
         const newValues = {

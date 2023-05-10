@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { editRoom } from "store/Actions/rooms";
+import * as Yup from "yup";
 
 export const EditRoom = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
@@ -24,6 +25,10 @@ export const EditRoom = ({ show, setShow }) => {
     rent: room?.rent,
   };
 
+  const validationSchema = Yup.object().shape({
+    locationId:Yup.string().required("Location is required"),
+    serviceApartmentId:Yup.string().required("ServiceApartment is required"),
+  });
   
   useEffect(() => {
     let dataArr = [];
@@ -88,6 +93,7 @@ export const EditRoom = ({ show, setShow }) => {
       show={show}
       setShow={setShow}
       fields={addFields}
+      validationSchema={validationSchema}
       initialValues={initialValues}
       handleSubmit={async (values) => {
         const newValues = {
