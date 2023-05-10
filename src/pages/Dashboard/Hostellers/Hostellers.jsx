@@ -137,8 +137,6 @@ const Hostellers = () => {
                                 Edit
                             </Button>
                         )}
-                        dateRageFilter={true}
-                        statusFilter={true}
                         deleteAction={(record) => (
                             <Button onClick={() => {
 
