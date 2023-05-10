@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "layout";
-import Section from "components/Section/Section.component";
 import { Table } from "components/Table/Table.component";
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { AddRooms } from "./AddRooms";
-import { getAllRooms } from "store/Actions/rooms";
-import Text from "components/Text/Text.component";
+import { getAllRooms, viewRoom } from "store/Actions/rooms";
 import { getAllLocations } from "store/Actions/location";
 import { getAllServiceApartments } from "store/Actions/serviceApartments";
+import { EditRoom } from "./EditRoom";
 
 
 const RoomsPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
+    const [showRoom, setShowRoom] = useState(false);
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
     const { rooms } = useSelector((state) => state?.rooms)
     const { t } = useTranslation("/TitleModal/ns");
-    const { locations } = useSelector((state) => state?.locations)
 
     useEffect(() => {
         if (rooms) {
@@ -27,6 +26,8 @@ const RoomsPage = () => {
             rooms.forEach((key, index) => {
                 dataArr.push({
                     id: key?.id,
+                    location:key?.location,
+                    serviceApartment: key?.serviceApartment,
                     roomTypes: key?.roomTypes,
                     rent: key?.rent,
                 });
@@ -47,6 +48,16 @@ const RoomsPage = () => {
             title: ("Roomtype"),
             dataIndex: "roomTypes",
             key: "roomTypes",
+        },
+        {
+            title: ("Location"), 
+            dataIndex: "location",
+            key: "location",
+        },
+        {
+            title: ("Service Apartment"),
+            dataIndex: "serviceApartment",
+            key: "serviceApartment",
         },
         {
             title: ("Rent"),
@@ -73,7 +84,10 @@ const RoomsPage = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
-                {/* Sub heading */}
+                 <EditRoom
+                    show={showRoom}
+                    setShow={setShowRoom}
+                />
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
                         columns={columns}
@@ -87,12 +101,11 @@ const RoomsPage = () => {
                         permissions={true}
                         editAction={(record) => (
                             <Button onClick={() => {
-                                // navigate(
-                                //     `/admin/dashboard/billing/orders/${myOrders ? "your-orders" : "all-orders"}/list/edit/${record?.key}`
-                                // );
+                                dispatch(viewRoom(record?.id))
+                                setShowRoom(true)
                             }}
                             >
-                                View
+                                Edit
                             </Button>
                         )}
                     />

@@ -194,13 +194,13 @@
         padding: 15px 0px;
 
         button {
-          border: none;
-          color: #616166;
-          text-align: left;
+          border-color: rgb(185, 20, 116);
+          color: #e9e9d7;
+          text-align: center;
 
           &:hover,
           &:focus {
-            background: rgb(39, 39, 58);
+            background: rgb(30, 59, 61);
             color: #fff;
           }
         }

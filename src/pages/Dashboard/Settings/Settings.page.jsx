@@ -86,11 +86,11 @@ function Settings() {
                                     <SecuritySafe size="16" color='#0096C7' variant='Outline' />
                                 </Col>
                                 <Col>
-                                    <span className='setting-label pl-2'>OpenAI Key </span>
+                                    <span className='setting-label pl-2'>Mobile Number </span>
                                 </Col>
                             </Row>
                         </Col>
-                        <Col lg={8} className="setting-input py-3"><span type="submit" className='pl-5 text-[#6C757D]'></span>Nil</Col>
+                        <Col lg={8} className="setting-input py-3"><span type="submit" className=' text-[#6C757D]'></span>9089097171</Col>
                         <Col lg={8} className="text-right text-white">
                             <button type="submit" className="cancelButton hover:bg-blue-700 text-white w-[100px] h-12 hover:bg-pink-600/[.8] ease-in duration-200"
                                >
