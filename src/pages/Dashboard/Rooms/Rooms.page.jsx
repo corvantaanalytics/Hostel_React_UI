@@ -9,12 +9,14 @@ import { getAllRooms, viewRoom } from "store/Actions/rooms";
 import { getAllLocations } from "store/Actions/location";
 import { getAllServiceApartments } from "store/Actions/serviceApartments";
 import { EditRoom } from "./EditRoom";
+import { DeleteRoom } from "./DeleteRoom";
 
 
 const RoomsPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
     const [showRoom, setShowRoom] = useState(false);
+    const [deleteRoom, setDeleteRoom] = useState(false);
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
     const { rooms } = useSelector((state) => state?.rooms)
@@ -26,7 +28,7 @@ const RoomsPage = () => {
             rooms.forEach((key, index) => {
                 dataArr.push({
                     id: key?.id,
-                    location:key?.location,
+                    location: key?.location,
                     serviceApartment: key?.serviceApartment,
                     roomTypes: key?.roomTypes,
                     rent: key?.rent,
@@ -50,7 +52,7 @@ const RoomsPage = () => {
             key: "roomTypes",
         },
         {
-            title: ("Location"), 
+            title: ("Location"),
             dataIndex: "location",
             key: "location",
         },
@@ -84,9 +86,13 @@ const RoomsPage = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
-                 <EditRoom
+                <EditRoom
                     show={showRoom}
                     setShow={setShowRoom}
+                />
+                <DeleteRoom
+                    show={deleteRoom}
+                    setShow={setDeleteRoom}
                 />
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
@@ -106,6 +112,15 @@ const RoomsPage = () => {
                             }}
                             >
                                 Edit
+                            </Button>
+                        )}
+                        deleteAction={(record) => (
+                            <Button onClick={() => {
+                                dispatch(viewRoom(record?.id))
+                                setDeleteRoom(true)
+                            }}
+                            >
+                                Delete
                             </Button>
                         )}
                     />

@@ -39,7 +39,10 @@ export const Table = ({
   dateRangeSelector,
   dateRageFilter = false,
   statusFilter = [],
-  handleStatus,
+  locationFilter = [],
+  apartmentFilter = [],
+  handleLocation,
+  handleApartment,
   statusFilterPlaceholder,
   handleDateRange,
   hideSearch,
@@ -281,16 +284,37 @@ export const Table = ({
                   className="custom-date-picker w-[350px] h-[52px] bg-[#171723] rounded-[8px] text-[#92928F] flex items-center justify-between px-[16px]"
                 />
               )}
-              {statusFilter?.length ? (
+               {locationFilter?.length ? (
                 <select
-                  onChange={(e) => handleStatus(e?.target?.value)}
-                  className="custom-select form-select appearance-none block w-[150px] px-[16px] h-[52px] text-base font-normal text-[#92928f] bg-[#171723] bg-clip-padding bg-no-repeat border-none rounded-[8px] transition ease-in-out m-0"
+                  onChange={(e) => handleLocation(e?.target?.value)}
+                  className="custom-select form-select appearance-none block w-[250px] px-[16px] h-[52px] text-base font-normal text-[#92928f] bg-[#171723] bg-clip-padding bg-no-repeat border-none rounded-[8px] transition ease-in-out m-0"
                 >
                   <option value="">
-                    {statusFilterPlaceholder || "Status"}
+                    {statusFilterPlaceholder || "Select Location"}
                   </option>
-                  {statusFilter?.map((data, i) => (
-                    <option value={data?.value || i} key={"status-" + i}>
+                  <div>
+                      <DropdownIcon />
+                    </div>
+                  {locationFilter?.map((data, i) => (
+                    <option value={data?.value || i} key={"location-" + i}>
+                      {data?.name}
+                    </option>
+                  ))}
+                </select>
+                
+              ) : (
+                <></>
+              )}
+               {apartmentFilter?.length ? (
+                <select
+                  onChange={(e) => handleApartment(e?.target?.value)}
+                  className="custom-select form-select appearance-none block w-[220px] px-[16px]  h-[52px]  text-base font-normal text-[#92928f] bg-[#171723] bg-clip-padding bg-no-repeat border-none rounded-[8px] transition ease-in-out m-0"
+                >
+                  <option value="">
+                    {statusFilterPlaceholder || "Select Apartments"}
+                  </option>
+                  {apartmentFilter?.map((data, i) => (
+                    <option value={data?.value || i} key={"Apartments-" + i}>
                       {data?.name}
                     </option>
                   ))}
@@ -298,6 +322,7 @@ export const Table = ({
               ) : (
                 <></>
               )}
+              
 
               {additionalBtns?.length ? (
                 additionalBtns?.map((btn) => {
@@ -317,10 +342,12 @@ export const Table = ({
                 <></>
               )}
               {dateRangeSelector ? dateRangeSelector : <></>}
-              {btnData?.text && btnData?.onClick && permissions?.Create ? (
+            </div>
+          </div>
+          {btnData?.text && btnData?.onClick && permissions?.Create ? (
                 <Button
                   type="primary"
-                  className={`custom-table__btn px-[32px] ${btnData?.customClass}`}
+                  className={`custom-table__btn mt-4 mb-4 mr-3 text-[#000000] px-[60px] ${btnData?.customClass}`}
                   onClick={btnData?.onClick}
                 >
                   {btnData?.text}
@@ -328,8 +355,6 @@ export const Table = ({
               ) : (
                 <></>
               )}
-            </div>
-          </div>
           <div className="w-full">
             {AdvancedSearchOptions && (
               <SearchComponent

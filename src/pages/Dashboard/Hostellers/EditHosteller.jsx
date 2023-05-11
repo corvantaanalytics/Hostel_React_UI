@@ -16,7 +16,7 @@ export const EditHosteller = ({ show, setShow }) => {
 
   const validationSchema = Yup.object().shape({
     locationId:Yup.string().required("Location is required"),
-    serviceApartmentId:Yup.string().required("Location is required"),
+    serviceApartmentId:Yup.string().required("ServiceApartment is required"),
   });
   
   const initialValues = {

@@ -9,12 +9,14 @@ import { getAllServiceApartments, viewServiceApartment } from "store/Actions/ser
 import { AddServiceApartment } from "./AddServiceApartment";
 import { ViewServiceApartment } from "./ViewServiceApartment";
 import { EditServiceApartment } from "./EditServiceApartment";
+import { DeleteServiceApartment } from "./DeleteServiceApartment";
 
 const ServiceApartmentsPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
     const [editServiceApartmentModal, SetEditServiceApartmentModal] = useState(false);
-    const [viewServiceApartmentModal, SetViewServiceApartmentModal] = useState(false)  
+    const [viewServiceApartmentModal, SetViewServiceApartmentModal] = useState(false);
+    const [deleteServiceApartmentModal, SetDeleteServiceApartmentModal] = useState(false)  
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { serviceApartments } = useSelector((state) => state?.serviceApartments)
@@ -85,6 +87,10 @@ const ServiceApartmentsPage = () => {
                     show={editServiceApartmentModal}
                     setShow={SetEditServiceApartmentModal}
                 />
+                 <DeleteServiceApartment
+                    show={deleteServiceApartmentModal}
+                    setShow={SetDeleteServiceApartmentModal}
+                />
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
                         columns={columns}
@@ -112,6 +118,15 @@ const ServiceApartmentsPage = () => {
                             }}
                             >
                                 Edit
+                            </Button>
+                        )}
+                        deleteAction={(record) => (
+                            <Button onClick={() => {
+                               dispatch(viewServiceApartment(record?.id))
+                               SetDeleteServiceApartmentModal(true)
+                            }}
+                            >
+                                Delete
                             </Button>
                         )}
                     />

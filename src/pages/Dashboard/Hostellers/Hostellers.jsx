@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "layout";
 import { Table } from "components/Table/Table.component";
-import { Button} from "antd";
+import { Button } from "antd";
 import { getAllHostellers, viewHosteller } from "store/Actions/hostellers";
 import { useDispatch, useSelector } from "react-redux";
 import { AddHosteller } from "./AddHosteller";
@@ -12,33 +12,39 @@ import { getAllLocations } from "store/Actions/location";
 import { getAllServiceApartments } from "store/Actions/serviceApartments";
 import { ViewHosteller } from "./ViewHosteller";
 import { EditHosteller } from "./EditHosteller";
+import { DeleteHosteller } from "./DeleteLocation";
 
 const Hostellers = () => {
-    const {hostellers} = useSelector((state)=>state?.hostellers)
+    const { hostellers } = useSelector((state) => state?.hostellers)
+    const { locations } = useSelector((state) => state?.locations)
+    const { serviceApartments } = useSelector((state) => state?.serviceApartments)
     const [showHostelModal, setShowHostelModal] = useState(false);
     const [showHosteller, setshowHosteller] = useState(false);
     const [editHosteller, setEditHosteller] = useState(false);
+    const [deleteHosteller, setDeleteHosteller] = useState(false);
+    const [location, setLocation] = useState([])
+    const [ServiceApartments, setServiceApartments] = useState([])
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { t } = useTranslation("/TitleModal/ns");
-   
+
     useEffect(() => {
         if (hostellers) {
-          let dataArr = [];
-          hostellers.forEach((key, index) => {
-            dataArr.push({
-              id: key?.id,
-              firstName: key?.firstName,
-              addressforcommunication: key?.addressforcommunication,
-              parentname: key?.parentname,
-              roomdetails: key?.roomdetails,
-              rentdetails: key?.rentdetails,
-              lastEdidateofjoiningted: key?.dateofjoining,
+            let dataArr = [];
+            hostellers.forEach((key, index) => {
+                dataArr.push({
+                    id: key?.id,
+                    firstName: key?.firstName,
+                    addressforcommunication: key?.addressforcommunication,
+                    parentname: key?.parentname,
+                    roomdetails: key?.roomdetails,
+                    rentdetails: key?.rentdetails,
+                    lastEdidateofjoiningted: key?.dateofjoining,
+                });
             });
-          });
-          setData(dataArr);
+            setData(dataArr);
         }
-      }, [hostellers]);
+    }, [hostellers]);
     const columns = [
         {
             title: ("ID"),
@@ -93,6 +99,30 @@ const Hostellers = () => {
             await dispatch(getAllServiceApartments());
         })();
     }, []);
+
+    useEffect(() => {
+        let locArr = [];
+        locations.forEach((key, index) => {
+            locArr.push({
+                name: key?.location,
+            });
+        });
+        setLocation(locArr)
+    }, [locations]);
+
+    useEffect(() => {
+        let apartArr = [];
+        serviceApartments.forEach((key, index) => {
+            apartArr.push({
+                name: key?.address
+            });
+        });
+        setServiceApartments(apartArr)
+    }, [serviceApartments]);
+
+    const locationList = location
+    const apartmentList = ServiceApartments
+
     return (
         <DashboardLayout>
             <div className="bg-[#08090A]  p-5 text-white">
@@ -104,9 +134,13 @@ const Hostellers = () => {
                     show={showHosteller}
                     setShow={setshowHosteller}
                 />
-                 <EditHosteller
+                <EditHosteller
                     show={editHosteller}
                     setShow={setEditHosteller}
+                />
+                <DeleteHosteller
+                    show={deleteHosteller}
+                    setShow={setDeleteHosteller}
                 />
                 <h2 className="content-header p-4 pb-2 text-white ">Hostellers</h2>
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
@@ -119,6 +153,9 @@ const Hostellers = () => {
                             onClick: () => setShowHostelModal(true),
                         }}
                         permissions={true}
+                        onSearchHandler={true}
+                        locationFilter={locationList}
+                        apartmentFilter={apartmentList}
                         viewAction={(record) => (
                             <Button onClick={() => {
                                 dispatch(viewHosteller(record?.id))
@@ -139,7 +176,8 @@ const Hostellers = () => {
                         )}
                         deleteAction={(record) => (
                             <Button onClick={() => {
-
+                                dispatch(viewHosteller(record?.id))
+                                setDeleteHosteller(true)
                             }}
                             >
                                 Delete
