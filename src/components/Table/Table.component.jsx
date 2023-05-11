@@ -311,7 +311,7 @@ export const Table = ({
                   className="custom-select form-select appearance-none block w-[220px] px-[16px]  h-[52px]  text-base font-normal text-[#92928f] bg-[#171723] bg-clip-padding bg-no-repeat border-none rounded-[8px] transition ease-in-out m-0"
                 >
                   <option value="">
-                    {statusFilterPlaceholder || "Select Apartments"}
+                    {statusFilterPlaceholder || "Select Apartment"}
                   </option>
                   {apartmentFilter?.map((data, i) => (
                     <option value={data?.value || i} key={"Apartments-" + i}>
