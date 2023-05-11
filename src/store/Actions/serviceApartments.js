@@ -47,3 +47,16 @@ export const editServiceApartment = (newValues,setShow) => {
     }
   };
 };
+
+export const deleteServiceApartment = (data,setShow) => {
+  return async (dispatch) => {
+    const response = await axios.delete(
+      `http://localhost:9000/api/v1/apartment/delete/${data}`
+    );
+    if(response?.status === 200){
+      toast("Service Apartment Deleted Successfully")
+      dispatch(getAllServiceApartments())
+      setShow(false)
+    }
+  };
+};

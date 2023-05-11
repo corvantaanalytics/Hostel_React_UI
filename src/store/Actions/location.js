@@ -47,3 +47,16 @@ export const getAllLocations = () => {
       }
     };
   };
+
+  export const deleteLocation = (data,setShow) => {
+    return async (dispatch) => {
+      const response = await axios.delete(
+        `http://localhost:9000/api/v1/location/delete/${data}`
+      );
+      if(response?.status === 200){
+        toast("Location Deleted Successfully")
+        dispatch(getAllLocations())
+        setShow(false)
+      }
+    };
+  };

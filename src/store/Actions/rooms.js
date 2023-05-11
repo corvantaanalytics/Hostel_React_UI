@@ -48,3 +48,15 @@ export const getAllRooms = () => {
     };
   };
   
+  export const deleteRoom = (data,setShow) => {
+    return async (dispatch) => {
+      const response = await axios.delete(
+        `http://localhost:9000/api/v1/room/delete/${data}`
+      );
+      if(response?.status === 200){
+        toast("Room Deleted Successfully")
+        dispatch(getAllRooms())
+        setShow(false)
+      }
+    };
+  };

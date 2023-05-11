@@ -14,12 +14,14 @@ import { AddLocation } from "./AddLocation";
 import { getAllLocations, viewLocation } from "store/Actions/location";
 import { ViewLocation } from "./ViewLocation";
 import { EditLocation } from "./EditLocation";
+import { DeleteLocation } from "./DeleteLocation";
 
 const LocationPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
     const [viewLocations, setViewLocations] = useState(false);
     const [editLocations, setEditLocations] = useState(false);
+    const [deleteLocations, setDeleteLocations] = useState(false);
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { locations } = useSelector((state) => state?.locations)
@@ -44,31 +46,31 @@ const LocationPage = () => {
         {
             title: ("Location"),
             dataIndex: "location",
-            key: "location",         
+            key: "location",
         },
     ];
 
     useEffect(() => {
         if (locations) {
-          let dataArr = [];
-          locations.forEach((key, index) => {
-            dataArr.push({
-              id: key?.id,
-              state: key?.state,
-              district: key?.district,
-              location: key?.location,
+            let dataArr = [];
+            locations.forEach((key, index) => {
+                dataArr.push({
+                    id: key?.id,
+                    state: key?.state,
+                    district: key?.district,
+                    location: key?.location,
+                });
             });
-          });
-          setData(dataArr);
+            setData(dataArr);
         }
-      }, [locations]);
-      
+    }, [locations]);
+
     useEffect(() => {
         (async () => {
             await dispatch(getAllLocations());
         })();
     }, []);
-    
+
     return (
         <DashboardLayout>
             <div className="bg-[#08090A]  p-5 text-white">
@@ -85,6 +87,10 @@ const LocationPage = () => {
                 <EditLocation
                     show={editLocations}
                     setShow={setEditLocations}
+                />
+                <DeleteLocation
+                    show={deleteLocations}
+                    setShow={setDeleteLocations}
                 />
                 <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
                     <Table
@@ -113,6 +119,15 @@ const LocationPage = () => {
                             }}
                             >
                                 Edit
+                            </Button>
+                        )}
+                        deleteAction={(record) => (
+                            <Button onClick={() => {
+                                dispatch(viewLocation(record?.id))
+                                setDeleteLocations(true)
+                            }}
+                            >
+                                Delete
                             </Button>
                         )}
                     />

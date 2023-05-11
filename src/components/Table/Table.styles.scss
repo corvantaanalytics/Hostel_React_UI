@@ -127,9 +127,10 @@
 
   // Button
   &__btn {
+    float: right;
     min-height: 50px;
     border-radius: 8px;
-    background: #f900b9;
+    background: rgb(240, 142, 219);
   }
 
   // Table
@@ -173,7 +174,7 @@
         // border-color: #323248;
         display: flex;
         font-family: Poppins;
-        color: #f900b9;
+        color: rgb(240, 142, 219);
         align-items: center;
         gap: 10px;
 

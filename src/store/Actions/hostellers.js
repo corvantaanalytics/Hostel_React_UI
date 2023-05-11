@@ -48,3 +48,16 @@ export const editHosteller = (newValues,setShow) => {
     }
   };
 };
+
+export const deleteHosteller = (data,setShow) => {
+  return async (dispatch) => {
+    const response = await axios.delete(
+      `http://localhost:9000/api/v1/hosteller/delete/${data}`
+    );
+    if(response?.status === 200){
+      toast("Hosteller Deleted Successfully")
+      dispatch(getAllHostellers())
+      setShow(false)
+    }
+  };
+};
