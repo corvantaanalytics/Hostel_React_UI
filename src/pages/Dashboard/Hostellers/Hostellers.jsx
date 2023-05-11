@@ -176,7 +176,6 @@ const Hostellers = () => {
                                 location: values,
                                 apartment: filterApartment
                             };
-                            console.log("details",details)
                             if (details?.location && details?.apartment) {
                                 await dispatch(viewHostellerByLocationAndApartment(details))
                             }
@@ -197,7 +196,6 @@ const Hostellers = () => {
                                 location: filterLocation,
                                 apartment: values
                             };
-                            console.log("details",details)
                             if (details?.location && details?.apartment) {
                                 await dispatch(viewHostellerByLocationAndApartment(details))
                             }
