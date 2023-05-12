@@ -4,10 +4,11 @@ import { object } from "yup";
 import { passwordStrength } from "check-password-strength";
 import { DatePicker } from "components"
 import { Switch, Button, Checkbox } from "antd";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Input, MultiSelect } from "components/formFields";
 // import "./Modal.styles.scss";
 import "./Modal.styles.scss"
+import ReactDatePicker from "react-datepicker";
 
 const demoFields = [];
 
@@ -39,6 +40,11 @@ export function Modal({
   const handleClose = () => {
     setShow(false);
   };
+  const [startDate, setStartDate] = useState(new Date());
+  { sessionStorage.setItem("startDate", startDate) }
+  const [birthDate, setBirthDate] = useState(new Date());
+  { sessionStorage.setItem("birthDate", birthDate) }
+
 
   return (
     <BSModal
@@ -96,102 +102,116 @@ export function Modal({
                                 <p className="modal__form-el-label">{title}</p>
                                 {/* Switch */}
                                 {type === "date" ? (
-                                  <DatePicker
+                                  <ReactDatePicker
+                                    className="custom-date-picker w-full h-[52px] bg-[#171723] rounded-[8px] text-[#92928F] flex items-center justify-between px-[16px] "
+                                    selected={startDate}
+                                    showMonthDropdown={true}
+                                    showYearDropdown={true}
+                                    showFourColumnMonthYearPicker={true}
+                                    dateFormat="dd/MM/yyyy"
                                     name={name}
-                                    disableDate={disableDate}
-                                    disableTime={disableTime}
-                                  />
-                                ) : type === "switch" ? (
-                                  <Field name={name}>
-                                    {({
-                                      field,
-                                      meta,
-                                      form: { setFieldValue },
-                                    }) => {
-                                      return (
-                                        <div className="modal__form-el-switch">
-                                          <div className="modal__form-el-switch-container">
-                                            <p className="modal__form-el-switch-container-label">
-                                              {field?.value
-                                                ? "Enabled"
-                                                : "Disabled"}
-                                            </p>
-                                            <div>
-                                              <Switch
-                                                checked={field?.value}
-                                                onChange={(e) =>
-                                                  setFieldValue(field?.name, e)
-                                                }
-                                              />
+                                    onChange={(date) => setStartDate(date)} />
+                                ) : type === "birthDate" ? (
+                                  <ReactDatePicker
+                                    className="custom-date-picker w-full h-[52px] bg-[#171723] rounded-[8px] text-[#92928F] flex items-center justify-between px-[16px] "
+                                    selected={birthDate}
+                                    showMonthDropdown={true}
+                                    showYearDropdown={true}
+                                    showFourColumnMonthYearPicker={true}
+                                    dateFormat="dd/MM/yyyy"
+                                    name={name}
+                                    onChange={(date) => setBirthDate(date)} />)
+                                     : type === "switch" ? (
+                                      <Field name={name}>
+                                        {({
+                                          field,
+                                          meta,
+                                          form: { setFieldValue },
+                                        }) => {
+                                          return (
+                                            <div className="modal__form-el-switch">
+                                              <div className="modal__form-el-switch-container">
+                                                <p className="modal__form-el-switch-container-label">
+                                                  {field?.value
+                                                    ? "Enabled"
+                                                    : "Disabled"}
+                                                </p>
+                                                <div>
+                                                  <Switch
+                                                    checked={field?.value}
+                                                    onChange={(e) =>
+                                                      setFieldValue(field?.name, e)
+                                                    }
+                                                  />
+                                                </div>
+                                              </div>
+                                              {meta.touched && meta.error && (
+                                                <div className="error mt-[8px]">
+                                                  {meta.error}
+                                                </div>
+                                              )}
                                             </div>
-                                          </div>
-                                          {meta.touched && meta.error && (
-                                            <div className="error mt-[8px]">
-                                              {meta.error}
-                                            </div>
-                                          )}
-                                        </div>
-                                      );
-                                    }}
-                                  </Field>
-                                ) : name === "password" ? (
-                                  <div className="modal__form-el-password">
-                                    <Field
-                                      type="password"
-                                      name={name}
-                                      placeholder={placeholder}
-                                      className="modal__form-el-field"
-                                      key={name}
-                                    />
-                                    <div className="modal__form-el-password-strength">
-                                      <div
-                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Too weak"
-                                          ? "bg-red-600"
-                                          : strength === "Weak"
-                                            ? "bg-yellow-600"
-                                            : strength === "Medium"
+                                          );
+                                        }}
+                                      </Field>
+                                    ) : name === "password" ? (
+                                      <div className="modal__form-el-password">
+                                        <Field
+                                          type="password"
+                                          name={name}
+                                          placeholder={placeholder}
+                                          className="modal__form-el-field"
+                                          key={name}
+                                        />
+                                        <div className="modal__form-el-password-strength">
+                                          <div
+                                            className={`modal__form-el-password-strength-box transition-all ${strength === "Too weak"
+                                              ? "bg-red-600"
+                                              : strength === "Weak"
+                                                ? "bg-yellow-600"
+                                                : strength === "Medium"
+                                                  ? "bg-blue-600"
+                                                  : strength === "Strong"
+                                                    ? "bg-green-600"
+                                                    : "bg-[#323248]"
+                                              }`}
+                                          />
+                                          <div
+                                            className={`modal__form-el-password-strength-box transition-all ${strength === "Weak"
+                                              ? "bg-yellow-600"
+                                              : strength === "Medium"
+                                                ? "bg-blue-600"
+                                                : strength === "Strong"
+                                                  ? "bg-green-600"
+                                                  : "bg-[#323248]"
+                                              }`}
+                                          />
+                                          <div
+                                            className={`modal__form-el-password-strength-box transition-all ${strength === "Medium"
                                               ? "bg-blue-600"
                                               : strength === "Strong"
                                                 ? "bg-green-600"
                                                 : "bg-[#323248]"
-                                          }`}
-                                      />
-                                      <div
-                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Weak"
-                                          ? "bg-yellow-600"
-                                          : strength === "Medium"
-                                            ? "bg-blue-600"
-                                            : strength === "Strong"
+                                              }`}
+                                          />
+                                          <div
+                                            className={`modal__form-el-password-strength-box transition-all ${strength === "Strong"
                                               ? "bg-green-600"
                                               : "bg-[#323248]"
-                                          }`}
-                                      />
-                                      <div
-                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Medium"
-                                          ? "bg-blue-600"
-                                          : strength === "Strong"
-                                            ? "bg-green-600"
-                                            : "bg-[#323248]"
-                                          }`}
-                                      />
-                                      <div
-                                        className={`modal__form-el-password-strength-box transition-all ${strength === "Strong"
-                                          ? "bg-green-600"
-                                          : "bg-[#323248]"
-                                          }`}
-                                      />
-                                    </div>
-                                    <div className="modal__form-el-password-strength-text">
-                                      Use 8 or more characters with a mix of
-                                      letters, numbers & symbols.
-                                    </div>
-                                    {touched[name] && errors[name] && (
-                                      <div className="error mt-[8px]">
-                                        {errors[name]}
+                                              }`}
+                                          />
+                                        </div>
+                                        <div className="modal__form-el-password-strength-text">
+                                          Use 8 or more characters with a mix of
+                                          letters, numbers & symbols.
+                                        </div>
+                                        {touched[name] && errors[name] && (
+                                          <div className="error mt-[8px]">
+                                            {errors[name]}
+                                          </div>
+                                        )}
                                       </div>
-                                    )}
-                                  </div>
-                                ) : // Select
+                                    ) : // Select
                                   type === "select" ? (
                                     <Field name={name}>
                                       {({
@@ -225,6 +245,13 @@ export function Modal({
                                                   const selectedIndex = e.target.selectedIndex
                                                   setFieldValue(
                                                     "serviceApartment",
+                                                    e.target[selectedIndex].innerText
+                                                  );
+                                                }
+                                                if (name === "expenseTypeId") {
+                                                  const selectedIndex = e.target.selectedIndex
+                                                  setFieldValue(
+                                                    "expenseType",
                                                     e.target[selectedIndex].innerText
                                                   );
                                                 }
