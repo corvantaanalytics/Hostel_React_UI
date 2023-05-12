@@ -30,7 +30,6 @@ export const viewHosteller = (id) => {
       `http://localhost:9000/api/v1/hosteller/${id}`
     );
     if(response?.status === 200){
-      console.log("response",response)
       dispatch(getHosteller(response?.data))
     }
   };

@@ -26,8 +26,10 @@ export const EditRoom = ({ show, setShow }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    locationId:Yup.string().required("Location is required"),
-    serviceApartmentId:Yup.string().required("ServiceApartment is required"),
+    locationId: Yup.string().required("LocationId is required"),
+    serviceApartmentId: Yup.string().required("ServiceApartmentId is required"),
+    roomTypes: Yup.string().required("RoomType is required"),
+    rent: Yup.string().required("Rent is required"),
   });
   
   useEffect(() => {
