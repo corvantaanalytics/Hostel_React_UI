@@ -127,10 +127,12 @@
 
   // Button
   &__btn {
+    
     float: right;
     min-height: 50px;
     border-radius: 8px;
     background: rgb(240, 142, 219);
+    padding: 10px 10px;
   }
 
   // Table
@@ -210,6 +212,7 @@
 
     // Pagination Styles
     .ant-pagination {
+      width:350px;
 
       // All LI Styles
       li.ant-pagination-item {

@@ -143,7 +143,7 @@ const Hostellers = () => {
                     setShow={setDeleteHosteller}
                 />
                 <h2 className="content-header p-4 pb-2 text-white ">Hostellers</h2>
-                <div className="p-[40px] pb-[24px] mx-[20px] my-[15px]  bg-[#000000] rounded-[8px]">
+                <div className="p-[40px] pb-[24px] mx-[20px] my-[15px] overflow-auto w-full h-full bg-[#000000] rounded-[8px]">
                     <Table
                         columns={columns}
                         data={data}
