@@ -7,11 +7,16 @@ import { useTranslation } from "react-i18next";
 import { AddExpenses } from "./Addexpenses";
 import { getAllLocations } from "store/Actions/location";
 import { getAllServiceApartments } from "store/Actions/serviceApartments";
-import { getAllExpenses } from "store/Actions/expenses";
+import { getAllExpenses, viewExpense } from "store/Actions/expenses";
+import moment from "moment";
+import { DeleteExpense } from "./DeleteExpense";
+import { EditExpense } from "./EditExpense";
 
 const ExpensesPage = () => {
 
     const [showHostelModal, setShowHostelModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { t } = useTranslation("/TitleModal/ns");
@@ -26,7 +31,8 @@ const ExpensesPage = () => {
                     location: key?.location,
                     serviceApartment: key?.serviceApartment,
                     expenseType: key?.expenseType,
-                    amount: key?.amount
+                    amount: key?.amount,
+                    date: key?.date
                 });
             });
             setData(dataArr);
@@ -60,6 +66,12 @@ const ExpensesPage = () => {
             dataIndex: "amount",
             key: "amount",
         },
+        {
+            title: t("Created Date"),
+            dataIndex: "date",
+            key: "date",
+            render: (text, record) => record?.date !== "N/A" ? moment(record?.date).format('MMMM Do, YYYY') : "N/A",
+        },
 
     ];
 
@@ -78,6 +90,17 @@ const ExpensesPage = () => {
                     show={showHostelModal}
                     setShow={setShowHostelModal}
                 />
+
+                <DeleteExpense
+                    show={showDeleteModal}
+                    setShow={setShowDeleteModal}
+                />
+
+                <EditExpense
+                    show={showEditModal}
+                    setShow={setShowEditModal}
+                />
+
                 <h2 className="content-header p-4 pb-2 text-white ">Expenses</h2>
 
 
@@ -95,12 +118,20 @@ const ExpensesPage = () => {
                         permissions={true}
                         editAction={(record) => (
                             <Button onClick={() => {
-                                // navigate(
-                                //     `/admin/dashboard/billing/orders/${myOrders ? "your-orders" : "all-orders"}/list/edit/${record?.key}`
-                                // );
+                                dispatch(viewExpense(record?.id));
+                                setShowEditModal(true);
                             }}
                             >
-                                View
+                                Edit
+                            </Button>
+                        )}
+                        deleteAction={(record) => (
+                            <Button onClick={() => {
+                                dispatch(viewExpense(record?.id));
+                                setShowDeleteModal(true);
+                            }}
+                            >
+                                Delete
                             </Button>
                         )}
                     />

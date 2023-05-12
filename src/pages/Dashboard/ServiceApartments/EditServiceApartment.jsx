@@ -13,7 +13,9 @@ export const EditServiceApartment= ({ show, setShow }) => {
   const [locationMenu, setLocationMenu] = useState([])
   
   const validationSchema = Yup.object().shape({
+    name: Yup.string().required("District is required"),
     locationId:Yup.string().required("Location is required"),
+    address: Yup.string().required("Location is required"),
   });
   
   const initialValues = {

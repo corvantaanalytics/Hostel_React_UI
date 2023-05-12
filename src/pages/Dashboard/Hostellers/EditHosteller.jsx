@@ -15,10 +15,26 @@ export const EditHosteller = ({ show, setShow }) => {
   const [ServiceApartments, setServiceApartments] = useState([])
 
   const validationSchema = Yup.object().shape({
-    locationId:Yup.string().required("Location is required"),
-    serviceApartmentId:Yup.string().required("ServiceApartment is required"),
+    firstName: Yup.string().required("Full name is required"),
+    mobilenumber: Yup.string().required("Mobile Number is required"),
+    email: Yup.string()
+      .required('Email Address is required.')
+      .email('Email format not recognized.'),
+    dateofbirth: Yup.string().required("Date is required"),
+    addressforcommunication: Yup.string().required("Address is required"),
+    permanentaddress: Yup.string().required("Address is required"),
+    parentname: Yup.string().required("Parent Name is required"),
+    parentcontactnumber: Yup.string().required("Number is required"),
+    workplaceinformation: Yup.string().required("Address is required"),
+    workplacephonenumber: Yup.string().required("Number is required"),
+    locationId: Yup.string().required("Location is required"),
+    serviceApartmentId: Yup.string().required("ServiceApartment is required"),
+    roomdetails: Yup.string().required("Room Details is required"),
+    rentdetails: Yup.string().required("Rent Details is required"),
+    advancemoney: Yup.string().required("Amount is required"),
+    dateofjoining: Yup.string().required("Date is required"),
   });
-  
+
   const initialValues = {
     id: hosteller?.id,
     firstName: hosteller?.firstName,
@@ -41,7 +57,7 @@ export const EditHosteller = ({ show, setShow }) => {
     dateofjoining: hosteller?.dateofjoining,
   };
 
-  
+
   useEffect(() => {
     let dataArr = [];
     locations.forEach((key, index) => {
@@ -68,7 +84,7 @@ export const EditHosteller = ({ show, setShow }) => {
     {
       type: "id",
       name: "id",
-      placeholder:  hosteller?.id,
+      placeholder: hosteller?.id,
       title: t("ID"),
     },
     {
@@ -80,25 +96,25 @@ export const EditHosteller = ({ show, setShow }) => {
     {
       type: "input",
       name: "mobilenumber",
-      placeholder:  hosteller?.mobilenumber,
+      placeholder: hosteller?.mobilenumber,
       title: t("Mobile Number"),
     },
     {
       type: "input",
       name: "email",
-      placeholder:  hosteller?.email,
+      placeholder: hosteller?.email,
       title: t("Email"),
     },
     {
       type: "input",
       name: "dateofbirth",
-      placeholder:  hosteller?.dateofbirth,
+      placeholder: hosteller?.dateofbirth,
       title: t("Date Of Birth"),
     },
     {
       type: "input",
       name: "addressforcommunication",
-      placeholder:  hosteller?.addressforcommunication,
+      placeholder: hosteller?.addressforcommunication,
       title: t("Address For Communication"),
     },
     {
@@ -110,13 +126,13 @@ export const EditHosteller = ({ show, setShow }) => {
     {
       type: "input",
       name: "parentname",
-      placeholder:  hosteller?.parentname,
+      placeholder: hosteller?.parentname,
       title: t("Parent Name"),
     },
     {
       type: "input",
       name: "parentcontactnumber",
-      placeholder:  hosteller?.parentcontactnumber,
+      placeholder: hosteller?.parentcontactnumber,
       title: t("Parent Contact Number"),
     },
     {
@@ -128,49 +144,60 @@ export const EditHosteller = ({ show, setShow }) => {
     {
       type: "input",
       name: "workplacephonenumber",
-      placeholder:  hosteller?.workplacephonenumber,
+      placeholder: hosteller?.workplacephonenumber,
       title: t("WorkPlace Phonenumber"),
     },
     {
       type: "select",
       name: "locationId",
-      placeholder:  hosteller?.location,
+      placeholder: hosteller?.location,
       title: t("Location"),
       options: location
     },
     {
       type: "select",
       name: "serviceApartmentId",
-      placeholder:  hosteller?.serviceApartment,
+      placeholder: hosteller?.serviceApartment,
       title: t("Service Apartment"),
       options: ServiceApartments
     },
     {
       type: "input",
       name: "roomdetails",
-      placeholder:  hosteller?.roomdetails,
+      placeholder: hosteller?.roomdetails,
       title: t("Room Details"),
     },
     {
       type: "input",
       name: "rentdetails",
-      placeholder:  hosteller?.rentdetails,
+      placeholder: hosteller?.rentdetails,
       title: t("Rent Details"),
     },
     {
       type: "input",
       name: "advancemoney",
-      placeholder:  hosteller?.advancemoney,
+      placeholder: hosteller?.advancemoney,
       title: t("Advance Money"),
     },
     {
       type: "input",
       name: "dateofjoining",
-      placeholder:  hosteller?.dateofjoining,
+      placeholder: hosteller?.dateofjoining,
       title: t("Date Of Joining"),
     },
 
   ];
+
+  
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+  
   return (
     <Modal
       heading="Edit Hosteller"
@@ -181,17 +208,25 @@ export const EditHosteller = ({ show, setShow }) => {
       validationSchema={validationSchema}
       initialValues={initialValues}
       handleSubmit={async (values) => {
+        const startDate = sessionStorage.getItem("startDate")
+        const birthDate = sessionStorage.getItem("birthDate")
+        const originalStartDate = startDate;
+        const formattedStartDate = formatDate(originalStartDate)
+        const originalBirthDate = birthDate;
+        const formattedBirthDate = formatDate(originalBirthDate)
         const newValues = {
           ...values,
-          id:Number(values?.id),
-          mobilenumber:Number(values?.mobilenumber),
-          parentcontactnumber:Number(values?.parentcontactnumber),
+          id: Number(values?.id),
+          dateofjoining: formattedStartDate ? formattedStartDate : hosteller?.dateofjoining,
+          dateofbirth: formattedBirthDate ? formattedBirthDate : hosteller?.dateofbirth,
+          mobilenumber: Number(values?.mobilenumber),
+          parentcontactnumber: Number(values?.parentcontactnumber),
           locationId: Number(values?.locationId),
           serviceApartmentId: Number(values?.serviceApartmentId),
-          workplacephonenumber:Number(values?.workplacephonenumber),
-          advancemoney:Number(values?.advancemoney),
+          workplacephonenumber: Number(values?.workplacephonenumber),
+          advancemoney: Number(values?.advancemoney),
         };
-        await dispatch(editHosteller(newValues,setShow));
+        await dispatch(editHosteller(newValues, setShow));
       }}
     />
   );
