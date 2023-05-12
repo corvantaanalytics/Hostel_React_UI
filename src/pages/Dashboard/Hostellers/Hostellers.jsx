@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "layout";
 import { Table } from "components/Table/Table.component";
 import { Button } from "antd";
-import { getAllHostellers, viewHosteller } from "store/Actions/hostellers";
+import { getAllHostellers, viewHosteller, viewHostellerByApartment, viewHostellerByLocation, viewHostellerByLocationAndApartment } from "store/Actions/hostellers";
 import { useDispatch, useSelector } from "react-redux";
 import { AddHosteller } from "./AddHosteller";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,8 @@ import { getAllServiceApartments } from "store/Actions/serviceApartments";
 import { ViewHosteller } from "./ViewHosteller";
 import { EditHosteller } from "./EditHosteller";
 import { DeleteHosteller } from "./DeleteLocation";
+import { getLocations } from "store/Slices/locationSlice";
+import { getServiceApartments } from "store/Slices/serviceApartmentsSlice";
 
 const Hostellers = () => {
     const { hostellers } = useSelector((state) => state?.hostellers)
@@ -23,6 +25,8 @@ const Hostellers = () => {
     const [editHosteller, setEditHosteller] = useState(false);
     const [deleteHosteller, setDeleteHosteller] = useState(false);
     const [location, setLocation] = useState([])
+    const [filterLocation, setFilterLocation] = useState("");
+    const [filterApartment, setFilterApartment] = useState("")
     const [ServiceApartments, setServiceApartments] = useState([])
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
@@ -36,6 +40,8 @@ const Hostellers = () => {
                     id: key?.id,
                     firstName: key?.firstName,
                     addressforcommunication: key?.addressforcommunication,
+                    location:key?.location,
+                    serviceApartment:key?.serviceApartment,
                     parentname: key?.parentname,
                     roomdetails: key?.roomdetails,
                     rentdetails: key?.rentdetails,
@@ -64,9 +70,14 @@ const Hostellers = () => {
             },
         },
         {
-            title: ("Address"),
-            dataIndex: "addressforcommunication",
-            key: "addressforcommunication",
+            title: ("Location"),
+            dataIndex: "location",
+            key: "location",
+        },
+        {
+            title: ("ServiceApartment"),
+            dataIndex: "serviceApartment",
+            key: "serviceApartment",
         },
         {
             title: ("Parent Name"),
@@ -104,6 +115,7 @@ const Hostellers = () => {
         let locArr = [];
         locations.forEach((key, index) => {
             locArr.push({
+                value: key?.id,
                 name: key?.location,
             });
         });
@@ -114,6 +126,7 @@ const Hostellers = () => {
         let apartArr = [];
         serviceApartments.forEach((key, index) => {
             apartArr.push({
+                value: key?.id,
                 name: key?.address
             });
         });
@@ -156,6 +169,47 @@ const Hostellers = () => {
                         onSearchHandler={true}
                         locationFilter={locationList}
                         apartmentFilter={apartmentList}
+
+                        handleLocation={async (values) => {
+                            setFilterLocation(values);
+                            let details = {
+                                location: values,
+                                apartment: filterApartment
+                            };
+                            if (details?.location && details?.apartment) {
+                                await dispatch(viewHostellerByLocationAndApartment(details))
+                            }
+                            else if (details?.location && !details?.apartment) {
+                                await dispatch(viewHostellerByLocation(details))
+                            }
+                            else if (!details?.location && details?.apartment) {
+                                await dispatch(viewHostellerByApartment(details))
+                            }
+                            else if (!details?.location && !details?.apartment) {
+                                await dispatch(getAllHostellers())
+                            }
+                        }}
+
+                        handleApartment={async (values) => {
+                            setFilterApartment(values);
+                            let details = {
+                                location: filterLocation,
+                                apartment: values
+                            };
+                            if (details?.location && details?.apartment) {
+                                await dispatch(viewHostellerByLocationAndApartment(details))
+                            }
+                            else if (details?.location && !details?.apartment) {
+                                await dispatch(viewHostellerByLocation(details))
+                            }
+                            else if (!details?.location && details?.apartment) {
+                                await dispatch(viewHostellerByApartment(details))
+                            }
+                            else if (!details?.location && !details?.apartment) {
+                                await dispatch(getAllHostellers())
+                            }
+                        }}
+
                         viewAction={(record) => (
                             <Button onClick={() => {
                                 dispatch(viewHosteller(record?.id))

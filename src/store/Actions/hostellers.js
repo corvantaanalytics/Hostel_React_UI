@@ -36,6 +36,40 @@ export const viewHosteller = (id) => {
   };
 };
 
+export const viewHostellerByLocation = (details) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `http://localhost:9000/api/v1/hosteller/location/${details?.location}`
+    );
+    if(response?.status === 200){
+      dispatch(getHostellers(response?.data))
+    }
+  };
+};
+
+export const viewHostellerByApartment = (details) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `http://localhost:9000/api/v1/hosteller/apartment/${details?.apartment}`
+    );
+    if(response?.status === 200){
+      dispatch(getHostellers(response?.data))
+    }
+  };
+};
+
+export const viewHostellerByLocationAndApartment = (details) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `http://localhost:9000/api/v1/hosteller/${details?.location}/${details?.apartment}`
+    );
+    if(response?.status === 200){
+      dispatch(getHostellers(response?.data))
+    }
+  };
+};
+
+
 export const editHosteller = (newValues,setShow) => {
   return async (dispatch) => {
     const response = await axios.put(

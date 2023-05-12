@@ -4,13 +4,15 @@ import hostellersReducer from './Slices/hostellersSlice'
 import roomsReducer from './Slices/roomsSlice'
 import locationsReducer from './Slices/locationSlice'
 import serviceApartmentsReducer from'./Slices/serviceApartmentsSlice'
+import expensesReducer from './Slices/expenses'
 
 const store = configureStore({
   reducer: {
      hostellers: hostellersReducer,
      rooms: roomsReducer,
      locations :locationsReducer,
-     serviceApartments:serviceApartmentsReducer
+     serviceApartments:serviceApartmentsReducer,
+     expenses:expensesReducer
   },
 });
 export const messageNotifications = {

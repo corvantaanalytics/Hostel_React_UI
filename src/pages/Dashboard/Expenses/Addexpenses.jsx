@@ -1,67 +1,78 @@
 import { Modal } from "components";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import moment from 'moment';
 // import { addClientUser } from "store";
 import { useCountries } from "use-react-countries";
 import * as Yup from "yup";
+import { addExpenses } from "store/Actions/expenses";
 
 const validationSchema = Yup.object().shape({
-  fullName: Yup.string().required("Full name is required"),
-  email: Yup.string().email("Email is invalid").required("Email is required"),
-  password: Yup.string()
-    .required("Password is required")
-    .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      "Please use 8 or more characters with a mix of letters, numbers & symbols"
-    ),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .required("Confirm Password is required"),
-  status: Yup.bool().required("Status is required"),
-  companyName: Yup.string().required("Company Name is required"),
-  address1: Yup.string().required("Address 1 is required"),
-  city: Yup.string().required("City is required"),
-  state_region: Yup.string().required("State/Region is required"),
-  zipCode: Yup.string().required("ZIP Code is required"),
-  country: Yup.string().required("Country is required"),
-  brandId: Yup.string().required("Brand is required"),
+  locationId: Yup.string().required("Location is required"),
+  serviceApartmentId: Yup.string().required(" Service Apartment is required"),
+  expenseTypeId: Yup.string().required("Expense Type is required"),
+  amount: Yup.string().required("Amount is required"),
+  // date: Yup.date().required("Date is required"),
 });
 
 export const AddExpenses = ({ show, setShow }) => {
   const { t } = useTranslation("/Users/ns");
   const dispatch = useDispatch();
-//   const { loading } = useSelector((state) => state?.users);
-  const { countries } = useCountries();
-//   const { brands } = useSelector((state) => state?.brands);
-//   const brandsLoading = useSelector((state) => state?.brands?.loading);
-  const { id } = useParams();
+  const { locations } = useSelector((state) => state?.locations)
+  const { serviceApartments } = useSelector((state) => state?.serviceApartments)
+  const [location, setLocation] = useState([])
+  const [ServiceApartments, setServiceApartments] = useState([])
 
   const initialValues = {
-    fullName: "",
-    // email: "",
-    password: "",
-    confirmPassword: "",
-    status: true,
-    // ipAddresses: "",
-    companyName: "",
-    brandId: "",
-    address1: "",
-    address2: "",
-    city: "",
-    state_region: "",
-    zipCode: "",
-    country: "",
-    parentID: id ? id : "",
+    id: "",
+    locationId: "",
+    serviceApartmentId: "",
+    expenseTypeId: "",
+    expenseType: "",
+    amount: "",
+    date: ""
   };
 
-  const location = [
-    { label: "Pallavaram", value: "Pallavaram" },
-    { label: "Egmore", value: "Egmore" },
-    { label: "Tambaram", value: "Tambaram" },
-    { label: "Adayar", value: "Adayar" },
+  useEffect(() => {
+    let dataArr = [];
+    locations.forEach((key, index) => {
+      dataArr.push({
+        value: key?.id,
+        label: key?.location,
+      });
+    });
+    setLocation(dataArr)
+  }, [locations]);
+
+  useEffect(() => {
+    let data = [];
+    serviceApartments.forEach((key, index) => {
+      data.push({
+        value: key?.id,
+        label: key?.address,
+      });
+    });
+    setServiceApartments(data)
+  }, [serviceApartments]);
+
+  const expenseType = [
+    { label: "Rent", value: "1" },
+    { label: "Maintenance", value: "2" },
+    { label: "Electricity Bill", value: "3" },
+    { label: "Food", value: "4" },
   ]
 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+ 
   const addFields = [
     {
       type: "id",
@@ -70,28 +81,38 @@ export const AddExpenses = ({ show, setShow }) => {
       title: t("ID"),
     },
     {
-      type: "input",
-      name: "description",
-      placeholder: "Enter description..",
-      title: t("Description"),
-    },
-    {
-      type: "input",
-      name: "Category",
-      placeholder: "Category",
-      title: "Category",
-    },
-    {
-      type: "switch",
-      name: "status",
-      title: t("status"),
+      type: "select",
+      name: "locationId",
+      placeholder: "Select",
+      title: t("Location"),
+      options: location
     },
     {
       type: "select",
-      name: "hostelLocation",
-      title: t("Location"),
-      placeholder:'Select Location',
-      options : location
+      name: "serviceApartmentId",
+      placeholder: "Select",
+      title: "Service Apartment",
+      options: ServiceApartments
+    },
+    {
+      type: "select",
+      name: "expenseTypeId",
+      placeholder: "Select",
+      title: "Expense Type",
+      options: expenseType
+    },
+    {
+      type: "input",
+      name: "amount",
+      title: t("Amount"),
+      placeholder: 'Enter Amount',
+    },
+    {
+      type: "date",
+      name: "date",
+      title: "Date",
+      placeholder: 'Enter Date',
+      disabledTime: true
     },
   ];
   return (
@@ -99,15 +120,20 @@ export const AddExpenses = ({ show, setShow }) => {
       heading="Add Expenses"
       submitText="Add Expenses"
       show={show}
-    //   loading={loading || brandsLoading}
       setShow={setShow}
       fields={addFields}
       initialValues={initialValues}
       validationSchema={validationSchema}
-    //   handleSubmit={async (values) => {
-    //     await dispatch(addClientUser(values));
-    //     setShow(false);
-    //   }}
+      handleSubmit={async (values) => {
+        const startDate = sessionStorage.getItem("startDate")
+        const originalDate = startDate;
+        const formattedDate = formatDate(originalDate)
+        const newValues = {
+          ...values,
+          date: formattedDate
+        };
+        dispatch(addExpenses(newValues,setShow))
+      }}
     />
   );
 };

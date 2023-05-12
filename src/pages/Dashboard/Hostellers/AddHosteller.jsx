@@ -105,11 +105,10 @@ export const AddHosteller = ({ show, setShow }) => {
       title: t("Email"),
     },
     {
-      type: "input",
+      type: "birthDate",
       name: "dateofbirth",
       placeholder: "DD-MM-YYYY",
       title: t("Date Of Birth"),
-      //  disableDate: (current) => current && current.valueOf() < Date.now(),
     },
     {
       type: "input",
@@ -180,14 +179,23 @@ export const AddHosteller = ({ show, setShow }) => {
       title: t("Advance Money"),
     },
     {
-      type: "input",
+      type: "date",
       name: "dateofjoining",
       placeholder: "DD-MM-YYYY",
       title: t("Date Of Joining"),
-      // disableDate: (current) => current && current.valueOf() < Date.now(),
     },
 
   ];
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+ 
   return (
     <Modal
       heading="Add Hosteller"
@@ -198,17 +206,23 @@ export const AddHosteller = ({ show, setShow }) => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       handleSubmit={async (values) => {
+        const startDate = sessionStorage.getItem("startDate")
+        const birthDate = sessionStorage.getItem("birthDate")
+        const originalStartDate = startDate;
+        const formattedStartDate = formatDate(originalStartDate)
+        const originalBirthDate = birthDate;
+        const formattedBirthDate = formatDate(originalBirthDate)
         const newValues = {
           ...values,
           id:Number(values?.id),
+          dateofjoining: formattedStartDate,
+          dateofbirth: formattedBirthDate,
           mobilenumber:Number(values?.mobilenumber),
           parentcontactnumber:Number(values?.parentcontactnumber),
           locationId: Number(values?.locationId),
           serviceApartmentId: Number(values?.serviceApartmentId),
           workplacephonenumber:Number(values?.workplacephonenumber),
           advancemoney:Number(values?.advancemoney),
-          // dateofbirth: values.dateofbirth.toISOString(),
-          // dateofjoining: values.dateofjoining.toISOString(),
         };
         await dispatch(addHosteller(newValues,setShow));
       }}
