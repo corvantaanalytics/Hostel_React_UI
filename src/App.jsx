@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Spin } from "antd";
-import { Error404, dashboardPages } from "./pages";
+import { Error404, dashboardPages, LandingPages } from "./pages";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import "./App.scss";
@@ -13,8 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 import PricingPage from "pages/Dashboard/Income/Pricing";
 import { ProtectedRoute } from "layout/components/ProtectedRoute.component";
 
-const SignUp = React.lazy(() => import("./pages/sign-up/SignUp.page"));
-const SignIn = React.lazy(() => import("./pages/sign-in/SignIn.page"));
+// const SignUp = React.lazy(() => import("./pages/sign-up/SignUp.page"));
+// const SignIn = React.lazy(() => import("./pages/sign-in/SignIn.page"));
 const ForgotPassword = React.lazy(() =>
   import("./pages/forgot-password/ForgotPassword.page")
 );
@@ -36,7 +36,7 @@ function App() {
 
   const isLoggedIn = false;
   return (
-    <div className="flex items-center content-center bg-custom-main">
+    <>
       <ToastContainer />
       <Suspense
         fallback={
@@ -47,30 +47,9 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Navigate to="/sign-in" />} />
-          <Route
-            path="/sign-in"
-            element={
-              // isLoggedIn ? (
-              //     <Navigate to="/admin/dashboard" />
-              // ) : (
-              //      <Navigate to= "/admin/sign-in"/>
-              // )
-              <SignIn />
-            }
-          />
-          <Route
-            path="/sign-up"
-            element={
-              // isLoggedIn ? <Navigate to="/admin/dashboard" /> : <SignUp/>
-              <SignUp />
-            }
-          />
-          <Route
-            path="/pricing"
-            element={
-              <PricingPage />
-            }
-          />
+          
+          
+          <Route path="/pricing" element={<PricingPage />} />
           <Route
             path="/reset-password"
             element={
@@ -127,7 +106,7 @@ function App() {
               }
             />
           </Route> */}
-          <Route path="*" element={<Navigate to="/sign-in" replace />} />
+          <Route path="*" element={<Navigate to="/landing" replace />} />
           <Route
             path="/dashboard/*"
             element={
@@ -143,10 +122,26 @@ function App() {
               </Routes>
             }
           />
+          <Route path="*" element={<Navigate to="/landing" replace />} />
+          <Route
+            path="/landing/*"
+            element={
+              <Routes>
+                {LandingPages.map(({ path, Component }) => (
+                  <Route
+                    key={path}
+                    path={`${path}`}
+                    index={path === "/"}
+                    element={<Component />}
+                  />
+                ))}
+              </Routes>
+            }
+          />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </Suspense>
-    </div>
+    </>
   );
 }
 

@@ -1,21 +1,37 @@
 import { lazy } from "react";
 
 const pages = [
-    {
-        path:"/sign-in",
-        Component: lazy(() =>
-            import("./sign-in/SignIn.page")
-        ),
-    },
-    {
-        path:"/sign-up",
-        Component: lazy(() =>
-            import("./sign-up/SignUp.page")
-        ),
-    },
+    // {
+    //     path:"/sign-in",
+    //     Component: lazy(() =>
+    //         import("./sign-in/SignIn.page")
+    //     ),
+    // },
+    // {
+    //     path:"/sign-up",
+    //     Component: lazy(() =>
+    //         import("./sign-up/SignUp.page")
+    //     ),
+    // },
 ];
 
 export const Error404 = lazy(() => import("./error-404/Error404.page"));
+
+export const LandingPages = [
+    {
+        path: "/",
+        Component: lazy(() => import("./Landing/Home/Home.page")),
+    },
+    {
+        path: "/sign-in",
+        Component: lazy(() => import("./Landing/sign-in/SignIn.page")),
+    },
+    {
+     path: "/sign-up",
+        Component: lazy(() => import("./Landing/sign-up/SignUp.page")),
+    },
+    
+];
 
 export const dashboardPages = [
     {

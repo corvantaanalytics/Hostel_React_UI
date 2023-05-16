@@ -1,5 +1,5 @@
 // ProtectedRoute.js
-import SignIn from 'pages/sign-in/SignIn.page';
+import SignIn from 'pages/Landing/sign-in/SignIn.page';
 import { lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
