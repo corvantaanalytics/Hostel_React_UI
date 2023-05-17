@@ -7,8 +7,6 @@ export const DeleteExpense = ({ show, setShow, id }) => {
   const { expense } = useSelector((state) => state?.expenses)
   const dispatch = useDispatch();
 
-  console.log("expense",expense)
-
   return (
     <Modal
       heading="Delete Expense"

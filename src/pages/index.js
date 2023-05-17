@@ -55,6 +55,10 @@ export const dashboardPages = [
         Component: lazy(() => import("./Dashboard/Hostellers/Hostellers")),
     },
     {
+        path: "/report",
+        Component: lazy(() => import("./Dashboard/Reports/Reports.page")),
+    },
+    {
         path: "/location",
         Component: lazy(() => import("./Dashboard/Location/Location")),
     },
