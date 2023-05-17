@@ -55,8 +55,8 @@ const NavLink = ({ Icon, link, title, notification }) => {
     <a className="w-full hover:text-white" href={link}>
       <div
         className={`${active
-            ? "border-s-[3px] border-[#F08EDB] bg-gradient-to-r from-[#F08EDB]/[0.24] from-10% to-[#0C0D0F] text-[#F08EDB] "
-            : ""
+          ? "border-s-[3px] border-[#F08EDB] bg-gradient-to-r from-[#F08EDB]/[0.24] from-10% to-[#0C0D0F] text-[#F08EDB] "
+          : ""
           } flex py-4 pl-4 tab hover:border-s-[3px] hover:border-[#F08EDB] justify-between  hover:bg-gradient-to-r hover:from-[#f900b9]/[0.24] hover:from-10% hover:to-[#0C0D0F]`}
       >
         <div className="flex items-center">
@@ -162,10 +162,15 @@ export default function NewSidebar() {
               link="/dashboard/location"
               title="Location"
             />
-             <NavLink
+            <NavLink
               Icon={Location}
               link="/dashboard/serviceApartments"
               title="Service Apartments"
+            />
+            <NavLink
+              Icon={MoneySend}
+              link="/dashboard/report"
+              title="Reports"
             />
             <NavLink
               Icon={Setting5}
@@ -179,7 +184,7 @@ export default function NewSidebar() {
           </div>
         )}
 
-      
+
       </div>
 
       <div
