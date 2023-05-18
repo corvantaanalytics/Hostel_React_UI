@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { setAuthToken } from "store/Slices/authSlice";
 import { Card } from "antd";
 // import { useSidebarData } from "./components/SideBar/data";
+import "../pages/Landing/Home/LandHome.styles.scss";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 export function LandingLayout({ children, hide }) {
   // const [activeSub, setActiveSub] = useState("");
@@ -97,12 +99,25 @@ export function LandingLayout({ children, hide }) {
   // };
 
   return (
-    <div style={{backgroundColor: "#F08EDB"}}>
-        <h4 className="text-white">Wow Hostel</h4>
-        <div>
-          {children}
-        </div>
-    
+    <div style={{ backgroundColor: "#948285" }}>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col xs lg="2">
+            <img src="/img/wowhostel.png" />
+          </Col>
+          <Col xs lg="2" className="py-2">
+            <Button
+              type="ghost"
+              className="cancelButton mt-2 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
+              style={{ border: "none" }}
+            >
+              Learn More
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+
+      <div>{children}</div>
     </div>
   );
 }
