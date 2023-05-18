@@ -1,3 +1,12 @@
+@media (min-width: 1480px){
+.booking-section .pricing .pricing-list .price {
+    width: calc( 3 * var(--space-100) );
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-top: 110px;
+}}
+
 .dashboard {
     display: grid;
     gap: 20px;
@@ -147,4 +156,95 @@
   }
   .carousel-indicators [data-bs-target] {
     background-color: #08090a;
+  }
+
+  
+.block {
+    display: block;
+    width: 100%;
+}
+.character {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    padding: 0 20px;
+    transform: translateY(-130px);
+}
+
+.config {
+    line-height: 1;
+}
+
+.space-min {
+    padding: var(--space-min);
+}
+
+@media (min-width: 1040px){
+.config .flex {
+    padding-bottom: 10px;
+}
+}
+.config .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 15px;
+}
+.opacity-50 {
+    opacity: 0.5;
+}
+
+@media (min-width: 1480px){
+select.minimal {
+    font-size: 1.7rem;
+    padding-right: 22px;
+    background-size: 17px 12px;
+}
+}
+@media (min-width: 1040px){
+select.minimal {
+    font-size: 1.5rem;
+    background-position: 100% 45%;
+}
+}
+@media (min-width: 640px){
+select.minimal {
+    font-size: 1.4rem;
+}
+}
+select.minimal {
+    position: relative;
+    line-height: 1;
+    height: auto;
+    padding: 3px 0px;
+    padding-right: 18px;
+    font-weight: 900;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-color: var(--dark);
+    border-width: 2px;
+    background-color: transparent;
+    font-size: 1.4rem;
+    background-position: 100% 50%;
+    background-size: 14px 10px;
+    background-repeat: no-repeat;
+}
+.inline {
+    display: inline-block !important;
+    vertical-align: baseline;
+}
+
+.purchase-Button {
+    background: #F4C2C2;
+    border: 1px solid #16191f;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #ffffff;
   }
