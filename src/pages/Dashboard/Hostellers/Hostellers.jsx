@@ -16,6 +16,7 @@ import { DeleteHosteller } from "./DeleteLocation";
 import { getLocations } from "store/Slices/locationSlice";
 import { getServiceApartments } from "store/Slices/serviceApartmentsSlice";
 
+
 const Hostellers = () => {
     const { hostellers } = useSelector((state) => state?.hostellers)
     const { locations } = useSelector((state) => state?.locations)
@@ -25,6 +26,7 @@ const Hostellers = () => {
     const [editHosteller, setEditHosteller] = useState(false);
     const [deleteHosteller, setDeleteHosteller] = useState(false);
     const [location, setLocation] = useState([])
+    const [searchData, setSearchData] = useState("")
     const [filterLocation, setFilterLocation] = useState("");
     const [filterApartment, setFilterApartment] = useState("")
     const [ServiceApartments, setServiceApartments] = useState([])
@@ -40,8 +42,8 @@ const Hostellers = () => {
                     id: key?.id,
                     firstName: key?.firstName,
                     addressforcommunication: key?.addressforcommunication,
-                    location:key?.location,
-                    serviceApartment:key?.serviceApartment,
+                    location: key?.location,
+                    serviceApartment: key?.serviceApartment,
                     parentname: key?.parentname,
                     roomdetails: key?.roomdetails,
                     rentdetails: key?.rentdetails,
@@ -98,7 +100,6 @@ const Hostellers = () => {
             title: ("Date Of Joining"),
             dataIndex: "dateofjoining",
             key: "dateofjoining",
-            sorter: (a, b) => (moment(a?.dateofjoining) < moment(b?.dateofjoining) ? -1 : 1),
             render: (text, record) => record?.dateofjoining !== "N/A" ? moment(record?.dateofjoining).format('MMMM Do, YYYY') : "N/A",
         },
     ];
@@ -136,6 +137,10 @@ const Hostellers = () => {
     const locationList = location
     const apartmentList = ServiceApartments
 
+    const onSearchHandler = (data) => {
+        setSearchData(data)
+      }
+
     return (
         <DashboardLayout>
             <div className="bg-[#08090A]  p-5 text-white">
@@ -166,7 +171,7 @@ const Hostellers = () => {
                             onClick: () => setShowHostelModal(true),
                         }}
                         permissions={true}
-                        onSearchHandler={true}
+                        onSearchHandler={onSearchHandler}
                         locationFilter={locationList}
                         apartmentFilter={apartmentList}
 

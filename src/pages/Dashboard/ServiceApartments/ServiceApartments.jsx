@@ -16,7 +16,8 @@ const ServiceApartmentsPage = () => {
     const [showHostelModal, setShowHostelModal] = useState(false);
     const [editServiceApartmentModal, SetEditServiceApartmentModal] = useState(false);
     const [viewServiceApartmentModal, SetViewServiceApartmentModal] = useState(false);
-    const [deleteServiceApartmentModal, SetDeleteServiceApartmentModal] = useState(false)  
+    const [deleteServiceApartmentModal, SetDeleteServiceApartmentModal] = useState(false) 
+    const [searchData, setSearchData] = useState("") 
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { serviceApartments } = useSelector((state) => state?.serviceApartments)
@@ -67,6 +68,11 @@ const ServiceApartmentsPage = () => {
             await dispatch(getAllLocations());
         })();
     }, []);
+
+    const onSearchHandler = (data) => {
+        setSearchData(data)
+    }
+
     
     return (
         <DashboardLayout>
@@ -95,6 +101,7 @@ const ServiceApartmentsPage = () => {
                     <Table
                         columns={columns}
                         data={data}
+                        onSearchHandler={onSearchHandler}
                         fieldToFilter="name"
                         btnData={{
                             text: (t("Add Service Apartment")),

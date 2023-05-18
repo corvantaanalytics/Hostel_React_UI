@@ -11,7 +11,6 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
   .required('Email Address is required.')
   .email('Email format not recognized.'),
-  dateofbirth: Yup.string().required("Date is required"),
   addressforcommunication: Yup.string().required("Address is required"),
   permanentaddress: Yup.string().required("Address is required"),
   parentname: Yup.string().required("Parent Name is required"),
@@ -23,7 +22,6 @@ const validationSchema = Yup.object().shape({
   roomdetails: Yup.string().required("Room Details is required"),
   rentdetails: Yup.string().required("Rent Details is required"),
   advancemoney: Yup.string().required("Amount is required"),
-  dateofjoining: Yup.string().required("Date is required"),
 });
 
 export const AddHosteller = ({ show, setShow }) => {
