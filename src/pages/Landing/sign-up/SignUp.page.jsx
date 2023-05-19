@@ -11,31 +11,40 @@ import { toast } from "react-toastify";
 import { VerifyYourEmail } from "pages/Dashboard/AllPopupmodel/VerifyYourEmail";
 
 const initialValues = {
-  full_name: '',
-  email: '',
-  phoneNumber: '',
-  country: '',
+  firstName: '',
+  lastName: '',
+  username: '',
   password: '',
 };
 
 const SignUpSchema = Yup.object().shape({
-  full_name: Yup.string().required('Full Name is required.'),
-  email: Yup.string()
+  firstName: Yup.string().required('First Name is required.'),
+  lastName: Yup.string().required('Last Name is required.'),
+  username: Yup.string()
     .required('Email Address is required.')
     .email('Email format not recognized.'),
-  phoneNumber: Yup.string().required('Phone Number is required.'),
-  country: Yup.string().required('Country is required.'),
   password: Yup.string()
     .required('password is required.')
     .min(6, 'Password must be atleast 8 characters'),
+    confirmPassword: Yup.string()
+    .required('Confirm Password is required.')
+    .min(6, 'Password must be atleast 6 characters')
+    .oneOf(
+        [Yup.ref('password'), null],
+        'Confirm Password must matches with Password'
+    ),
 });
 
 const fields = [
-  { name: 'full_name', label: 'Full Name', placeholder: 'Paul Elliott' },
-  { name: 'email', label: 'Email Address', placeholder: 'paul.elliott@fakemail.com' },
-  { name: 'phoneNumber', label: 'Phone Number', placeholder: '219 - 666 - 0114' },
-  { name: 'country', label: 'Country', placeholder: 'United states of America' },
+  { name: 'firstName', label: 'First Name', placeholder: 'Your First Name' },
+  { name: 'lastName', label: 'Last Name', placeholder: 'Your Last Name' },
+  { name: 'username', label: 'Email Address', placeholder: 'Your Email Address' },
   { name: 'password', label: 'Password', placeholder: '**********' },
+  {
+    name: 'confirmPassword',
+    label: 'Confirm Password',
+    placeholder: '**********',
+  },
 ];
 
 function SignUp() {
@@ -44,46 +53,44 @@ function SignUp() {
   const [showAdd, setShowAdd] = useState(false);
 
   const signup = (
-    full_name,
-    email,
-    phoneNumber,
-    country,
+    firstName,
+    lastName,
+    username,
     password,
   ) => {
     return async (dispatch) => {
       const response = await fetch(
-        `apilinkusers/open`,
+        `http://localhost:9000/register`,
         {
           method: "POST",
           body: JSON.stringify({
-            full_name,
-            email,
-            phoneNumber,
-            country,
-            password
+            firstName,
+            lastName,
+            username,
+            password,
           }),
           headers: new Headers({
             'Content-type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'x-api-key': 'qwertyuioasdfghjklzxcvbnm'
           }),
         }
       );
+      const res = await response.json();
       if (response?.status === 200) {
-        setShowAdd(true)
+        toast.success(`UserId with name ${res?.firstName} created `)
+        navigate( "/landing/sign-in");
       }
       else {
-        toast.error("Username already exists")
+        toast.error("An Error Occured! Please Try Again")
       }
     };
   };
 
   const navigateToSignIn = () => {
-    navigate('/sign-in');
+    navigate('/landing/sign-in');
   }
   return (
     <div className="w-screen min-height">
-      <VerifyYourEmail show={showAdd} setShow={setShowAdd} />
+      {/* <VerifyYourEmail show={showAdd} setShow={setShowAdd} /> */}
       <Row className='bg-color' style={{ height: "100%" }}>
         <Col lg={12}>
           <div className="screen-HW p-0">
@@ -111,10 +118,9 @@ function SignUp() {
               onSubmit={async (values, { resetForm }) => {
                 await dispatch(
                   signup(
-                    values.full_name,
-                    values.email,
-                    values.phoneNumber,
-                    values.country,
+                    values.firstName,
+                    values.lastName,
+                    values.username,
                     values.password,
                   )
                 );

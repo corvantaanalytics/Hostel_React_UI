@@ -6,28 +6,118 @@ import './Home.styles.scss';
 import { Card, Row, Col, Divider } from 'antd';
 import { User, SmsTracking, Lock1, Scan, SecuritySafe } from 'iconsax-react';
 import { useNavigate } from "react-router-dom";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 
 const Home = () => {
 
   const navigate = useNavigate();
-  const navigateToHostellers = () => {
-    navigate("/dashboard/hostellers");
-  }
-  const navigateToRooms = () => {
-    navigate("/dashboard/rooms");
-  }
+ 
+  const data = [
+    {
+      income: 23,
+      expenses:8,
+      your: "Jan",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "Feb",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "Mar",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "April",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "May",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "June",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "July",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "Aug",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "Sept",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "Oct",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "Nov",
+    },
+    {
+      income: 23,
+      expenses:8,
+      your: "Dec",
+    },
 
-  const navigateToLocation = () => {
-    navigate("/dashboard/location");
-  }
-  const navigateToApartments = () => {
-    navigate("/dashboard/serviceApartments");
-  }
+  ];
 
   return (
     <DashboardLayout>
-      <div className="p-4 md:px-6 dashboard">
+       <div className="order mt-5">
+      <div className="order__header">
+        <h3 className="order__header-heading">Income and Expenses</h3>
+        <p className="order__header-text">Yearly Data</p>
+      </div>
+      <div className="order__chart p-4">
+        <ResponsiveContainer width="100%" height={150}>
+          <BarChart
+            barSize={30}
+            width={500}
+            height={300}
+            data={data}
+            margin={{
+              top: 0,
+              right: 0,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <XAxis
+              dataKey="your"
+              // tickFormatter={(text) => moment(text)?.format("MMM-YYYY")}
+              strokeDasharray="3 3"
+              stroke="#323248"
+              tick={{ fill: "#474761" }}
+            />
+            <YAxis
+              width={35}
+              strokeDasharray="3 3"
+              stroke="#323248"
+              tick={{ fill: "#474761" }}
+            />
+            <Bar dataKey="income" fill="#2C6975" />
+            <Bar dataKey="expenses" fill="#8950FC" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>     
+    </div>
+      {/* <div className="p-4 md:px-6 dashboard">
         <h2 className="content-header p-4 pb-2 text-white ">Dashboard</h2>
       </div>
 
@@ -110,7 +200,7 @@ const Home = () => {
           </Col>
         </Row>
 
-      </Card>
+      </Card> */}
     </DashboardLayout>
   );
 };

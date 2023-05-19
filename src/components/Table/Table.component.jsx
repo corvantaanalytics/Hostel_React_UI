@@ -255,9 +255,9 @@ export const Table = ({
                                   }
                                   prefix={<Search />}
                                   className="custom-table__input"
-                                  onChange={(e) => onSearchHandler(e.target.value, paginationData)}
-                                // value={searchValue ? searchValue : ""}
-                                // onChange={keyWordHandler}
+                                  // onChange={(e) => onSearchHandler(e.target.value, paginationData)}
+                                 value={searchValue ? searchValue : searchValue}
+                                 onChange={keyWordHandler}
                                 />
                               )}
                             </>

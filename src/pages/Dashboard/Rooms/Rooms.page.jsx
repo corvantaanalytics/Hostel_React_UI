@@ -17,6 +17,7 @@ const RoomsPage = () => {
     const [showHostelModal, setShowHostelModal] = useState(false);
     const [showRoom, setShowRoom] = useState(false);
     const [deleteRoom, setDeleteRoom] = useState(false);
+    const [searchData, setSearchData] = useState("")
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
     const { rooms } = useSelector((state) => state?.rooms)
@@ -77,6 +78,10 @@ const RoomsPage = () => {
             await dispatch(getAllServiceApartments());
         })();
     }, []);
+    const onSearchHandler = (data) => {
+        setSearchData(data)
+    }
+
     return (
         <DashboardLayout>
             <div className="bg-[#08090A]  p-5 text-white">
@@ -98,6 +103,7 @@ const RoomsPage = () => {
                     <Table
                         columns={columns}
                         data={data}
+                        onSearchHandler={onSearchHandler}
                         fieldToFilter="name"
                         btnData={{
                             text: (t("Add Room")),

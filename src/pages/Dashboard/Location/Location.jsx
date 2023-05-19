@@ -22,6 +22,7 @@ const LocationPage = () => {
     const [viewLocations, setViewLocations] = useState(false);
     const [editLocations, setEditLocations] = useState(false);
     const [deleteLocations, setDeleteLocations] = useState(false);
+    const [searchData, setSearchData] = useState("")
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const { locations } = useSelector((state) => state?.locations)
@@ -70,6 +71,9 @@ const LocationPage = () => {
             await dispatch(getAllLocations());
         })();
     }, []);
+    const onSearchHandler = (data) => {
+        setSearchData(data)
+    }
 
     return (
         <DashboardLayout>
@@ -96,6 +100,7 @@ const LocationPage = () => {
                     <Table
                         columns={columns}
                         data={data}
+                        onSearchHandler={onSearchHandler}
                         fieldToFilter="name"
                         btnData={{
                             text: (t("Add Location")),
