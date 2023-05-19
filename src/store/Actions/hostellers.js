@@ -4,8 +4,9 @@ import { getHosteller, getHostellers } from "store/Slices/hostellersSlice";
 
 export const getAllHostellers = () => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.get(
-      `http://localhost:9000/api/v1/hostellers`,
+      `${REACT_API_BASE_URL}/api/v1/hostellers`,
     );
     dispatch(getHostellers(response?.data));
   };
@@ -13,8 +14,9 @@ export const getAllHostellers = () => {
 
 export const addHosteller = (newValues,setShow) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.post(
-      `http://localhost:9000/api/v1/hosteller`,newValues
+      `${REACT_API_BASE_URL}/api/v1/hosteller`,newValues
     );
     if(response?.status === 200){
       toast("Hosteller Added Successfully")
@@ -26,8 +28,9 @@ export const addHosteller = (newValues,setShow) => {
 
 export const viewHosteller = (id) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.get(
-      `http://localhost:9000/api/v1/hosteller/${id}`
+      `${REACT_API_BASE_URL}/api/v1/hosteller/${id}`
     );
     if(response?.status === 200){
       dispatch(getHosteller(response?.data))
@@ -37,8 +40,9 @@ export const viewHosteller = (id) => {
 
 export const viewHostellerByLocation = (details) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.get(
-      `http://localhost:9000/api/v1/hosteller/location/${details?.location}`
+      `${REACT_API_BASE_URL}/api/v1/hosteller/location/${details?.location}`
     );
     if(response?.status === 200){
       dispatch(getHostellers(response?.data))
@@ -48,8 +52,9 @@ export const viewHostellerByLocation = (details) => {
 
 export const viewHostellerByApartment = (details) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.get(
-      `http://localhost:9000/api/v1/hosteller/apartment/${details?.apartment}`
+      `${REACT_API_BASE_URL}/api/v1/hosteller/apartment/${details?.apartment}`
     );
     if(response?.status === 200){
       dispatch(getHostellers(response?.data))
@@ -59,8 +64,9 @@ export const viewHostellerByApartment = (details) => {
 
 export const viewHostellerByLocationAndApartment = (details) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.get(
-      `http://localhost:9000/api/v1/hosteller/${details?.location}/${details?.apartment}`
+      `${REACT_API_BASE_URL}/api/v1/hosteller/${details?.location}/${details?.apartment}`
     );
     if(response?.status === 200){
       dispatch(getHostellers(response?.data))
@@ -71,8 +77,9 @@ export const viewHostellerByLocationAndApartment = (details) => {
 
 export const editHosteller = (newValues,setShow) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.put(
-      `http://localhost:9000/api/v1/hosteller/${newValues?.id}`,newValues
+      `${REACT_API_BASE_URL}/api/v1/hosteller/${newValues?.id}`,newValues
     );
     if(response?.status === 200){
       toast("Hosteller Edited Successfully")
@@ -84,8 +91,9 @@ export const editHosteller = (newValues,setShow) => {
 
 export const deleteHosteller = (data,setShow) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.delete(
-      `http://localhost:9000/api/v1/hosteller/delete/${data}`
+      `${REACT_API_BASE_URL}/api/v1/hosteller/delete/${data}`
     );
     if(response?.status === 200){
       toast("Hosteller Deleted Successfully")

@@ -51,6 +51,7 @@ function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showAdd, setShowAdd] = useState(false);
+  const REACT_API_BASE_URL = sessionStorage.getItem("URL");
 
   const signup = (
     firstName,
@@ -60,7 +61,7 @@ function SignUp() {
   ) => {
     return async (dispatch) => {
       const response = await fetch(
-        `http://localhost:9000/register`,
+        `${REACT_API_BASE_URL}/register`,
         {
           method: "POST",
           body: JSON.stringify({

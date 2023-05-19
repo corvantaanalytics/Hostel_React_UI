@@ -4,8 +4,9 @@ import { getExpense, getUserExpenses } from "store/Slices/expenses";
 
 export const addExpenses = (newValues,setShow) => {
     return async (dispatch) => {
+      const REACT_API_BASE_URL = sessionStorage.getItem("URL");
       const response = await axios.post(
-        `http://localhost:9000/api/v1/userExpense`,newValues
+        `${REACT_API_BASE_URL}/api/v1/userExpense`,newValues
       );
       if(response?.status === 200){
         toast("Expense Added Successfully")
@@ -17,8 +18,9 @@ export const addExpenses = (newValues,setShow) => {
 
   export const getAllExpenses = () => {
     return async (dispatch) => {
+      const REACT_API_BASE_URL = sessionStorage.getItem("URL");
       const response = await axios.get(
-        `http://localhost:9000/api/v1/userExpenses`
+        `${REACT_API_BASE_URL}/api/v1/userExpenses`
       );
       if(response?.status === 200){
          dispatch(getUserExpenses(response?.data))
@@ -28,8 +30,9 @@ export const addExpenses = (newValues,setShow) => {
 
   export const viewExpense = (id) => {
     return async (dispatch) => {
+      const REACT_API_BASE_URL = sessionStorage.getItem("URL");
       const response = await axios.get(
-        `http://localhost:9000/api/v1/userExpense/${id}`
+        `${REACT_API_BASE_URL}/api/v1/userExpense/${id}`
       );
       if(response?.status === 200){
         dispatch(getExpense(response?.data))
@@ -39,8 +42,9 @@ export const addExpenses = (newValues,setShow) => {
   
   export const editExpense = (newValues,setShow) => {
     return async (dispatch) => {
+      const REACT_API_BASE_URL = sessionStorage.getItem("URL");
       const response = await axios.put(
-        `http://localhost:9000/api/v1/userExpense/${newValues?.id}`,newValues
+        `${REACT_API_BASE_URL}/api/v1/userExpense/${newValues?.id}`,newValues
       );
       if(response?.status === 200){
         toast("Expense Details Edited Successfully")
@@ -52,8 +56,9 @@ export const addExpenses = (newValues,setShow) => {
   
   export const deleteExpense = (data,setShow) => {
     return async (dispatch) => {
+      const REACT_API_BASE_URL = sessionStorage.getItem("URL");
       const response = await axios.delete(
-        `http://localhost:9000/api/v1/userExpense/delete/${data}`
+        `${REACT_API_BASE_URL}/api/v1/userExpense/delete/${data}`
       );
       if(response?.status === 200){
         toast("Expense Details Deleted Successfully")

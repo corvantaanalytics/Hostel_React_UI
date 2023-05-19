@@ -4,8 +4,9 @@ import { getServiceApartment, getServiceApartments } from "store/Slices/serviceA
 
 export const getAllServiceApartments = () => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.get(
-      `http://localhost:9000/api/v1/apartments`,
+      `${REACT_API_BASE_URL}/api/v1/apartments`,
     );
     dispatch(getServiceApartments(response?.data));
   };
@@ -13,8 +14,9 @@ export const getAllServiceApartments = () => {
 
 export const addServiceApartment = (newValues,setShow) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.post(
-      `http://localhost:9000/api/v1/apartment`,newValues
+      `${REACT_API_BASE_URL}/api/v1/apartment`,newValues
     );
     if(response?.status === 200){
       toast("ServiceApartment Added Successfully")
@@ -26,8 +28,9 @@ export const addServiceApartment = (newValues,setShow) => {
 
 export const viewServiceApartment = (id) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.get(
-      `http://localhost:9000/api/v1/apartments/${id}`
+      `${REACT_API_BASE_URL}/api/v1/apartments/${id}`
     );
     if(response?.status === 200){
       dispatch(getServiceApartment(response?.data))
@@ -37,8 +40,9 @@ export const viewServiceApartment = (id) => {
 
 export const editServiceApartment = (newValues,setShow) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.put(
-      `http://localhost:9000/api/v1/apartment/${newValues?.id}`,newValues
+      `${REACT_API_BASE_URL}/api/v1/apartment/${newValues?.id}`,newValues
     );
     if(response?.status === 200){
       toast("Service Apartment Edited Successfully")
@@ -50,8 +54,9 @@ export const editServiceApartment = (newValues,setShow) => {
 
 export const deleteServiceApartment = (data,setShow) => {
   return async (dispatch) => {
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
     const response = await axios.delete(
-      `http://localhost:9000/api/v1/apartment/delete/${data}`
+      `${REACT_API_BASE_URL}/api/v1/apartment/delete/${data}`
     );
     if(response?.status === 200){
       toast("Service Apartment Deleted Successfully")
