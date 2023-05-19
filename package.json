@@ -12,6 +12,7 @@
     "antd": "^5.3.2",
     "autoprefixer": "^10.4.14",
     "axios": "^0.27.2",
+    "better-react-carousel": "^1.1.1",
     "bootstrap": "^5.2.3",
     "check-password-strength": "^2.0.5",
     "formik": "^2.2.9",

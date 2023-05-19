@@ -9,6 +9,9 @@ import { Container, Button, CarouselItem } from "react-bootstrap";
 // import Carousel from "react-bootstrap/Carousel";
 import Carousel from "better-react-carousel";
 import { SelectOutlined } from "@ant-design/icons";
+import Workplace from "../workplace/Workplace.page";
+import Environment from "../Environment/Environment.page";
+import Location from "../Location/Location.page";
 
 const LandHome = () => {
   const navigate = useNavigate();
@@ -141,139 +144,7 @@ const LandHome = () => {
         </Container>
       </section>
       <section className="p-4" style={{ backgroundColor: "#FFFFFF" }}>
-        <Container className="p-5">
-          <h4 className="pb-3">Location</h4>
-          <p className="subhead" style={{ color: "#008080" }}>
-            Coliving with like-minded people
-          </p>
-          <p className="head" style={{ color: "#008080" }}>
-            Wow Hostel @Chrompet
-          </p>
-          <Row>
-            <Col>
-              <p className="subhead pr-3" style={{ color: "#008080" }}>
-                {" "}
-                in{" "}
-              </p>
-            </Col>
-            <Col>
-              <select
-                class="minimal inline js_attribute js_workplace"
-                data-name="workplace"
-              >
-                <option value="None">CHN - Pallavaram</option>
-                <option value="Attached">CHN - Chrompet</option>
-                <option value="Attached">CHN - Gunidy</option>
-              </select>
-            </Col>
-          </Row>
-          <Carousel cols={2} rows={1} gap={10} loop>
-            <Carousel.Item>
-              <div className="p-5 mx-auto">
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-hcl.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">9 min</h3>
-                    <p className="workplace-company">to HCL Technologies</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-infosys.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">12 min</h3>
-                    <p className="workplace-company">to Infosys Campus</p>
-                  </Col>
-                </Row>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <div className="p-5 mx-auto">
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-velankani.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">10 min</h3>
-                    <p className="workplace-company">to Velankani Campus</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-wipro.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">13 min</h3>
-                    <p className="workplace-company">to WIPRO</p>
-                  </Col>
-                </Row>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <div className="p-5 mx-auto">
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-biocon.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">15 min</h3>
-                    <p className="workplace-company">to Biocon</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-hp.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">9 min</h3>
-                    <p className="workplace-company">to Hewlett Packard</p>
-                  </Col>
-                </Row>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <div className="p-5 mx-auto">
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-siemens.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">15 min</h3>
-                    <p className="workplace-company">to Siemens</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card className="workplace-icon m-0">
-                      <img src="/img/assets/workplace/icon-tata.svg" />
-                    </Card>
-                  </Col>
-                  <Col className="p-3">
-                    <h3 className="workplace-time">17 min</h3>
-                    <p className="workplace-company">to Tata BP Solar</p>
-                  </Col>
-                </Row>
-              </div>
-            </Carousel.Item>
-          </Carousel>
-        </Container>
+        <Workplace/>
       </section>
       {/* <section className="p-5" style={{ backgroundColor: "white" }}>
         <Row className="px-5">
@@ -700,69 +571,7 @@ const LandHome = () => {
         </Row>
       </section> */}
       <section className="p-5 environment">
-        <Container>
-          <div className="p-3">
-            <p className="title-card" style={{ color: "#008080" }}>
-              The Environment at WoW
-            </p>
-            <p className="subhead" style={{ color: "#596e79" }}>
-              we built cultural spaces into your environment.
-            </p>
-          </div>
-        </Container>
-        <Carousel cols={3} rows={1} gap={10} loop>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/Swimming_pool.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/building.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/room.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/openarea.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/Dinnerarea.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/entertainment.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img src="/img/assets/environment/gym.jpg" className="img-border" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/playarea.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="/img/assets/environment/kitchen.jpg"
-              className="img-border"
-            />
-          </Carousel.Item>
-        </Carousel>
+        <Environment/>
       </section>
       <section className="p-5" style={{ backgroundColor: "#FFFFFF" }}>
         <Container className="px-5">
@@ -820,89 +629,7 @@ const LandHome = () => {
         </Container>
       </section>
       <section className="p-5 location-bg">
-        <Container className="px-5">
-          <p className="head center pb-5">Location</p>
-          <Row>
-            <Col lg={8}>
-              <Row>
-                <Col>
-                  <p className="pr-3 subhead">@</p>
-                </Col>
-                <Col>
-                  <p className="subhead">Chrompet</p>
-                  <ul className="workplace-text pb-3" style={{ color: "#F4C2C2" }}>
-                    <li>52, east street</li>
-                    <li>chrompet</li>
-                    <li>Chennai</li>
-                    <li>
-                      <Button
-                        type="ghost"
-                        className="learnButton px-4 py-2 mt-3 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
-                        style={{ border: "none" }}
-                        onClick={navigateToSignin}
-                      >
-                        Book Now
-                      </Button>
-                    </li>
-                  </ul>
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={8}>
-              <Row>
-                <Col>
-                  <p className="pr-3 subhead">@</p>
-                </Col>
-                <Col>
-                  <p className="subhead">Chrompet</p>
-                  <ul className="workplace-text pb-3" style={{ color: "#F4C2C2" }}>
-                    <li>52, east street</li>
-                    <li>chrompet</li>
-                    <li>Chennai</li>
-                    <li>
-                      <Button
-                        type="ghost"
-                        className="learnButton px-4 py-2 mt-3 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
-                        style={{ border: "none" }}
-                        onClick={navigateToSignin}
-                      >
-                        Book Now
-                      </Button>
-                    </li>
-                  </ul>
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={8}>
-              <Row>
-                <Col>
-                  <p className="pr-3 subhead">@</p>
-                </Col>
-                <Col>
-                  <p className="subhead">Chrompet</p>
-                  <ul className="workplace-text pb-3" style={{ color: "#F4C2C2" }}>
-                    <li>52, east street</li>
-                    <li>chrompet</li>
-                    <li>Chennai</li>
-                    <li>
-                      <Button
-                        type="ghost"
-                        className="learnButton px-4 py-2 mt-3 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
-                        style={{ border: "none" }}
-                        onClick={navigateToSignin}
-                      >
-                        Book Now
-                      </Button>
-                    </li>
-                  </ul>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <div className="center pt-5">
-            <p className="workplace-time" style={{color: '#FFFFFF'}}>Call us on <span className="workplace-time" style={{color: '#EEEA89'}}>+91-847-4825422</span></p>
-          </div>
-        </Container>
+        <Location/>
       </section>
     </LandingLayout>
   );
