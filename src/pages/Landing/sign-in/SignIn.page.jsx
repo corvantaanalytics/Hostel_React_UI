@@ -1,26 +1,58 @@
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Row, Col } from "antd";
+import * as Yup from "yup";
 import "./SignIn.page.scss";
+import axios from "axios";
 
 const fields = [
     {
-        // name: "username",
+        name: "username",
         label: "Email Address",
-        placeholder: "paul.elliott@fakemail.com",
+        placeholder: "Enter Your Email",
     },
-    { 
-        // name: "password", 
-    label: "Password", placeholder: "**********" },
+    {
+        name: "password",
+        label: "Password",
+        placeholder: "**********"
+    },
 ];
+
+const initialValues = {
+    username: "",
+    password: "",
+};
+
+const SignUpSchema = Yup.object().shape({
+    username: Yup.string()
+        .required("Email Address is required.")
+        .email("Email format not recognized."),
+    password: Yup.string()
+        .required("password is required.")
+        .min(5, "Password must be atleast 8 characters"),
+});
 
 function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const navigateToDashborad = () => {
-        navigate( "/dashboard");
-    }
+  
+    const login = (username, password) => {
+        return async () => {
+            const response = await axios.post(
+                `http://localhost:9000/authenticate`, { username, password }, {
+                headers: new Headers({
+                    "Content-type": "application/json"
+                }),
+            }
+            );
+            if (response?.status === 200) {
+                navigate(`/dashboard`);
+                sessionStorage.setItem("token", response?.data?.token);
+            }
+            
+        }
+    };
 
     return (
         <div className="w-screen min-height">
@@ -44,7 +76,14 @@ function SignIn() {
                             </p>
                         </div>
                         <Formik
-
+                            initialValues={initialValues}
+                            validationSchema={SignUpSchema}
+                            onSubmit={async (values, { resetForm }) => {
+                                try {
+                                    console.log("vlues", values)
+                                    await dispatch(login(values.username, values.password));
+                                } catch (err) { }
+                            }}
                         >
                             {({ errors, touched }) => (
                                 <Form className="w-full">
@@ -87,7 +126,7 @@ function SignIn() {
                                         <div className='row'>
                                             <div className="col-lg-6 col-sm-12">
                                                 <button
-                                                    type="ghost"
+                                                    type="button"
                                                     className="mt-4 p-2 cancelButton hover:#F08EDB text-white w-full mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
                                                     onClick={() => {
                                                         navigate("/landing/sign-up");
@@ -98,10 +137,8 @@ function SignIn() {
                                             </div>
                                             <div className="col-lg-6 col-sm-12">
                                                 <button
-                                                    // type="submit"
+                                                    type="submit"
                                                     className="mt-4 p-2 submitButton hover:bg-blue-700 text-white w-full mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
-                                                    onClick={navigateToDashborad}
-                                                 
                                                 >
                                                     Sign In
                                                 </button>
