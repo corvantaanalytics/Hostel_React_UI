@@ -90,7 +90,7 @@ function SignIn() {
                                                     type="ghost"
                                                     className="mt-4 p-2 cancelButton hover:#F08EDB text-white w-full mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
                                                     onClick={() => {
-                                                        navigate("/sign-up");
+                                                        navigate("/landing/sign-up");
                                                     }}
                                                 >
                                                     Create an Account

@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const VerifyYourEmail = ({ show, setShow, id }) => {
-    const { user } = useSelector((state) => state?.settings)
+    // const { user } = useSelector((state) => state?.settings)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
