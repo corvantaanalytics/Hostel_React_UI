@@ -144,7 +144,7 @@ const LandHome = () => {
         </Container>
       </section>
       <section className="p-4" style={{ backgroundColor: "#FFFFFF" }}>
-        <Workplace/>
+        <Workplace />
       </section>
       {/* <section className="p-5" style={{ backgroundColor: "white" }}>
         <Row className="px-5">
@@ -571,7 +571,7 @@ const LandHome = () => {
         </Row>
       </section> */}
       <section className="p-5 environment">
-        <Environment/>
+        <Environment />
       </section>
       <section className="p-5" style={{ backgroundColor: "#FFFFFF" }}>
         <Container className="px-5">
@@ -621,15 +621,259 @@ const LandHome = () => {
             </Col>
             <Col lg={6}>
               <img
-                src="/img/assets/section/happymom.png"
+                src="/img/assets/section/happywomen2.png"
                 className="booknow-img"
               />
             </Col>
           </Row>
         </Container>
       </section>
+
+      {/* pricing starts */}
+      <section class="pricing-one">
+        <Container >
+          <div class="tabs-content" >
+
+            <div className="tab" id="package-yearly">
+              <div className="content" style={{ marginTop: "80px" }}>
+
+                <div className="row clearfix">
+
+                  {/* <!-- Price Block -1--> */}
+                  <div className="price-block col-lg-4 col-md-6 col-sm-12" style={{ position: 'relative' }}>
+
+                    <div className="inner-box">
+                      {/* <!-- Title Box --> */}
+                      <div style={{ position: 'absolute', bottom: '85%' }}>
+                        <img
+                          src="/img/pricing/1person.png"
+                        />
+                      </div>
+                      <div className="title-box">
+                        <h5 style={{ fontSize: 25, fontWeight: 600, color: "#F4C2C2", marginTop: "7rem" }}>A Dedicated room in a 2 or 3 Bedroom Flat.</h5>
+                        <div className="text">Preferred by Managers living alone in Bangalore, away from their family.</div>
+                      </div>
+                      <div className="config space-min">
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Balcony</div>
+                          <select className="minimal inline js_attribute js_balcony" data-name="balcony">
+                            <option value="None">None</option>
+                            <option value="Attached">Attached</option>
+                          </select>
+                        </div>
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Bathroom</div>
+                          <select className="minimal inline js_attribute js_bathroom" data-name="bathroom">
+                            <option value="Attached">Attached</option>
+                            <option value="Detached">Detached</option>
+                          </select>
+                        </div>
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Duration</div>
+                          <select className="minimal inline js_attribute js_duration" data-name="duration">
+                            <option value="11 Months">11 Months</option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="3 Months">3 Months</option>
+                            <option value="2 Months">2 Months</option>
+                            <option value="3 Day Trial">3 Day Trial</option>
+                          </select>
+                        </div>
+
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>@</div>
+                          <select className="minimal inline js_attribute js_balcony" data-name="balcony">
+                            <option value="Alta Vista - BLR">Alta Vista - BLR</option>
+                            <option value="Dwellington - BLR">Dwellington - BLR</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: "center", marginTop: "4px" }}>
+                        <div style={{ fontSize: 25, fontWeight: "900", color: "#F4C2C2" }}>
+                          ₹17,800*
+                        </div>
+                        <div style={{ color: "#F4C2C2" }}>
+                          PER PERSON, *PAID MONTHLY
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: "center", marginTop: "2px" }}>
+                        <button
+                          type="ghost"
+                          className="mt-4 p-2 purchase-Button hover:#F08EDB text-black w-50 mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
+                          onClick={() => {
+                            navigate("/sign-up");
+                          }}
+                        >
+                          Package Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <!-- Price Block-2 --> */}
+                  <div className="price-block  col-lg-4 col-md-6 col-sm-12">
+
+                    <div className="inner-box">
+                      <div style={{ position: 'absolute', bottom: '85%', paddingTop: '5px' }}>
+                        <img
+                          src="/img/pricing/2person.png"
+                        />
+                      </div>
+                      {/* <!-- Title Box --> */}
+                      <div className="title-box">
+                        <h5 style={{ fontSize: 25, fontWeight: 600, color: "#F4C2C2", marginTop: "7rem" }}>Twin Sharing room in a 2 or 3 Bedroom Flat.</h5>
+                        <div className="text">Preferred by corporate professionals living alone in Bangalore.</div>
+                      </div>
+                      <div className="config space-min">
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Balcony</div>
+                          <select className="minimal inline js_attribute js_balcony" data-name="balcony">
+                            <option value="None">None</option>
+                            <option value="Attached">Attached</option>
+                          </select>
+                        </div>
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Bathroom</div>
+                          <select className="minimal inline js_attribute js_bathroom" data-name="bathroom">
+                            <option value="Attached">Attached</option>
+                            <option value="Detached">Detached</option>
+                          </select>
+                        </div>
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Duration</div>
+                          <select className="minimal inline js_attribute js_duration" data-name="duration">
+                            <option value="11 Months">11 Months</option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="3 Months">3 Months</option>
+                            <option value="2 Months">2 Months</option>
+                            <option value="3 Day Trial">3 Day Trial</option>
+                          </select>
+                        </div>
+
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>@</div>
+                          <select className="minimal inline js_attribute js_balcony" data-name="balcony">
+                            <option value="Alta Vista - BLR">Alta Vista - BLR</option>
+                            <option value="Dwellington - BLR">Dwellington - BLR</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: "center", marginTop: "4px" }}>
+                        <div style={{ fontSize: 25, fontWeight: "900", color: "#F4C2C2" }}>
+                          ₹10,200*
+                        </div>
+                        <div style={{ color: "#F4C2C2" }}>
+                          PER PERSON, *PAID MONTHLY
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: "center", marginTop: "2px" }}>
+                        <button
+                          type="ghost"
+                          className="mt-4 p-2 purchase-Button hover:#F08EDB text-black w-50 mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
+                          onClick={() => {
+                            navigate("/sign-up");
+                          }}
+                        >
+                          Package Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <-- Price Block -3 --> */}
+                  <div className="price-block  col-lg-4 col-md-6 col-sm-12">
+
+                    <div className="inner-box">
+                      <div style={{ position: 'absolute', bottom: '85%', marginTop: '5px' }}>
+                        <img
+                          src="/img/pricing/3person.png"
+                        />
+                      </div>
+                      {/* <!-- Title Box --> */}
+                      <div className="title-box" >
+                        <h5 style={{ fontSize: 25, fontWeight: 600, color: "#F4C2C2", marginTop: "7rem" }}>Triple Sharing room in a 2 or 3 Bedroom Flat.</h5>
+                        <div className="text">Preferred by Students, Interns and Trainees living alone in Bangalore.</div>
+                      </div>
+                      <div className="config space-min">
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Balcony</div>
+                          <select className="minimal inline js_attribute js_balcony" data-name="balcony">
+                            <option value="None">None</option>
+                            <option value="Attached">Attached</option>
+                          </select>
+                        </div>
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Bathroom</div>
+                          <select className="minimal inline js_attribute js_bathroom" data-name="bathroom">
+                            <option value="Attached">Attached</option>
+                            <option value="Detached">Detached</option>
+                          </select>
+                        </div>
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>Duration</div>
+                          <select className="minimal inline js_attribute js_duration" data-name="duration">
+                            <option value="11 Months">11 Months</option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="3 Months">3 Months</option>
+                            <option value="2 Months">2 Months</option>
+                            <option value="3 Day Trial">3 Day Trial</option>
+                          </select>
+                        </div>
+
+
+                        <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
+                          <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>@</div>
+                          <select className="minimal inline js_attribute js_balcony" data-name="balcony">
+                            <option value="Alta Vista - BLR">Alta Vista - BLR</option>
+                            <option value="Dwellington - BLR">Dwellington - BLR</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: "center", marginTop: "4px" }}>
+                        <div style={{ fontSize: 25, fontWeight: "900", color: "#F4C2C2" }}>
+                          ₹8,500*
+                        </div>
+                        <div style={{ color: "#F4C2C2" }}>
+                          PER PERSON, *PAID MONTHLY
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: "center", marginTop: "2px" }}>
+                        <button
+                          type="ghost"
+                          className="mt-4 p-2 purchase-Button hover:#F08EDB text-black w-50 mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
+                          onClick={() => {
+                            navigate("/sign-up");
+                          }}
+                        >
+                          Package Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </Container>
+      </section>
       <section className="p-5 location-bg">
-        <Location/>
+        <Location />
       </section>
     </LandingLayout>
   );
