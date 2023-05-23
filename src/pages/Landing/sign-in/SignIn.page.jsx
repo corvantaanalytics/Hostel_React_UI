@@ -36,11 +36,12 @@ const SignUpSchema = Yup.object().shape({
 function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const REACT_API_BASE_URL = sessionStorage.getItem("URL");
   
     const login = (username, password) => {
         return async () => {
             const response = await axios.post(
-                `http://localhost:9000/authenticate`, { username, password }, {
+                `${REACT_API_BASE_URL}/authenticate`, { username, password }, {
                 headers: new Headers({
                     "Content-type": "application/json"
                 }),
@@ -50,7 +51,7 @@ function SignIn() {
                 navigate(`/dashboard`);
                 sessionStorage.setItem("token", response?.data?.token);
             }
-            
+
         }
     };
 
@@ -80,7 +81,6 @@ function SignIn() {
                             validationSchema={SignUpSchema}
                             onSubmit={async (values, { resetForm }) => {
                                 try {
-                                    console.log("vlues", values)
                                     await dispatch(login(values.username, values.password));
                                 } catch (err) { }
                             }}
