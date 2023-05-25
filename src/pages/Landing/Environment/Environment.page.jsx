@@ -6,7 +6,7 @@ import "./Environment.styles.scss";
 
 const Environment = () => {
   return (
-    <>
+    <> 
       <Container>
         <div className="p-3">
           <p className="title-card" style={{ color: "#008080" }}>
