@@ -39,7 +39,7 @@ const Workplace = () => {
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-hcl.svg" />
+                    <img src="/img/assets/workplace/hcl.png" />
                   </Card>
                 </Col>
                 <Col className="p-3">
@@ -50,12 +50,12 @@ const Workplace = () => {
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-infosys.svg" />
+                    <img src="/img/assets/workplace/bny.png" style={{marginTop:"8px"}} />
                   </Card>
                 </Col>
                 <Col className="p-3">
                   <h3 className="workplace-time">12 min</h3>
-                  <p className="workplace-company">to Infosys Campus</p>
+                  <p className="workplace-company">to BNY Mellon </p>
                 </Col>
               </Row>
             </div>
@@ -65,18 +65,18 @@ const Workplace = () => {
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-velankani.svg" />
+                    <img src="/img/assets/workplace/airport.jpg" />
                   </Card>
                 </Col>
                 <Col className="p-3">
                   <h3 className="workplace-time">10 min</h3>
-                  <p className="workplace-company">to Velankani Campus</p>
+                  <p className="workplace-company">to Airport</p>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-wipro.svg" />
+                    <img src="/img/assets/workplace/wipro.png" style={{marginTop:"6px"}} />
                   </Card>
                 </Col>
                 <Col className="p-3">
@@ -91,7 +91,7 @@ const Workplace = () => {
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-biocon.svg" />
+                    <img src="/img/assets/workplace/Biocon.png" style={{marginTop:"10px"}}/>
                   </Card>
                 </Col>
                 <Col className="p-3">
@@ -102,7 +102,7 @@ const Workplace = () => {
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-hp.svg" />
+                    <img src="/img/assets/workplace/hp.png" />
                   </Card>
                 </Col>
                 <Col className="p-3">
@@ -117,7 +117,7 @@ const Workplace = () => {
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-siemens.svg" />
+                    <img src="/img/assets/workplace/siemens.png" style={{marginTop:"8px"}} />
                   </Card>
                 </Col>
                 <Col className="p-3">
@@ -128,7 +128,7 @@ const Workplace = () => {
               <Row>
                 <Col>
                   <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/icon-tata.svg" />
+                    <img src="/img/assets/workplace/Tata.png"/>
                   </Card>
                 </Col>
                 <Col className="p-3">
