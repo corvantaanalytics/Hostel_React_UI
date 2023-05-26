@@ -1,146 +1,187 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Card } from "antd";
 import { Container } from "react-bootstrap";
-import Carousel from "better-react-carousel";
 import './Workplace.styles.scss';
+import Select from 'react-select';
 
 const Workplace = () => {
+  const [selectValue, setSelectValue] = useState({ value: "Gunidy", label: "Gunidy" });
+  const handleSelect = (value) => {
+    setSelectValue(value);
+  }
+
+  const locations = [
+    { value: "Gunidy", label: "Gunidy" },
+    { value: "Chrompet", label: "Chrompet" },
+    { value: "Pallavaram", label: "Pallavaram" }
+  ];
+
   return (
     <>
       <Container className="p-5">
-        <h4 className="pb-3">Location</h4>
+
         <p className="subhead" style={{ color: "#008080" }}>
           Coliving with like-minded people
         </p>
         <p className="head" style={{ color: "#008080" }}>
-          Wow Hostel @Chrompet
+          Wow Hostel @Chennai
         </p>
         <Row>
           <Col>
+
             <p className="subhead pr-3" style={{ color: "#008080" }}>
               {" "}
               in{" "}
             </p>
           </Col>
           <Col>
-            <select
-              class="minimal inline js_attribute js_workplace"
-              data-name="workplace"
-            >
-              <option value="None">CHN - Pallavaram</option>
-              <option value="Attached">CHN - Chrompet</option>
-              <option value="Attached">CHN - Gunidy</option>
-            </select>
+
+            <Select
+              className="minimal inline js_attribute js_workplace"
+              options={locations}
+              onChange={handleSelect}
+              value={selectValue}
+            />
           </Col>
         </Row>
-        <Carousel cols={2} rows={1} gap={10} loop>
-          <Carousel.Item>
-            <div className="p-5 mx-auto">
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/hcl.png" />
-                  </Card>
-                </Col>
+
+        {selectValue && selectValue.value === "Chrompet" && (
+          <div className="p-5 mx-auto">
+            <Row>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-hcl.svg" alt="HCL Campus" />
+                </Card>
                 <Col className="p-3">
                   <h3 className="workplace-time">9 min</h3>
                   <p className="workplace-company">to HCL Technologies</p>
                 </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/bny.png" style={{marginTop:"8px"}} />
-                  </Card>
-                </Col>
-                <Col className="p-3">
-                  <h3 className="workplace-time">12 min</h3>
-                  <p className="workplace-company">to BNY Mellon </p>
-                </Col>
-              </Row>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="p-5 mx-auto">
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/airport.jpg" />
-                  </Card>
-                </Col>
+              </Col>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-velankani.svg" alt="velankani Campus" />
+                </Card>
                 <Col className="p-3">
                   <h3 className="workplace-time">10 min</h3>
                   <p className="workplace-company">to Airport</p>
                 </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/wipro.png" style={{marginTop:"6px"}} />
-                  </Card>
-                </Col>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-hp.svg" alt="HP Campus" />
+                </Card>
                 <Col className="p-3">
-                  <h3 className="workplace-time">13 min</h3>
-                  <p className="workplace-company">to WIPRO</p>
+                  <h3 className="workplace-time">12 min</h3>
+                  <p className="workplace-company">to HP Campus</p>
                 </Col>
-              </Row>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="p-5 mx-auto">
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/Biocon.png" style={{marginTop:"10px"}}/>
-                  </Card>
-                </Col>
+              </Col>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-wipro.svg" alt="Wipro Campus" />
+                </Card>
                 <Col className="p-3">
                   <h3 className="workplace-time">15 min</h3>
-                  <p className="workplace-company">to Biocon</p>
+                  <p className="workplace-company">to Wipro Campus</p>
                 </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/hp.png" />
-                  </Card>
-                </Col>
-                <Col className="p-3">
-                  <h3 className="workplace-time">9 min</h3>
-                  <p className="workplace-company">to Hewlett Packard</p>
-                </Col>
-              </Row>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="p-5 mx-auto">
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/siemens.png" style={{marginTop:"8px"}} />
-                  </Card>
-                </Col>
+              </Col>
+            </Row>
+          </div>
+        )}
+
+        {selectValue && selectValue.value === "Gunidy" && (
+          <div className="p-5 mx-auto">
+            <Row>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-hcl.svg" alt="HCL Campus" />
+                </Card>
                 <Col className="p-3">
                   <h3 className="workplace-time">15 min</h3>
-                  <p className="workplace-company">to Siemens</p>
+                  <p className="workplace-company">to HCL Technologies</p>
                 </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Card className="workplace-icon m-0">
-                    <img src="/img/assets/workplace/Tata.png"/>
-                  </Card>
-                </Col>
+              </Col>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-velankani.svg" alt="velankani Campus" />
+                </Card>
                 <Col className="p-3">
-                  <h3 className="workplace-time">17 min</h3>
-                  <p className="workplace-company">to Tata BP Solar</p>
+                  <h3 className="workplace-time">18 min</h3>
+                  <p className="workplace-company">to Velankani Campus</p>
                 </Col>
-              </Row>
-            </div>
-          </Carousel.Item>
-        </Carousel>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-infosys.svg" alt="Infosys Campus" />
+                </Card>
+                <Col className="p-3">
+                  <h3 className="workplace-time">22 min</h3>
+                  <p className="workplace-company">to Infosys Campus</p>
+                </Col>
+              </Col>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-wipro.svg" alt="Infosys Campus" />
+                </Card>
+                <Col className="p-3">
+                  <h3 className="workplace-time">30 min</h3>
+                  <p className="workplace-company">to Wipro Campus</p>
+                </Col>
+              </Col>
+            </Row>
+          </div>
+        )}
+
+        {selectValue && selectValue.value !== "Chrompet" && selectValue.value !== "Gunidy" && (
+          <div className="p-5 mx-auto">
+            <Row>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-hcl.svg" alt="HCL Campus" />
+                </Card>
+                <Col className="p-3">
+                  <h3 className="workplace-time">5 min</h3>
+                  <p className="workplace-company">to HCL Technologies</p>
+                </Col>
+              </Col>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-hp.svg" alt="hp Campus" />
+                </Card>
+                <Col className="p-3">
+                  <h3 className="workplace-time">3 min</h3>
+                  <p className="workplace-company">to HP Campus</p>
+                </Col>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-biocon.svg" alt="Biocon Campus" />
+                </Card>
+                <Col className="p-3">
+                  <h3 className="workplace-time">20 min</h3>
+                  <p className="workplace-company">to Biocon Campus</p>
+                </Col>
+              </Col>
+              <Col lg={12} className="d-flex">
+                <Card className="workplace-icon m-0">
+                  <img src="/img/assets/workplace/icon-wipro.svg" alt="Wipro Campus" />
+                </Card>
+                <Col className="p-3">
+                  <h3 className="workplace-time">16 min</h3>
+                  <p className="workplace-company">to Wipro Campus</p>
+                </Col>
+              </Col>
+            </Row>
+          </div>
+        )}
       </Container>
     </>
   );
 };
+
 export default Workplace;
