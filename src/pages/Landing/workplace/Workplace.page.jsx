@@ -18,7 +18,7 @@ const Workplace = () => {
 
   return (
     <>
-      <Container className="p-5">
+      <Container>
 
         <p className="subhead" style={{ color: "#008080" }}>
           Coliving with like-minded people
@@ -37,7 +37,7 @@ const Workplace = () => {
           <Col>
 
             <Select
-              className="minimal inline js_attribute js_workplace"
+              className="minimal inline js_attribute js_workplace mt-3"
               options={locations}
               onChange={handleSelect}
               value={selectValue}
