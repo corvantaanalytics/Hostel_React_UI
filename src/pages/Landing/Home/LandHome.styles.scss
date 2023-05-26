@@ -20,6 +20,7 @@
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr;
+
     @media screen and (min-width: 1400px) {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -88,20 +89,24 @@
     background: rgba(60, 177, 121, 0.12);
     border-radius: 6px;
 }
+
 .space-min {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .wowbutton {
     background-color: #f08edb;
     border-color: #f08edb;
 }
+
 .head {
     font-size: 4rem;
     font-weight: 700;
     font-family: "Poppins", sans-serif !important;
     color: #f4c2c2;
 }
+
 .subhead {
     font-size: 3rem;
     font-weight: 400;
@@ -115,21 +120,25 @@
     font-family: "Poppins", sans-serif !important;
     color: #f4c2c2;
 }
+
 .title {
     font-size: 1.5rem;
     font-weight: 400;
     font-family: "Poppins", sans-serif !important;
     color: black;
 }
+
 .img-border {
     border-radius: 20px;
 }
+
 .feature {
     font-size: 18px;
     font-weight: 400;
     font-family: "Poppins", sans-serif !important;
     color: #f4c2c2;
 }
+
 .feature-1 {
     font-size: 18px;
     font-weight: 400;
@@ -138,14 +147,17 @@
     color: #008080;
     margin-top: 20px;
 }
+
 .section-bg {
     // background-color: #861657;
     // background-image: linear-gradient(170deg, #861657 0%, #ffa69e 74%);
     background-color: black;
 }
+
 .rentimg {
     width: 10rem;
 }
+
 .learnButton {
     background: #08090a;
     border: 1px solid #16191f;
@@ -157,6 +169,7 @@
     line-height: 21px;
     color: #ffffff;
 }
+
 #scale-up-1 {
     transition: 0.5s;
 }
@@ -171,26 +184,32 @@
     border-top-width: 5px;
     border-image-source: linear-gradient(to left, #d96938 40%, #f7a83f 60%);
 }
+
 .carousel-inner {
     padding: 6rem;
 }
+
 .carousel-indicators [data-bs-target] {
     background-color: #08090a;
 }
+
 .carousel-control-prev-icon {
     background-image: url("../../../../public/Arrow.png");
     border-radius: 10px;
 }
+
 .carousel-control-next-icon {
     background-image: url("../../../../public/Arrow_next.png");
     border-radius: 10px;
 }
+
 .ant-select-selection-item {
     font-size: 18px;
     font-weight: 600;
     font-family: "Poppins", sans-serif !important;
     color: black;
 }
+
 .ant-select-selector {
     border-bottom: 2px solid black;
     border: none;
@@ -200,6 +219,7 @@
     display: block;
     width: 100%;
 }
+
 .character {
     position: absolute;
     left: 0;
@@ -222,12 +242,14 @@
         padding-bottom: 10px;
     }
 }
+
 .config .flex {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     padding-bottom: 15px;
 }
+
 .opacity-50 {
     opacity: 0.5;
 }
@@ -239,17 +261,20 @@
         background-size: 17px 12px;
     }
 }
+
 @media (min-width: 1040px) {
     select.minimal {
         font-size: 1.5rem;
         background-position: 100% 45%;
     }
 }
+
 @media (min-width: 640px) {
     select.minimal {
         font-size: 1.4rem;
     }
 }
+
 select.minimal {
     position: relative;
     line-height: 1;
@@ -269,6 +294,7 @@ select.minimal {
     background-size: 14px 10px;
     background-repeat: no-repeat;
 }
+
 .inline {
     display: inline-block !important;
     vertical-align: baseline;
@@ -285,39 +311,47 @@ select.minimal {
     line-height: 21px;
     color: #ffffff;
 }
+
 .title-card {
     font-size: 3rem;
     font-weight: 700;
     font-family: "Poppins", sans-serif !important;
     // color: #F4C2C2;
 }
+
 .center {
     margin: auto;
     text-align: center;
 }
+
 .row-justify {
     justify-content: center;
 }
+
 .booknow {
     background-image: linear-gradient(135deg, #eeea89 70%, #65bb87 100%);
     // background-image: url('../../../../public/img/assets/section/women.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .booknow-img {
     height: 30rem;
     margin-top: -80px;
     width: 40rem;
 }
+
 .book-text {
     display: grid;
     align-content: center;
     justify-content: center;
     justify-items: center;
 }
+
 .text-shadow {
     text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25), 0px 2px 15px rgba(0, 0, 0, 0.25) !important;
 }
+
 .booknow-title {
     font-family: "museo-sans-rounded", Arial, sans-serif;
     font-weight: 900;
@@ -325,23 +359,28 @@ select.minimal {
     line-height: 1;
     text-align: center;
 }
+
 .location-bg {
     background: rgb(59, 60, 54);
     background: linear-gradient(153deg, rgba(59, 60, 54, 1) 12%, rgba(52, 52, 52, 1) 48%, rgba(22, 22, 29, 1) 94%);
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 @media screen and (max-width: 768px) {
     .booknow-title {
         font-size: 4rem;
     }
+
     .booknow-img {
         height: 15rem;
     }
+
     .head {
         font-size: 3rem;
     }
 }
+
 .location-text {
     display: flex;
 }
@@ -646,6 +685,7 @@ select.minimal {
         width: 32.33%;
     }
 }
+
 .row {
     flex-shrink: 0;
     width: 100%;
@@ -661,18 +701,19 @@ select.minimal {
 }
 
 //Guesture
-.large{
+.large {
     width: 65%;
 }
 
-.small{
+.small {
     margin-left: 3%;
 }
-@media (min-width: 1040px){
-.description {
-    columns: 2;
-    column-gap: 2rem;
-}
+
+@media (min-width: 1040px) {
+    .description {
+        columns: 2;
+        column-gap: 2rem;
+    }
 }
 
 .columns {
@@ -682,22 +723,26 @@ select.minimal {
     box-sizing: border-box;
     font-size: 1.5rem;
 }
+
 .small-offset-1 {
     margin-left: 3.3%;
 }
-@media (min-width: 640px){
-.scroll-reveal.reveal {
-    opacity: 1;
-    transform: translateY(0);
+
+@media (min-width: 640px) {
+    .scroll-reveal.reveal {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-}
+
 .space-50-bottom {
     padding-bottom: 40px;
 }
-@media (min-width: 1040px){
-.large-7 {
-    width: 65%;
-}
+
+@media (min-width: 1040px) {
+    .large-7 {
+        width: 65%;
+    }
 }
 
 .live-section .points .point .icon {
@@ -707,15 +752,40 @@ select.minimal {
 .live-section .points .point .icon {
     width: 56px;
 }
+
 .live-section .points .point .icon {
     width: 48px;
 }
+
 .inline-middle {
     display: inline-block;
     vertical-align: middle;
 }
+
 .space-left {
-    padding-left:20px;
+    padding-left: 20px;
 }
 
 // Guesture ends 
+@media (min-width: 1040px){
+.text-shadow-location {
+    text-shadow: 0px 4px 5px #de8bcc, 0px 2px 15px #dc3545 !important;
+}
+}
+// @media(min-width: 1480px) {
+//     .h0 {
+//         font-size: 10rem;
+//     }
+// }
+
+.text-family {
+    font-family: 'Varela Round';
+    // font-family: 'BD Cartoon Shout';
+    // font-family: 'Komika Axis';
+    // font-family: 'Komika Title';
+    font-weight: 900;
+    line-height: .95;
+    color: #f4c2c2;
+    margin-bottom: 3rem;
+    font-size: 4rem;
+}
