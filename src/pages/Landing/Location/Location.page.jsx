@@ -21,13 +21,14 @@ const Location = () => {
               </Col>
               <Col>
                 <p className="subhead">Chrompet</p>
+                <p className="subhead1">52, east street<br></br> chrompet <br></br> Chennai</p>
                 <ul
                   className="workplace-text pb-3"
                   style={{ color: "#F4C2C2" }}
                 >
-                  <li>52, east street</li>
+                  {/* <li>52, east street</li>
                   <li>chrompet</li>
-                  <li>Chennai</li>
+                  <li>Chennai</li> */}
                   <li>
                     <Button
                       type="ghost"
@@ -49,13 +50,14 @@ const Location = () => {
               </Col>
               <Col>
                 <p className="subhead">Chrompet</p>
+                <p className="subhead1">52, east street<br></br> chrompet <br></br> Chennai</p>
                 <ul
                   className="workplace-text pb-3"
                   style={{ color: "#F4C2C2" }}
                 >
-                  <li>52, east street</li>
+                  {/* <li>52, east street</li>
                   <li>chrompet</li>
-                  <li>Chennai</li>
+                  <li>Chennai</li> */}
                   <li>
                     <Button
                       type="ghost"
@@ -77,13 +79,14 @@ const Location = () => {
               </Col>
               <Col>
                 <p className="subhead">Chrompet</p>
+                <p className="subhead1">52, east street<br></br> chrompet <br></br> Chennai</p>
                 <ul
                   className="workplace-text pb-3"
                   style={{ color: "#F4C2C2" }}
                 >
-                  <li>52, east street</li>
+                  {/* <li>52, east street</li>
                   <li>chrompet</li>
-                  <li>Chennai</li>
+                  <li>Chennai</li> */}
                   <li>
                     <Button
                       type="ghost"

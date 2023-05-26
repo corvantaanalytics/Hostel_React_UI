@@ -103,8 +103,15 @@
     color: #f4c2c2;
 }
 .subhead {
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 400;
+    font-family: "Poppins", sans-serif !important;
+    color: #f4c2c2;
+}
+
+.subhead1 {
+    font-size: 1rem;
+    // font-weight: 400;
     font-family: "Poppins", sans-serif !important;
     color: #f4c2c2;
 }
@@ -122,6 +129,14 @@
     font-weight: 400;
     font-family: "Poppins", sans-serif !important;
     color: #f4c2c2;
+}
+.feature-1 {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif !important;
+    // color: #f4c2c2;
+    color: #008080;
+    margin-top: 20px;
 }
 .section-bg {
     // background-color: #861657;
@@ -644,3 +659,63 @@ select.minimal {
 .character {
     transform: translateY(-130px);
 }
+
+//Guesture
+.large{
+    width: 65%;
+}
+
+.small{
+    margin-left: 3%;
+}
+@media (min-width: 1040px){
+.description {
+    columns: 2;
+    column-gap: 2rem;
+}
+}
+
+.columns {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+}
+.small-offset-1 {
+    margin-left: 3.3%;
+}
+@media (min-width: 640px){
+.scroll-reveal.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+.space-50-bottom {
+    padding-bottom: 40px;
+}
+@media (min-width: 1040px){
+.large-7 {
+    width: 65%;
+}
+}
+
+.live-section .points .point .icon {
+    width: 64px;
+}
+
+.live-section .points .point .icon {
+    width: 56px;
+}
+.live-section .points .point .icon {
+    width: 48px;
+}
+.inline-middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+.space-left {
+    padding-left:20px;
+}
+
+// Guesture ends 
