@@ -4,6 +4,7 @@ import { Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "./Location.styles.scss";
 
+
 const Location = () => {
   const navigate = useNavigate();
   const navigateToSignin = () => {
@@ -12,7 +13,7 @@ const Location = () => {
   return (
     <>
       <Container className="px-5">
-        <p className="head center pb-5">Location</p>
+        <p className="text-family text-shadow-location" style={{fontSize:"4rem"}}>location</p>
         <Row>
           <Col lg={8}>
             <Row>
