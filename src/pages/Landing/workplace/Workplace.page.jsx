@@ -12,7 +12,7 @@ const Workplace = () => {
 
   const locations = [
     { value: "Gunidy", label: "Gunidy" },
-    { value: "Chrompet", label: "Chrompet" },
+    { value: "Chromepet", label: "Chromepet" },
     { value: "Pallavaram", label: "Pallavaram" }
   ];
 
@@ -45,7 +45,7 @@ const Workplace = () => {
           </Col>
         </Row>
 
-        {selectValue && selectValue.value === "Chrompet" && (
+        {selectValue && selectValue.value === "Chromepet" && (
           <div className="p-5 mx-auto">
             <Row>
               <Col lg={12} className="d-flex">
@@ -107,8 +107,8 @@ const Workplace = () => {
                   <img src="/img/assets/workplace/icon-velankani.svg" alt="velankani Campus" />
                 </Card>
                 <Col className="p-3">
-                  <h3 className="workplace-time">18 min</h3>
-                  <p className="workplace-company">to Velankani Campus</p>
+                  <h3 className="workplace-time">10 mins</h3>
+                  <p className="workplace-company">to Airport </p>
                 </Col>
               </Col>
             </Row>
@@ -135,7 +135,7 @@ const Workplace = () => {
           </div>
         )}
 
-        {selectValue && selectValue.value !== "Chrompet" && selectValue.value !== "Gunidy" && (
+        {selectValue && selectValue.value !== "Chromepet" && selectValue.value !== "Gunidy" && (
           <div className="p-5 mx-auto">
             <Row>
               <Col lg={12} className="d-flex">

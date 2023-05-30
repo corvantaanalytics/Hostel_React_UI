@@ -27,6 +27,8 @@ const LandHome = () => {
             <section className="section-bg">
                 <Container>
                     <div className="center">
+                        {/* <br></br>
+                    <p className="text-family text-shadow-location" style={{fontSize:"10rem"}}>WoW Hostel</p> */}
                         <img src="/img/pinkletter.png" className="mx-auto p-5" />
                     </div>
                     <Row>
@@ -34,7 +36,7 @@ const LandHome = () => {
                             <div className="">
                                 <h2 className="head px-3">Just bring your bag.</h2>
                                 <p className="subhead px-3">
-                                    Say no to landlords, brokers and PGs.
+                                    Say no to landlords, brokers and Owner's pampers.
                                 </p>
                             </div>
                             <Row className="p-5">
@@ -129,13 +131,15 @@ const LandHome = () => {
                             <img src="/img/assets/rent-badge.png" className="rentimg" />
                         </Col>
                         <Col>
-                            <p className="title">Furnished Flat in Electronic City</p>
+                            <p className="title">Furnished Flat in Chennai</p>
                         </Col>
                         <Col className="px-5">
                             <Button
                                 type="ghost"
                                 className="learnButton px-4 py-2 mt-2 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
                                 style={{ border: "none" }}
+                                onClick={navigateToSignin}
+
                             >
                                 Learn More
                             </Button>
@@ -151,15 +155,17 @@ const LandHome = () => {
                 <Container>
                     <div>
                         <div className="small large">
-                            <div className="head" style={{ color: "#008080" }}>The Environment at Guesture</div>
+                            <div className="head" style={{ color: "#008080" }}>The Environment at Wow Hostel</div>
                             <div className="subhead" style={{ color: "#596e79" }}>we built cultural spaces into your environment.</div>
                         </div>
 
                         <div className="description columns small-offset-1 large-7 space-50-bottom scroll-reveal">
                             <div className="head" style={{ color: "#008080", fontSize: "1.5rem" }}>Urban living often forces people to abandon their passions & interests.</div>
-                            <div className="subhead" style={{ color: "#596e79", fontSize: "1rem" }}>The environment at Guesture is designed and built to provide interaction spaces, spaces for yoga and meditation, studio and
+                            <div className="subhead" style={{ color: "#596e79", fontSize: "1rem" }}>The environment at WoW Hostel is designed and built to provide interaction spaces, spaces for yoga and meditation, studio and
                                 amphitheater spaces for cultural activities, coworking spaces for working, sports areas for pursuing fitness and sports interests,
-                                and an overall sustainable system which does not hurt nature or the environment.</div>
+                                and an overall sustainable system which does not hurt nature or the environment.<br></br>
+                                All our hostels have access to below amenities nearby.
+                                </div>
                         </div>
                     </div>
                     <div>
@@ -409,6 +415,8 @@ const LandHome = () => {
                         type="ghost"
                         className="learnButton px-4 py-2 mt-5 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
                         style={{ border: "none" }}
+                        onClick={navigateToSignin}
+
                     >
                         Read the full KYC Policy
                     </Button>
@@ -430,7 +438,7 @@ const LandHome = () => {
                             <div>
                                 <Button
                                     type="ghost"
-                                    className="learnButton px-4 py-2 mt-5 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
+                                    className="learnButton px-4 py-2 mt-4 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
                                     style={{ border: "none" }}
                                     onClick={navigateToSignin}
                                 >
@@ -470,7 +478,7 @@ const LandHome = () => {
                                             </div>
                                             <div className="title-box">
                                                 <h5 style={{ fontSize: 25, fontWeight: 600, color: "#F4C2C2", marginTop: "7rem" }}>A Dedicated room in a 2 or 3 Bedroom Flat.</h5>
-                                                <div className="text">Preferred by Managers living alone in Bangalore, away from their family.</div>
+                                                <div className="text">Preferred by Managers living alone in Chennai, away from their family.</div>
                                             </div>
                                             <div className="config space-min">
                                                 <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
@@ -504,23 +512,24 @@ const LandHome = () => {
                                                 <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
                                                     <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>@</div>
                                                     <select className="minimal inline js_attribute js_balcony" data-name="balcony">
-                                                        <option value="Alta Vista - BLR">Alta Vista - BLR</option>
-                                                        <option value="Dwellington - BLR">Dwellington - BLR</option>
+                                                        <option value="Pallavaram - CHN">Pallavaram - CHN</option>
+                                                        <option value="Chromepet - CHN">Chromepet - CHN</option>
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div style={{ textAlign: "center", marginTop: "4px" }}>
+                                            <div style={{ textAlign: "center", marginTop: "10px" }}>
                                                 <div style={{ fontSize: 25, fontWeight: "900", color: "#F4C2C2" }}>
-                                                    ₹17,800*
+                                                    ₹10,000*
                                                 </div>
                                                 <div style={{ color: "#F4C2C2" }}>
                                                     PER PERSON, *PAID MONTHLY
                                                 </div>
+                                                <br></br>
                                             </div>
 
-                                            <div style={{ textAlign: "center", marginTop: "2px" }}>
-                                                <button
+                                            <div style={{ textAlign: "center", marginTop: "10px" }}>
+                                                {/* <button
                                                     type="ghost"
                                                     className="mt-4 p-2 purchase-Button hover:#F08EDB text-black w-50 mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
                                                     onClick={() => {
@@ -528,7 +537,7 @@ const LandHome = () => {
                                                     }}
                                                 >
                                                     Package Details
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </div>
                                     </div>
@@ -545,7 +554,7 @@ const LandHome = () => {
                                             {/* <!-- Title Box --> */}
                                             <div className="title-box">
                                                 <h5 style={{ fontSize: 25, fontWeight: 600, color: "#F4C2C2", marginTop: "7rem" }}>Twin Sharing room in a 2 or 3 Bedroom Flat.</h5>
-                                                <div className="text">Preferred by corporate professionals living alone in Bangalore.</div>
+                                                <div className="text">Preferred by corporate professionals living alone in Chennai.</div>
                                             </div>
                                             <div className="config space-min">
                                                 <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
@@ -579,23 +588,24 @@ const LandHome = () => {
                                                 <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
                                                     <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>@</div>
                                                     <select className="minimal inline js_attribute js_balcony" data-name="balcony">
-                                                        <option value="Alta Vista - BLR">Alta Vista - BLR</option>
-                                                        <option value="Dwellington - BLR">Dwellington - BLR</option>
+                                                        <option value="Pallavaram - CHN">Pallavaram - CHN</option>
+                                                        <option value="Chromepet - CHN">Chromepet - CHN</option>
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div style={{ textAlign: "center", marginTop: "4px" }}>
+                                            <div style={{ textAlign: "center", marginTop: "10px" }}>
                                                 <div style={{ fontSize: 25, fontWeight: "900", color: "#F4C2C2" }}>
-                                                    ₹10,200*
+                                                    ₹7,500*
                                                 </div>
                                                 <div style={{ color: "#F4C2C2" }}>
                                                     PER PERSON, *PAID MONTHLY
                                                 </div>
+                                                <br></br>
                                             </div>
 
                                             <div style={{ textAlign: "center", marginTop: "2px" }}>
-                                                <button
+                                                {/* <button
                                                     type="ghost"
                                                     className="mt-4 p-2 purchase-Button hover:#F08EDB text-black w-50 mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
                                                     onClick={() => {
@@ -603,7 +613,7 @@ const LandHome = () => {
                                                     }}
                                                 >
                                                     Package Details
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </div>
                                     </div>
@@ -620,7 +630,7 @@ const LandHome = () => {
                                             {/* <!-- Title Box --> */}
                                             <div className="title-box" >
                                                 <h5 style={{ fontSize: 25, fontWeight: 600, color: "#F4C2C2", marginTop: "7rem" }}>Triple Sharing room in a 2 or 3 Bedroom Flat.</h5>
-                                                <div className="text">Preferred by Students, Interns and Trainees living alone in Bangalore.</div>
+                                                <div className="text">Preferred by Students, Interns and Trainees living alone in Chennai.</div>
                                             </div>
                                             <div className="config space-min">
                                                 <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
@@ -654,23 +664,25 @@ const LandHome = () => {
                                                 <div className="lower-box grid grid-cols-2" style={{ margin: 0, color: "#F4C2C2" }}>
                                                     <div className="strong opacity-50 inline" style={{ fontSize: 20 }}>@</div>
                                                     <select className="minimal inline js_attribute js_balcony" data-name="balcony">
-                                                        <option value="Alta Vista - BLR">Alta Vista - BLR</option>
-                                                        <option value="Dwellington - BLR">Dwellington - BLR</option>
+                                                        <option value="Pallavaram - CHN">Pallavaram - CHN</option>
+                                                        <option value="Chromepet - CHN">Chromepet - CHN</option>
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div style={{ textAlign: "center", marginTop: "4px" }}>
+                                            <div style={{ textAlign: "center", marginTop: "10px" }}>
                                                 <div style={{ fontSize: 25, fontWeight: "900", color: "#F4C2C2" }}>
-                                                    ₹8,500*
+                                                    ₹5,000*
                                                 </div>
                                                 <div style={{ color: "#F4C2C2" }}>
                                                     PER PERSON, *PAID MONTHLY
                                                 </div>
+                                                <br></br>
+
                                             </div>
 
                                             <div style={{ textAlign: "center", marginTop: "2px" }}>
-                                                <button
+                                                {/* <button
                                                     type="ghost"
                                                     className="mt-4 p-2 purchase-Button hover:#F08EDB text-black w-50 mb-2 rounded-md h-14 hover:bg-pink-600/[.8] ease-in duration-200"
                                                     onClick={() => {
@@ -678,7 +690,7 @@ const LandHome = () => {
                                                     }}
                                                 >
                                                     Package Details
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </div>
                                     </div>

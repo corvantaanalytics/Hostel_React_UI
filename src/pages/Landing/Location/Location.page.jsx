@@ -13,7 +13,7 @@ const Location = () => {
   return (
     <>
       <Container className="px-5">
-        <p className="text-family text-shadow-location" style={{fontSize:"4rem"}}>location</p>
+        <p className="text-family text-shadow-location" style={{fontSize:"10rem"}}>location</p>
         <Row>
           <Col lg={8}>
             <Row>
@@ -21,14 +21,14 @@ const Location = () => {
                 <p className="pr-3 subhead">@</p>
               </Col>
               <Col>
-                <p className="subhead">Chrompet</p>
-                <p className="subhead1">52, east street<br></br> chrompet <br></br> Chennai</p>
+                <p className="subhead">Chromepet</p>
+                <p className="subhead1">52, East Street<br></br> Chromepet <br></br> Chennai</p>
                 <ul
                   className="workplace-text pb-3"
                   style={{ color: "#F4C2C2" }}
                 >
                   {/* <li>52, east street</li>
-                  <li>chrompet</li>
+                  <li>Chromepet</li>
                   <li>Chennai</li> */}
                   <li>
                     <Button
@@ -50,14 +50,14 @@ const Location = () => {
                 <p className="pr-3 subhead">@</p>
               </Col>
               <Col>
-                <p className="subhead">Chrompet</p>
-                <p className="subhead1">52, east street<br></br> chrompet <br></br> Chennai</p>
+                <p className="subhead">Pallavaram</p>
+                <p className="subhead1">52, East Street<br></br> Pallavaram <br></br> Chennai</p>
                 <ul
                   className="workplace-text pb-3"
                   style={{ color: "#F4C2C2" }}
                 >
                   {/* <li>52, east street</li>
-                  <li>chrompet</li>
+                  <li>Chromepet</li>
                   <li>Chennai</li> */}
                   <li>
                     <Button
@@ -79,14 +79,14 @@ const Location = () => {
                 <p className="pr-3 subhead">@</p>
               </Col>
               <Col>
-                <p className="subhead">Chrompet</p>
-                <p className="subhead1">52, east street<br></br> chrompet <br></br> Chennai</p>
+                <p className="subhead">Chromepet</p>
+                <p className="subhead1">52, East Street<br></br> Chromepet <br></br> Chennai</p>
                 <ul
                   className="workplace-text pb-3"
                   style={{ color: "#F4C2C2" }}
                 >
                   {/* <li>52, east street</li>
-                  <li>chrompet</li>
+                  <li>Chromepet</li>
                   <li>Chennai</li> */}
                   <li>
                     <Button
@@ -107,7 +107,7 @@ const Location = () => {
           <p className="workplace-time" style={{ color: "#FFFFFF" }}>
             Call us on{" "}
             <span className="workplace-time" style={{ color: "#EEEA89" }}>
-              +91-847-4825422
+              +91-90030-28176
             </span>
           </p>
         </div>

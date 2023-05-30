@@ -105,15 +105,15 @@ export function LandingLayout({ children, hide }) {
           <Col xs lg="2">
             <img src="/img/wowhostel.png" />
           </Col>
-          <Col xs lg="2" className="py-2">
-            <Button
+          {/* <Col xs lg="2" className="py-2"> */}
+            {/* <Button
               type="ghost"
               className="cancelButton mt-2 hover:#F08EDB text-white rounded-md hover:bg-pink-600/[.8] ease-in duration-200"
               style={{ border: "none" }}
             >
               Learn More
-            </Button>
-          </Col>
+            </Button> */}
+          {/* </Col> */}
         </Row>
       </Container>
 
