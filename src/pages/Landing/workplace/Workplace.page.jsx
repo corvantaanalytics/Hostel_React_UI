@@ -3,15 +3,38 @@ import { Row, Col, Card } from "antd";
 import { Container } from "react-bootstrap";
 import './Workplace.styles.scss';
 import Select from 'react-select';
+import { BorderOutlined } from "@ant-design/icons";
 
 const Workplace = () => {
-  const [selectValue, setSelectValue] = useState({ value: "Gunidy", label: "Gunidy" });
+  const [selectValue, setSelectValue] = useState({ value: "Guindy", label: "Guindy" });
   const handleSelect = (value) => {
     setSelectValue(value);
   }
 
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      backgroundColor: 'black', // Modify the background color of the control
+      borderColor: state.isFocused ? "none" : provided.borderColor,
+      boxShadow: state.isFocused ? "0px 0px 0px 2px none !important" : provided.boxShadow,
+      "&:hover": {
+        borderColor: "none !important",
+        boxShadow: state.isFocused ? "0px 0px 0px 2px none !important" : provided.boxShadow,
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: 'white', // Modify the background color of the dropdown menu
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? 'black' : 'white', // Modify the background color of the options
+      color: state.isSelected ? 'white' : 'black', // Modify the text color of the options
+    }),
+  };
+
   const locations = [
-    { value: "Gunidy", label: "Gunidy" },
+    { value: "Guindy", label: "Guindy" },
     { value: "Chromepet", label: "Chromepet" },
     { value: "Pallavaram", label: "Pallavaram" }
   ];
@@ -36,8 +59,8 @@ const Workplace = () => {
           </Col>
           <Col>
 
-            <Select
-              className="minimal inline js_attribute js_workplace mt-3"
+            <Select styles={customStyles}
+              className="minimal inline js_attribute js_workplace mt-3" 
               options={locations}
               onChange={handleSelect}
               value={selectValue}
@@ -90,7 +113,7 @@ const Workplace = () => {
           </div>
         )}
 
-        {selectValue && selectValue.value === "Gunidy" && (
+        {selectValue && selectValue.value === "Guindy" && (
           <div className="p-5 mx-auto">
             <Row>
               <Col lg={12} className="d-flex">
@@ -135,7 +158,7 @@ const Workplace = () => {
           </div>
         )}
 
-        {selectValue && selectValue.value !== "Chromepet" && selectValue.value !== "Gunidy" && (
+        {selectValue && selectValue.value !== "Chromepet" && selectValue.value !== "Guindy" && (
           <div className="p-5 mx-auto">
             <Row>
               <Col lg={12} className="d-flex">

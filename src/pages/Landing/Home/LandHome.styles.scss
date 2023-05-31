@@ -1,4 +1,4 @@
-@import url("https://fonts.cdnfonts.com/css/museo-sans-rounded");
+// @import url("https://fonts.cdnfonts.com/css/museo-sans-rounded");
 
 @media (min-width: 1480px) {
     .booking-section .pricing .pricing-list .price {
@@ -797,4 +797,39 @@ select.minimal {
     text-shadow: 0px 4px 5px #de8bcc, 0px 2px 15px #dc3545 !important;
     color: var(--neutral-5) !important;
 }
+}
+.css-1dimb5e-singleValue{
+    font-size: x-large;
+    border-bottom: 2px solid;
+    font-weight: bold;
+    color: rgb(244, 194, 194) !important;
+}
+.css-tj5bde-Svg{
+    border:none;
+
+    color: #f4c2c2;
+}
+.css-13cymwt-control{
+    border:none !important;
+}
+.css-1u9des2-indicatorSeparator {
+width: 0px !important;
+}
+
+.css-8w7gxx-control:hover {
+    border-color: white !important;
+}
+.css-8w7gxx-control{
+    box-shadow: 0 0 0 1px white !important;
+}
+.css-1dyqxrw-control:hover {
+    border-color: white !important;
+    box-shadow: none !important;
+}
+.css-ltpeo2-control:hover{
+    border-color: white !important;
+}
+.css-1h7e0e4-control:hover{
+    box-shadow: 0 0 0 1px none !important;
+    border-color: white !important;
 }
